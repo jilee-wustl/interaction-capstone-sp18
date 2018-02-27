@@ -4,6 +4,7 @@
     <title> Form / Google Translate Test </title>
     <!--<link href="style.css" rel="stylesheet">-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
 </head>
 
 <body>
@@ -16,19 +17,14 @@
     <br>
     <div id="resultEng"></div>
     
+    <div id="archive">
+        Archive <br>
+    </div>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <script type="text/javascript">
        $(document).ready(function(){ 
-        
-        /* detects enter pressed */
-        function enterPressed() {
-            $("#formInput").on("keydown",function search(e) {
-                if(e.keyCode == 13) {
-                    
-                }
-            });
-        }
         
         var url;
         var languages = ["EN","DE","ES","ZU","KO","HAW","PT","TH","SK","EL","EN"];
@@ -41,6 +37,8 @@
         var resultEng = [];
         var translationCount = 0;
         var translationCountEng = 0;
+        var userInput;
+
         
         /* translate */
         function translate() { 
@@ -116,15 +114,127 @@
                     url = "";
                     translationCountEng++;
                     translateEng();
+                    if (translationCountEng === 8){
+                        writeNewPost();
+                    }
                 }
                 });
             }
         }
+
+        
+        
+        
+        /* initializing firebase */
+        
+        var config = {
+            apiKey: "AIzaSyBCwLAV6RqYEPX766evjDD4SxrVyRlOY_0",
+            authDomain: "lost-in-translation-68ffc.firebaseapp.com",
+            databaseURL: "https://lost-in-translation-68ffc.firebaseio.com",
+            projectId: "lost-in-translation-68ffc",
+            storageBucket: "lost-in-translation-68ffc.appspot.com",
+            messagingSenderId: "269344435801"
+        };
+        firebase.initializeApp(config);
+        
+        
+        function writeNewPost() {
+            // A post entry.
+            console.log(userInput);
+
+            var postData = {
+                A_originalInput: userInput,
+                B_Dutch: result[0],
+                C_DutchToEn: resultEng[0],
+                D_Spanish: result[1],
+                E_SpanishToEn: resultEng[1],
+                F_Zulu: result[2],
+                G_ZuluToEn: resultEng[2],
+                H_Korean: result[3],
+                I_KoreanToEn: resultEng[3],
+                J_Hawaiian: result[4],
+                K_HawaiianToEn: resultEng[4],
+                L_Portugues: result[5],
+                M_PortugueseToEn: resultEng[5],
+                N_Thai: result[6],
+                O_ThaiToEn: resultEng[6],
+                P_Slovak: result[7],
+                Q_SlovakToEn: resultEng[7],
+                R_Greek: result[8],
+                S_finalOutput: result[9]   
+            };
+        
+            // Get a key for a new Post.
+            var newPostKey = firebase.database().ref().child('translations').push().key;
+          
+            // Write the new post's data simultaneously in the posts list and the user's post list.
+            var updates = {};
+            updates['/translations/' + newPostKey] = postData;
+          
+            return firebase.database().ref().update(updates);
+        }
+        
+        var ref = firebase.database().ref('/translations/');
+
+        var keys = [];
+        var names = [];
+        var bodys = [];
+        var final = "";
+        
+        function displayArrayObjects(arrayObjects) {
+            var len = arrayObjects.length, text = "";
+    
+            for (var i = 0; i < len; i++) {
+                var myObject = arrayObjects[i];
+                console.log(myObject);
+                for (var x in myObject) {
+                    text += ("<br/>" + myObject[x] + "<br/>");
+                }
+                text += "<br/>";
+            }
+    
+            document.getElementById("archive").innerHTML = text;
+        }
+            
+        ref.once('value',function(snap) {
+            snap.forEach(function(item) {
+                var itemVal = item.val();
+                keys.push(itemVal);
+                var str = JSON.stringify(itemVal);
+                final += str;
+                //console.log(final);
+            });
+            for (i=0; i < keys.length; i++) {
+                names.push(keys[i].body);
+                bodys.push(keys[i].name);
+            }
+             displayArrayObjects(keys);	
+        });
+       
+        
+        
+        
+        
+        
+        
+    
+        
+        /* detects enter pressed */
+        function enterPressed() {
+            $("#formInput").on("keydown",function search(e) {
+                if(e.keyCode == 13) {
+                    translate();
+                }
+            });
+        }
+        
+        
         
         /* functions */
         enterPressed();
         
-        $("#btnTranslate").click(function () {      
+        $("#btnTranslate").click(function () {
+            userInput = $("#formInput").val();
             translate();
         });
         
