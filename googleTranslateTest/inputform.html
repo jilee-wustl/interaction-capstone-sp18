@@ -2,7 +2,7 @@
 <html>
 <head>
     <title> Form / Google Translate Test </title>
-    <link href="style.css" rel="stylesheet">
+    <!--<link href="style.css" rel="stylesheet">-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 
@@ -13,7 +13,8 @@
         <input type="button" id="btnTranslate" value="Translate">
     </form>
     <div id="result"></div>
-    
+    <br>
+    <div id="resultEng"></div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -29,19 +30,103 @@
             });
         }
         
-        $("#btnTranslate").click(function () {
-            var url = "https://translation.googleapis.com/language/translate/v2?key=AIzaSyDR3NPgTSVCs633RyvRG94_awHZuuqGC4A";
-            //url += "&source=" + $("#ddlSource").val(); 
-            //url += "&target=" + $("#ddlTarget").val(); 
-            url += "&source=" + "EN"; 
-            url += "&target=" + "FR";
-            url += "&q=" + escape($("#formInput").val());
-            $.get(url, function (data, status) {
-                $("#result").val(data.data.translations[0].translatedText);
-            });
-        });
+        var url;
+        var languages = ["EN","DE","ES","ZU","KO","HAW","PT","TH","SK","EL","EN"];
+        var currentLang;
+        var nextLang;
+        var currentLangEng;
+        var nextLangEng;
+        var translateInput;
+        var result = [];
+        var resultEng = [];
+        var translationCount = 0;
+        var translationCountEng = 0;
+        
+        /* translate */
+        function translate() { 
+            if (translationCount < 10) {
+                if (translationCount === 0){
+                    translateInput = encodeURI($("#formInput").val());
+                }
+    
+                else {
+                    console.log("input: " + result[translationCount-1]);
+                    translateInput = encodeURI(result[translationCount-1]);
+                }
+                
+                currentLang = languages[translationCount];
+                nextLang = languages[(translationCount + 1)];
+                
+                console.log ("tCount: " + translationCount);
 
+                console.log ("current language: " + currentLang);
+                console.log ("next language: " + nextLang);
+                url = "https://translation.googleapis.com/language/translate/v2?key=AIzaSyDR3NPgTSVCs633RyvRG94_awHZuuqGC4A";
+                url += "&source=" + currentLang; 
+                url += "&target=" + nextLang;
+                url += "&q=" + translateInput;
+                
+                console.log(url);
+                  
+                $.get(url, function (data, status) {
+                $("#result").append(data.data.translations[0].translatedText + "<br>");
+                if(status == "success") {
+                    var done = data.data.translations[0].translatedText;
+                    result.push(done);
+                    console.log("done: " + done);
+                    console.log("result " + translationCount +": " + result[translationCount]);
+                    url = "";
+                    translationCount++;
+                    translate();
+                    if (translationCount == 10) {
+                        translateEng();
+                    }
+                }
+                });
+            }
+        }
+        
+        function translateEng() {
+            if (translationCountEng < 8) {
+                console.log("eng count " + translationCountEng);
+                translateInput = encodeURI(result[translationCountEng]);
+                currentLangEng = languages[translationCountEng+1];
+                nextLangEng = "EN";
+                
+                console.log ("tCount: " + translationCountEng);
+
+                console.log ("current language: " + currentLangEng);
+                console.log ("next language: " + nextLangEng);
+                url = "https://translation.googleapis.com/language/translate/v2?key=AIzaSyDR3NPgTSVCs633RyvRG94_awHZuuqGC4A";
+                url += "&source=" + currentLangEng; 
+                url += "&target=" + nextLangEng;
+                url += "&q=" + translateInput;
+                
+                console.log(url);
+                  
+                $.get(url, function (data, status) {
+                $("#resultEng").append(decodeURI(translateInput) + "<br>");
+
+                $("#resultEng").append("to English: " + data.data.translations[0].translatedText + "<br>");
+                if(status == "success") {
+                    var done = data.data.translations[0].translatedText;
+                    resultEng.push(done);
+                    console.log("done: " + done);
+                    console.log("result " + translationCount +": " + resultEng[translationCountEng]);
+                    url = "";
+                    translationCountEng++;
+                    translateEng();
+                }
+                });
+            }
+        }
+        
+        /* functions */
         enterPressed();
+        
+        $("#btnTranslate").click(function () {      
+            translate();
+        });
         
         });
     </script>
