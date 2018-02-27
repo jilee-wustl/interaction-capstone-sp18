@@ -1,0 +1,22 @@
+html {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(0,0,0,0.93);
+}
+
+.center {
+  display: block;
+  padding: 200px;
+  font-family: 'Noto Serif', serif;
+  font-size: 30px;
+  position: relative;
+  width: 300px;
+  height: 300px;
+  color: rgba(256,256,256,0.85);
+}
+
+		.center .text {
+		position: absolute;
+		}

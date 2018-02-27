@@ -1,0 +1,91 @@
+html {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -webkit-tap-highlight-color: transparent;
+  background-color: rgba(0,0,0,0.08);
+}
+
+.main {
+  flex: 0 0 100%;
+  max-width: 100%;
+  position: relative;
+  min-height: 1px;
+  width: 100%;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  top: 300px;
+}
+
+.hello .hello .hello-inner {
+  height: 100vh;
+  position: relative;
+  transition: all .2s cubic-bezier(.23,1,.32,1);
+}
+
+.el-animate {
+    transition: all 1s cubic-bezier(.23,1,.32,1);
+}
+
+.hello hello-inner {
+  transform: translateY(-15%);
+  position: absolute;
+  filter: contrast(20);
+  overflow: hidden;
+  left: 0;
+  right: 0;
+  top: 50%;
+}
+
+.hello .hello-inner h1 {
+    font-size: 2vw;
+    color: #000;
+    margin: 0 auto;
+    z-index: -1;
+    -webkit-transition: all 1s cubic-bezier(.23,1,.32,1);
+    transition: all 1s cubic-bezier(.23,1,.32,1);
+    line-height: 1.5;
+    font-weight: 700;
+}
+.effect {
+    text-align: center;
+    margin: 0;
+}
+#gooeyready {
+    opacity: 1;
+    -webkit-animation: letterspacing 3s 1 alternate cubic-bezier(.23,.6,.32,1);
+    animation: letterspacing 3s 1 alternate cubic-bezier(.23,.6,.32,1);
+    -webkit-aanimation: letterspacing 3s 1 alternate cubic-bezier(.23,.6,.32,1);
+    -mox-animation: letterspacing 3s 1 alternate cubic-bezier(.23,.6,.32,1);
+    -o-animation: letterspacing 3s 1 alternate cubic-bezier(.23,.6,.32,1);
+    -ms-animation: letterspacing 3s 1 alternate cubic-bezier(.23,.6,.32,1);
+}
+
+@keyframes letterspacing {
+  0% {
+        letter-spacing: -5rem;
+        filter: blur(6rem);
+        -webkit-filter: blur(6rem);
+        -ms-filter: blur(6rem);
+        backdrop-filter: blur(6rem);
+  }
+  
+  50% {
+        filter: blur(0.5rem);
+        -webkit-filter: blur(0.5rem);
+        -ms-filter: blur(0.5rem);
+        backdrop-filter: blur(0.5rem);
+  }
+  
+  100% {
+        letter-spacing: 0;
+        filter: blur(0);
+        -webkit-filter: blur(0);
+        -ms-filter: blur(0);
+        backdrop-filter: blur(0);
+  }
+}

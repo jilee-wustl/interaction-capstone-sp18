@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Form / Google Translate Test </title>
+    <link href="style.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+
+<body>
+    
+    <form>
+        <input type="text" id="formInput" size="100">
+        <input type="button" id="btnTranslate" value="Translate">
+    </form>
+    <div id="result"></div>
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+       $(document).ready(function(){ 
+        
+        /* detects enter pressed */
+        function enterPressed() {
+            $("#formInput").on("keydown",function search(e) {
+                if(e.keyCode == 13) {
+                    
+                }
+            });
+        }
+        
+        $("#btnTranslate").click(function () {
+            var url = "https://translation.googleapis.com/language/translate/v2?key=AIzaSyDR3NPgTSVCs633RyvRG94_awHZuuqGC4A";
+            //url += "&source=" + $("#ddlSource").val(); 
+            //url += "&target=" + $("#ddlTarget").val(); 
+            url += "&source=" + "EN"; 
+            url += "&target=" + "FR";
+            url += "&q=" + escape($("#formInput").val());
+            $.get(url, function (data, status) {
+                $("#result").val(data.data.translations[0].translatedText);
+            });
+        });
+
+        enterPressed();
+        
+        });
+    </script>
+   
+</body>
+</html>

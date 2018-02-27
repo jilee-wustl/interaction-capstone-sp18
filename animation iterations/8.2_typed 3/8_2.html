@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> 8 </title>
+    <link href="style.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+	<script src="typed.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <div class="center">
+		
+		<span id="text-switch"></p>
+	</div>
+    <script>
+		$(document).ready(function(){
+			
+			
+		var typed = new Typed('#text-switch', {
+		  strings: ["Comic Sans walks into a bar, and the bartender says, We don't serve your type.",
+							"Comic Sans entra a un bar y el cantinero dice: No servimos a tu tipo.",
+							"Το Cartoon Sun εισέρχεται στο μπαρ και λέει στον σερβιτόρο: Δεν θα εξυπηρετήσουμε τον τύπο σας.",
+							"Cartoon Sun går inn i baren og forteller servitøren: Vi vil ikke tjene din fyr.",
+							"Мультяшное солнце входит в бар и говорит официанту: «Мы не будем служить вашему парню».",
+							"การ์ตูนดวงอาทิตย์เข้าบาร์และบอกพนักงานเสิร์ฟ: เราจะไม่ให้บริการแฟนของคุณ.",
+							"Hoʻokomo ka lā i ka pā a haʻi i ke kahu: ʻAʻole mākou e lawelawe i kāu kāne.",
+							"The sun went on the fence and told the nurse: We do not have to work for your husband."],
+		  typeSpeed: 20,
+		  backSpeed: 0,
+		   loop: true,
+		loopCount: Infinity,
+		   showCursor: false,
+		      contentType: 'text',
+            highlight: true,
+			autoInsertCss: true,
+		  onStringTyped: function() {$('#text-switch').css('background-color', 'white');},
+		preStringTyped: function() {$('#text-switch').css('background-color', '#252525');},
+		});
+		});
+	
+		
+    </script>
+</body>
+</html>
