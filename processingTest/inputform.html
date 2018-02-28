@@ -23,8 +23,9 @@
         Archive <br>
     </div>
     
-
-
+    <div id="processing">
+        
+    </div>
     <script src="processing.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -43,7 +44,10 @@
         var translationCount = 0;
         var translationCountEng = 0;
         var userInput;
-
+        var processingString = "";
+        var processingInstance;
+        var canvas = document.getElementById("canvas1");
+        var processingCode = "...";
         
         /* translate */
         function translate() { 
@@ -72,6 +76,7 @@
                 console.log(url);
                   
                 $.get(url, function (data, status) {
+                processingString += "/" + data.data.translations[0].translatedText;
                 $("#result").append(data.data.translations[0].translatedText + "<br>");
                 if(status == "success") {
                     var done = data.data.translations[0].translatedText;
@@ -121,6 +126,11 @@
                     translateEng();
                     if (translationCountEng === 8){
                         writeNewPost();
+                        console.log("processing: " + processingString);
+                        var mycanvas = document.createElement("canvas");
+                        mycanvas.id = "mycanvas";
+                        document.body.appendChild(mycanvas);
+                        Processing.loadSketchFromSources(mycanvas, 'particles.pde');
                     }
                 }
                 });
@@ -215,13 +225,6 @@
             }
              displayArrayObjects(keys);	
         });
-       
-        
-        
-        
-        
-        
-        
     
         
         /* detects enter pressed */
@@ -243,7 +246,7 @@
             translate();
         });
         
-        });
+    });
     </script>
    
 </body>

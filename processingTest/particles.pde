@@ -1,7 +1,6 @@
 color c = color(1,1,1);//the secret colour
 String word = "Openprocessing";
-String allwords = processingString;
-
+String allwords ="";
 PVector start  =new PVector(10, 60);
 int tSize =25; //Textsize
 ArrayList<particle> Points = new ArrayList<particle>();
