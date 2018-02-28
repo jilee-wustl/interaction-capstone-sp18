@@ -127,10 +127,10 @@
                     if (translationCountEng === 8){
                         writeNewPost();
                         console.log("processing: " + processingString);
-                        var mycanvas = document.createElement("canvas");
-                        mycanvas.id = "mycanvas";
-                        document.body.appendChild(mycanvas);
-                        Processing.loadSketchFromSources(mycanvas, 'particles.pde');
+                        var $newCanv = $("<canvas/>").attr("id", "mycanvas");  // adds the id 
+
+                        $("#processing").append($newCanv);
+                        Processing.loadSketchFromSources('mycanvas', ['particles/particles.pde']); 
                     }
                 }
                 });
