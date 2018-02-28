@@ -1,3 +1,5 @@
+/* @pjs font="http://www5.miele.nl/apps/vg/nl/miele/mielea02.nsf/files/arial.ttf/$file/arial.ttf"; */
+
 color c = color(1,1,1);//the secret colour
 String word = "Openprocessing";
 String allwords ="";
@@ -13,8 +15,13 @@ void setup() {
   size(1400, 800);
   frameRate(30);
   background(0,0,0);
-  textSize(tSize);
+  //textSize(tSize);
   fill(c);
+  PFont font;
+  // The font must be located in the sketch's 
+  // "data" directory to load successfully
+  font = loadFont("SansSerif-48.vlw");
+  textFont(font, 25);
   text(word, start.x, start.y+tSize); //writing invisible text
   loadPixels(); //saving all pixels of the sketch
   for (int i = 0; i < PNum; i++) {//creating the particles
