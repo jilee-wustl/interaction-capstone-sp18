@@ -30,10 +30,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <script type="text/javascript">
+        var processingString = "";
+
        $(document).ready(function(){ 
         
         var url;
-        var languages = ["EN","DE","ES","ZU","KO","HAW","PT","TH","SK","EL","EN"];
+        var languages = ["EN","FR","PL","DE","ZU","AF","AR","TH","RU","KO","PT","EN"];
         var currentLang;
         var nextLang;
         var currentLangEng;
@@ -44,14 +46,10 @@
         var translationCount = 0;
         var translationCountEng = 0;
         var userInput;
-        var processingString = "";
-        var processingInstance;
-        var canvas = document.getElementById("canvas1");
-        var processingCode = "...";
         
         /* translate */
         function translate() { 
-            if (translationCount < 10) {
+            if (translationCount < 11) {
                 if (translationCount === 0){
                     translateInput = encodeURI($("#formInput").val());
                 }
@@ -86,7 +84,7 @@
                     url = "";
                     translationCount++;
                     translate();
-                    if (translationCount == 10) {
+                    if (translationCount == 11) {
                         translateEng();
                     }
                 }
@@ -95,7 +93,7 @@
         }
         
         function translateEng() {
-            if (translationCountEng < 8) {
+            if (translationCountEng < 10) {
                 console.log("eng count " + translationCountEng);
                 translateInput = encodeURI(result[translationCountEng]);
                 currentLangEng = languages[translationCountEng+1];
@@ -124,7 +122,7 @@
                     url = "";
                     translationCountEng++;
                     translateEng();
-                    if (translationCountEng === 8){
+                    if (translationCountEng === 10){
                         writeNewPost();
                         console.log("processing: " + processingString);
                         var $newCanv = $("<canvas/>").attr("id", "mycanvas");  // adds the id 
@@ -136,8 +134,6 @@
                 });
             }
         }
-
-        
         
         
         /* initializing firebase */
@@ -176,7 +172,9 @@
                 P_Slovak: result[7],
                 Q_SlovakToEn: resultEng[7],
                 R_Greek: result[8],
-                S_finalOutput: result[9]   
+                S_GreekToEn: resultEng[8],
+                S_something: result[9],
+                T_finalOutput: result[10]   
             };
         
             // Get a key for a new Post.
@@ -247,6 +245,8 @@
         });
         
     });
+    
+       
     </script>
    
 </body>

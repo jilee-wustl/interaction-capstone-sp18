@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Form / Google Translate Test </title>
+    <!--<link href="style.css" rel="stylesheet">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+</head>
+
+<body>
+    <div id="processing">
+        
+    </div>
+    <script src="processing.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+       $(document).ready(function(){ 
+        
+        var url;
+        var languages = ["EN","DE","ES","ZU","KO","HAW","PT","TH","SK","EL","EN"];
+        var currentLang;
+        var nextLang;
+        var currentLangEng;
+        var nextLangEng;
+        var translateInput;
+        var result = [];
+        var resultEng = [];
+        var translationCount = 0;
+        var translationCountEng = 0;
+        var userInput;
+        var processingString = "/Hallo/¡Hola/Sawubona/안녕하세요./Good kakahiaka./Bom dia./สวัสดี/ahoj/γεια/Hello";
+
+        var processingInstance;
+        var canvas = document.getElementById("canvas1");
+        
+        
+        var $newCanv = $("<canvas/>").attr("id", "mycanvas");  // adds the id 
+
+        $("#processing").append($newCanv);
+        Processing.loadSketchFromSources('mycanvas', ['particles/particles.pde']); 
+        
+    });
+    </script>
+   
+</body>
+</html>

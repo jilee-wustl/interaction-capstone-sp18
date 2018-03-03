@@ -1,5 +1,3 @@
-/* @pjs font="http://www5.miele.nl/apps/vg/nl/miele/mielea02.nsf/files/arial.ttf/$file/arial.ttf"; */
-
 color c = color(1,1,1);//the secret colour
 String word = "Openprocessing";
 String allwords ="";
@@ -10,7 +8,7 @@ int index=0;
 float restZ=0;
 int F = 0;
 float CTime=120;//number of frames between words
-int PNum =12000;//number of particles
+int PNum = 8000;//number of particles
 void setup() {
   size(1400, 800);
   frameRate(30);

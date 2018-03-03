@@ -30,6 +30,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <script type="text/javascript">
+        var processingString = "";
+
        $(document).ready(function(){ 
         
         var url;
@@ -44,10 +46,6 @@
         var translationCount = 0;
         var translationCountEng = 0;
         var userInput;
-        var processingString = "";
-        var processingInstance;
-        var canvas = document.getElementById("canvas1");
-        var processingCode = "...";
         
         /* translate */
         function translate() { 
@@ -136,8 +134,6 @@
                 });
             }
         }
-
-        
         
         
         /* initializing firebase */
@@ -247,6 +243,8 @@
         });
         
     });
+    
+       
     </script>
    
 </body>
