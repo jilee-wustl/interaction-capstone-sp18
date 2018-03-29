@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Lost in Translation_ </title>
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="style_archive2.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+    <script src="loadTemplate.js"></script>
+    <script type="text/javascript" src="jquery.actual.js"></script>
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+
+<body id="bootstrap-overrides">
+    <div class="background" id="processing"></div>
+    
+    <div class="background" id="processingTranslation"></div>
+
+    <div class="menu">
+        <button class="menu-button" id="main-button"> Lost in Translation_ </button>
+        <button class="menu-button" id="about-button"> About </button>
+        <button class="menu-button" id="archive-button"> Archive </button>
+    </div>
+    
+    <div class="page1" id="archive-page" style="display: block !important">
+        <div id="archive" style="display: block !important">
+            
+            
+            <div class="post" id="post-1">
+                <div class="insidePost" id="insidePost-1">
+                    <div class="input" id="input-1">
+                        <div class="btn-container" id="btn-t-1-1">
+                            <button class="btn-io"></button>
+                        </div>
+                        <div class="text" id="io-1-1">
+                            <span class="sentence">
+                            My mother is hi.
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="collapse" id="collapse-1">
+                        
+                        <div class="eachTrans">
+                            <div class="btn-container" id="btn-e-1-1">
+                                <button id="btn-p-1-1" class="btn-btw btn-btw-1" value="1"></button>
+                            </div>
+                            
+                            <div class="text" id="text-1-1">
+                                <div class= "txtWrapper" id="1-1">
+                                    <span class="sentence orig" id="1-1-orig">
+                                        Mi madre está hola.
+                                    </span>
+                                    <span class="sentence eng" id="1-1-eng">
+                                        My mother is hello.
+                                    </span>
+                                </div>
+                                <div class="lang">
+                                    English &ndash;&nbsp;<span id="lang-1-1"> Spanish</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="eachTrans">
+                            <div class="btn-container" id="btn-e-1-2">
+                                <button id="btn-p-1-2" class="btn-btw btn-btw-1" value="1"></button>
+                            </div>
+                            
+                            <div class="text" id="text-1-2">
+                                <div class= "txtWrapper" id="1-2">
+                                    <span class="sentence orig" id="1-2-orig">
+                                        Mi madre
+                                    </span>
+                                    <span class="sentence eng" id="1-2-eng">
+                                        is hello.
+                                    </span>
+                                </div>
+                                <div class="lang">
+                                    English &ndash;&nbsp;<span id="lang-1-2"> Spanish</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="eachTrans">
+                            <div class="btn-container" id="btn-e-1-3">
+                                <button id="btn-p-1-3" class="btn-btw btn-btw-1" value="1"></button>
+                            </div>
+                            
+                            <div class="text" id="text-1-3">
+                                <div class= "txtWrapper" id="1-3">
+                                    <span class="sentence orig" id="1-3-orig">
+                                        Mi madre está hola.
+                                    </span>
+                                    <span class="sentence eng" id="1-3-eng">
+                                        My mother is hello.
+                                    </span>
+                                </div>
+                                <div class="lang">
+                                    English &ndash;&nbsp;<span id="lang-1-3"> Spanish</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="eachTrans">
+                            <div class="btn-container" id="btn-e-1-4">
+                                <button id="btn-p-1-4" class="btn-btw btn-btw-1" value="1"></button>
+                            </div>
+                            
+                            <div class="text" id="text-1-4">
+                                <div class= "txtWrapper" id="1-4">
+                                    <span class="sentence orig" id="1-4-orig">
+                                        Mi madre
+                                    </span>
+                                    <span class="sentence eng" id="1-4-eng">
+                                        is hello.
+                                    </span>
+                                </div>
+                                <div class="lang">
+                                    English &ndash;&nbsp;<span id="lang-1-4"> Spanish</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="eachTrans">
+                            <div class="btn-container" id="btn-e-1-5">
+                                <button id="btn-p-1-5" class="btn-btw btn-btw-1" value="1"></button>
+                            </div>
+                            
+                            <div class="text" id="text-1-5">
+                                <div class= "txtWrapper" id="1-5">
+                                    <span class="sentence orig" id="1-5-orig">
+                                        Mi madre está hola.
+                                    </span>
+                                    <span class="sentence eng" id="1-5-eng">
+                                        My mother is hello.
+                                    </span>
+                                </div>
+                                <div class="lang">
+                                    English &ndash;&nbsp;<span id="lang-1-5"> Spanish</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="eachTrans">
+                            <div class="btn-container" id="btn-e-1-6">
+                                <button id="btn-p-1-6" class="btn-btw btn-btw-1" value="1"></button>
+                            </div>
+                            
+                            <div class="text" id="text-1-6">
+                                <div class= "txtWrapper" id="1-6">
+                                    <span class="sentence orig" id="1-6-orig">
+                                        Mi madre Mi madre Mi madre Mi madre Mi madre Mi madre Mi madre
+                                        Mi madre Mi madre Mi madre Mi madre Mi madre Mi madre Mi madre
+                                    </span>
+                                    <span class="sentence eng" id="1-6-eng">
+                                        is hello. is hello. is hello. is hello. is hello. is hello. is hello.
+                                        is hello. is hello. is hello. is hello. is hello. is hello. is hello.
+                                    </span>
+                                </div>
+                                <div class="lang">
+                                    English &ndash;&nbsp;<span id="lang-1-6"> Spanish</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="eachTrans">
+                            <div class="btn-container" id="btn-e-1-7">
+                                <button id="btn-p-1-7" class="btn-btw btn-btw-1" value="1"></button>
+                            </div>
+                            
+                            <div class="text" id="text-1-7">
+                                <div class= "txtWrapper" id="1-7">
+                                    <span class="sentence orig" id="1-7-orig">
+                                        Mi madre está hola.
+                                    </span>
+                                    <span class="sentence eng" id="1-7-eng">
+                                        My mother is hello.
+                                    </span>
+                                </div>
+                                <div class="lang">
+                                    English &ndash;&nbsp;<span id="lang-1-7"> Spanish</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="eachTrans">
+                            <div class="btn-container" id="btn-e-1-8">
+                                <button id="btn-p-1-8" class="btn-btw btn-btw-1" value="1"></button>
+                            </div>
+                            
+                            <div class="text" id="text-1-8">
+                                <div class= "txtWrapper" id="1-8">
+                                    <span class="sentence orig" id="1-8-orig">
+                                        Mi madre
+                                    </span>
+                                    <span class="sentence eng" id="1-8-eng">
+                                        is hello.
+                                    </span>
+                                </div>
+                                <div class="lang">
+                                    English &ndash; &nbsp;<span id="lang-1-8"> Spanish</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="eachTrans">
+                            <div class="btn-container" id=btn-e-1-9>
+                                <button id="btn-p-1-9" class="btn-btw btn-btw-1" value="1"></button>
+                            </div>
+                            
+                            <div class="text" id="text-1-9">
+                                <div class= "txtWrapper" id="1-9">
+                                    <span class="sentence orig" id="1-9-orig">
+                                        Mi madre está hola.
+                                    </span>
+                                    <span class="sentence eng" id="1-9-eng">
+                                        My mother is hello.
+                                    </span>
+                                </div>
+                                <div class="lang">
+                                    English &ndash;&nbsp;<span id="lang-1-9"> Spanish</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="eachTrans">
+                            <div class="btn-container" id="btn-e-1-10">
+                                <button id="btn-p-1-10" class="btn-btw btn-btw-1" value="1"></button>
+                            </div>
+                            
+                            <div class="text" id="text-1-10">
+                                <div class= "txtWrapper" id="1-10">
+                                    <span class="sentence orig" id="1-10-orig">
+                                        Mi madre
+                                    </span>
+                                    <span class="sentence eng" id="1-10-eng">
+                                        is hello.
+                                    </span>
+                                </div>
+                                <div class="lang">
+                                    English &ndash;&nbsp; <span id="lang-1-10"> Spanish</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="output" id="output-1">              
+                        <div class="btn-container" id="btn-t-1-2">
+                            <button class="btn-io"></button>
+                        </div>
+                        <div class="text" id="io-1-2">
+                            <span class="sentence">
+                                Hello, my mother. 
+                            </span>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="btn-container btn-m" id="btn-m-1">
+                    <button id="btn-o-1" value = "1" class="btn-o" type="button" data-toggle="collapse" data-target="#collapse-1" aria-expanded="false" aria-controls="collapse-1"></button>
+                </div>
+            </div>
+            
+            
+            
+        </div>
+    </div>
+
+    <script src="he/he.js"></script>
+    <script src="processing.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+           
+            var postNum = 1;
+            
+            // for each post
+            for (var a = 1; a <= postNum; a++) {
+                
+                //placing button for input & output 
+                for (var b = 1; b < 3; b++) {
+                    var textDivName = '#io-' + a + '-' + b;
+                    var btnDivName = '#btn-t-' + a + '-' + b;
+                    var divHeight = $(textDivName).height();
+                    $(btnDivName).css('min-height', divHeight+'px');
+                }
+                
+                //placing button in the middle of input & output
+                var postHeight = $('#insidePost-' + a).height();
+                $('#btn-m-'+a).css('min-height', postHeight);
+
+            }
+            
+            
+            
+            //hover effect for each language
+            $('.txtWrapper').mouseenter (function() {
+                
+                var wrapperId = this.id;
+
+                var eng = '#' + wrapperId + '-eng';
+                var orig = '#' + wrapperId + '-orig';
+                
+                var boldSpan = '#lang-' + wrapperId;
+                                
+                $(orig).show();
+                $(eng).hide();
+                $(boldSpan).css('font-weight', 500);
+            });
+            
+            $('.txtWrapper').mouseleave (function() {
+                
+                var wrapperId = this.id;
+
+                var eng = '#' + wrapperId + '-eng';
+                var orig = '#' + wrapperId + '-orig';
+                
+                var boldSpan = '#lang-' + wrapperId;
+
+                $(orig).hide();
+                $(eng).show();
+                $(boldSpan).css('font-weight', 300);
+            });
+            
+            
+            
+            //when open button is clicked
+            $('.btn-o').click(function() {
+                var btnValue = this.value;
+                var btnName = '.btn-btw-' + btnValue;
+                var btnDotName = '#btn-m-' + btnValue;
+
+                $(this).fadeOut();
+                $(btnDotName).fadeOut();
+
+                $(btnName).hide();
+                                
+                setTimeout(function() {
+                    calculate(btnValue);
+                }, 600);
+                
+                setTimeout(function() {
+                    showBtn(btnValue);
+                }, 600);
+            });
+            
+            
+            function calculate(val) {
+                var postHeight = $('#insidePost-'+val).actual('height');
+                
+                console.log(postHeight);
+                
+                var btnName = '#btn-m-'+val;
+                
+                $(btnName).css('min-height', postHeight+'px');
+                                
+                for (var x = 1; x <=10; x++){
+                    var divName = '#text-' + val + '-' + x;
+                    var btnMidName = '#btn-e-' + val + '-' + x;
+                    var individualHeight = $(divName).actual('height');
+                    $(btnMidName).css('min-height', individualHeight+'px');
+                }
+                
+                $(btnName).fadeIn(1200);
+            }
+            
+            
+            //in between translation button clicked
+            $('.btn-btw').click(function() {
+                var btnValue = this.value;
+                var collapseName = '#collapse-' + btnValue;
+                var btnMidName = '#btn-m-' + btnValue;
+                
+                $(collapseName).collapse('hide');
+                $(btnMidName).hide();
+
+                setTimeout(function() {
+                    calculate(btnValue);
+                }, 600);
+                
+                setTimeout(function() {
+                    showMidBtn(btnValue);
+                }, 700);
+            });
+            
+            
+            
+            function showMidBtn(val) {
+                var name = '#btn-o-' + val;
+                $(name).fadeIn(1000);
+            }
+            
+            function showBtn(val) {
+                var name = '.btn-btw-' + val;
+                $(name).fadeIn();
+            }
+            
+        });
+        
+    </script>
+    
+</body>
+</html>

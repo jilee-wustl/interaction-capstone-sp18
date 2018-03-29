@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Lost in Translation_ </title>
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+
+</head>
+
+<body>
+    <div class="background" id="processing"></div>
+    
+    <div class="background" id="processingTranslation"></div>
+
+    <div class="menu">
+        <button class="menu-button" id="logo"> Lost in Translation_ </button>
+        <button class="menu-button"> About </button>
+        <button class="menu-button"> Archive </button>
+    </div>
+    
+    <div class="page" id="landing-page">
+        <div class="input-form">
+        <form>
+            <div class="input-container">
+                <span class="my-mother-is">My mother is</span>
+
+                <input type="text" class="inputs" id="formInput" maxlength="24">
+                <input type="text" class="inputs" id="formInput2" maxlength="40">
+                <input type="text" class="inputs" id="formInput3" maxlength="40">
+            </div>
+            
+            <br>
+            <input type="button" id="btnTranslate" value="Run">
+        </form>            
+        </div>
+    </div>
+    
+    <div class="page1" id="archive">
+        Archive
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    <!--<script src="javascript.js"></script>-->
+    <script src="processing.min.js"></script>
+
+
+    <script>
+        var processingString = "";
+
+        $(document).ready(function(){
+            var $newCanv = $("<canvas/>").attr("id", "mycanvas");  // adds the id 
+
+            $("#processing").append($newCanv);
+            Processing.loadSketchFromSources('mycanvas', ['background_working/background_working.pde']);
+            
+            $("#formInput").keyup(function () {
+                if ((this.value.length+20) > this.maxLength) {
+                    $("#formInput2").fadeIn(2000);
+                }
+            });
+            
+            $("#formInput2").keyup(function () {
+                var key = event.keyCode || event.charCode;
+
+                if ((this.value.length+10) > this.maxLength) {
+                    $("#formInput3").fadeIn(2000);
+                }
+                
+                if( key == 8 || key == 46 )
+                    {
+                    if (this.value.length === 0) {
+                        $(this).prev('.inputs').focus();
+                    }
+                }
+            });
+            
+            $(".inputs").keyup(function () {
+                var key = event.keyCode || event.charCode;
+                
+                if (this.value.length == this.maxLength) {  
+                  var $next = $(this).next('.inputs');
+                  if ($next.length)
+                      $(this).next('.inputs').focus();
+                  else
+                      $(this).focus();
+                }
+                
+                if( key == 8 || key == 46 )
+                    {
+                    if (this.value.length === 0) {
+                        $(this).prev('.inputs').focus();
+                    }
+                }
+            });
+            
+            $('.inputs').keyup(function () {
+              var key = event.keyCode || event.charCode;
+              if((this.value.length == this.maxLength) && key != 32) {
+                var $next = $(this).next('.inputs');
+                if ($next.length) {
+                    $(this).next('.inputs').focus();
+                }
+                else {
+                    $(this).focus();
+                }
+              } 
+            });
+             
+        
+        
+        
+    
+        
+        var url;
+        
+        var languages = ["EN","ES","FR","IT","CS","SV","IG","HA","RU","zh-TW","JA","EN"];
+
+        var currentLang;
+        var nextLang;
+        var currentLangEng;
+        var nextLangEng;
+        var translateInput;
+        var result = [];
+        var resultEng = [];
+        var translationCount = 0;
+        var translationCountEng = 0;
+        var userInput;
+        var combinedInput;
+        var finished = false;
+        
+        /* translate */
+        function translate() {
+            $(".input-form").delay(100).fadeOut("slow");
+
+            if (translationCount < 11) {
+                if (translationCount === 0){
+                    combinedInput = "My mother is " + $("#formInput").val() + $("#formInput2").val() + $("#formInput3").val();
+                    translateInput = encodeURIComponent(combinedInput);
+                    processingString = combinedInput;
+                }
+    
+                else {
+                    console.log("input: " + result[translationCount-1]);
+                    translateInput = encodeURIComponent(result[translationCount-1]);
+                }
+                
+                currentLang = languages[translationCount];
+                nextLang = languages[(translationCount + 1)];
+                
+                //console.log ("tCount: " + translationCount);
+                //console.log ("current language: " + currentLang);
+                //console.log ("next language: " + nextLang);
+                url = "https://translation.googleapis.com/language/translate/v2?key=AIzaSyDR3NPgTSVCs633RyvRG94_awHZuuqGC4A";
+                url += "&source=" + currentLang; 
+                url += "&target=" + nextLang;
+                url += "&q=" + translateInput;
+                
+                console.log(url);
+
+                $.get(url, function (data, status) {
+
+                if(status == "success") {
+                    
+                    var done = decodeURIComponent(data.data.translations[0].translatedText);
+                    
+                    processingString += "/" + done;
+
+                    result.push(done);
+                    console.log("done: " + done);
+
+                    //console.log("result " + translationCount +": " + result[translationCount]);
+                    url = "";
+                    translationCount++;
+                    translate();
+                    if (translationCount == 11) {
+                        translateEng();
+                    }
+                }
+                });
+            }
+        }
+        
+        function translateEng() {
+            if (translationCountEng < 10) {
+                console.log("eng count " + translationCountEng);
+                translateInput = encodeURIComponent(result[translationCountEng]);
+                currentLangEng = languages[translationCountEng+1];
+                nextLangEng = "EN";
+                
+                console.log ("tCount: " + translationCountEng);
+
+                console.log ("current language: " + currentLangEng);
+                console.log ("next language: " + nextLangEng);
+                url = "https://translation.googleapis.com/language/translate/v2?key=AIzaSyDR3NPgTSVCs633RyvRG94_awHZuuqGC4A";
+                url += "&source=" + currentLangEng; 
+                url += "&target=" + nextLangEng;
+                url += "&q=" + translateInput;
+                
+                //console.log(url);
+                  
+                $.get(url, function (data, status) {
+                $("#resultEng").append(decodeURIComponent(translateInput) + "<br>");
+
+                $("#resultEng").append("to English: " + data.data.translations[0].translatedText + "<br>");
+                if(status == "success") {
+                    var done = decodeURIComponent(data.data.translations[0].translatedText);
+                    resultEng.push(done);
+                    //console.log("done: " + done);
+                    //console.log("result " + translationCount +": " + resultEng[translationCountEng]);
+                    url = "";
+                    translationCountEng++;
+                    translateEng();
+                    if (translationCountEng === 10){
+                        //writeNewPost();
+                        console.log("processing: " + processingString);
+                        //$("#mycanvas").delay(3500).fadeOut("slow");
+
+                        
+                        var $newCanv = $("<canvas/>").attr("id", "translation");  // adds the id 
+                        
+                        $("#processingTranslation").append($newCanv);
+                        Processing.loadSketchFromSources('translation', ['translation/translation.pde']);
+                        
+                        $("#translation").delay(3000).fadeIn(1500);
+                    }
+                }
+                });
+            }
+        }
+    
+    
+    
+    
+    
+        
+        
+        /* detects enter pressed */
+        function enterPressed() {
+            $(".inputs").on("keydown",function search(e) {
+                if(e.keyCode == 13) {
+                    translate();
+                }
+            });
+        }
+        
+        /* functions */
+        enterPressed();
+        
+        $("#btnTranslate").click(function () {
+            userInput = "My mother is " + $("#formInput").val() + $("#formInput2").val() + $("#formInput3").val();
+            translate();
+        });
+        
+        
+        
+        
+        
+        });
+    </script>
+    
+</body>
+</html>

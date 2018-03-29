@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Lost in Translation_ </title>
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="style_about.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="background" id="processing"></div>
+    
+    <div class="background" id="processingTranslation"></div>
+
+    <div class="menu">
+        <button class="menu-button" id="main-button"> Lost in Translation_ </button>
+        <button class="menu-button" id="about-button"> About </button>
+        <button class="menu-button" id="archive-button"> Archive </button>
+    </div>
+    
+    <div class="page2" id="about-page" style="display: block !important">
+        <div id="about">
+            <h1>Lost in Translation_</h1>
+            <p>lol</p>
+        </div>
+    </div>
+    
+    
+    
+    
+
+    <script src="he/he.js"></script>
+    <script src="processing.min.js"></script>
+
+    <script>
+        var processingString = "";
+
+        $(document).ready(function(){
+            var $newCanv = $("<canvas/>").attr("id", "mycanvas");  // adds the id 
+
+            $("#processing").append($newCanv);
+            Processing.loadSketchFromSources('mycanvas', ['background_working/background_working.pde']);
+            
+            $("#formInput").keyup(function () {
+                if ((this.value.length+20) > this.maxLength) {
+                    $("#formInput2").fadeIn(2000);
+                }
+            });
+            
+            $("#formInput2").keyup(function () {
+                var key = event.keyCode || event.charCode;
+
+                if ((this.value.length+10) > this.maxLength) {
+                    $("#formInput3").fadeIn(2000);
+                }
+                
+                if( key == 8 || key == 46 )
+                    {
+                    if (this.value.length === 0) {
+                        $(this).prev('.inputs').focus();
+                    }
+                }
+            });
+            
+            $(".inputs").keyup(function () {
+                var key = event.keyCode || event.charCode;
+                
+                if (this.value.length == this.maxLength) {  
+                  var $next = $(this).next('.inputs');
+                  if ($next.length)
+                      $(this).next('.inputs').focus();
+                  else
+                      $(this).focus();
+                }
+                
+                if( key == 8 || key == 46 )
+                    {
+                    if (this.value.length === 0) {
+                        $(this).prev('.inputs').focus();
+                    }
+                }
+            });
+            
+            $('.inputs').keyup(function () {
+              var key = event.keyCode || event.charCode;
+              if((this.value.length == this.maxLength) && key != 32) {
+                var $next = $(this).next('.inputs');
+                if ($next.length) {
+                    $(this).next('.inputs').focus();
+                }
+                else {
+                    $(this).focus();
+                }
+              } 
+            });
+            
+            $('#main-button').click(function() {
+                if ( $("#landing-page").css('display') == 'none' ){                    
+                    if($("#processingTranslation").css('display') == 'block' ){
+                        $("#processingTranslation").fadeOut(2000);
+                    }
+                    if($("#about-page").css('display') == 'block' ){
+                        $("#about-page").fadeOut(2000);
+                    }
+                    if($("#archive-page").css('display') == 'block' ){
+                        $("#archive-page").fadeOut(2000);
+                    }
+                    
+                    $("#landing-page").fadeIn(2000);
+                }
+            });
+             
+            
+            $('#about-button').click(function() {
+                if ( $("#about-page").css('display') == 'none' ){
+                    if($("#archive-page").css('display') == 'block' ){
+                        $("#archive-page").fadeOut(2000);
+                    }
+                    if($("#processingTranslation").css('display') == 'block' ){
+                        $("#processingTranslation").fadeOut(2000);
+                    }
+                    if(($("#landing-page").css('display') == 'block') || ($("#landing-page").css('display') == 'flex')){
+                        $("#landing-page").fadeOut(2000);
+                    }
+    
+                    $("#about-page").fadeIn(2000);
+                }
+            });
+            
+            $('#archive-button').click(function() {
+                if ( $("#archive-page").css('display') == 'none' ){                
+                    if($("#landing-page").css('display') == 'block' || ($("#landing-page").css('display') == 'flex')){
+                        $("#landing-page").fadeOut(2000);
+                    }
+                    if($("#processingTranslation").css('display') == 'block' ){
+                        $("#processingTranslation").fadeOut(2000);
+                    }
+                    if($("#about-page").css('display') == 'block' ){
+                        $("#about-page").fadeOut(2000);
+                    }
+    
+                    $("#archive-page").fadeIn(2000);
+                }
+            });
+        
+            //$('.menu-button').click(function(){
+            //    $('.menu-button').removeClass('active').addClass('inactive');
+            //    $(this).removeClass('inactive').addClass('active');
+            //});
+        
+    
+        
+        var url;
+        
+        var languages = ["EN","ES","FR","IT","EL","SV","SW","RU","TH","JA","zh-TW","EN"];
+
+        var currentLang;
+        var nextLang;
+        var currentLangEng;
+        var nextLangEng;
+        var translateInput;
+        var result = [];
+        var resultEng = [];
+        var translationCount = 0;
+        var translationCountEng = 0;
+        var userInput;
+        var combinedInput;
+        var finished = false;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /* translate */
+        function translate() {
+            $(".input-form").delay(100).fadeOut("slow");
+
+            if (translationCount < 11) {
+                if (translationCount === 0){
+                    combinedInput = "My mother is " + $("#formInput").val() + $("#formInput2").val() + $("#formInput3").val();
+                    
+                    var stringLength = combinedInput.length; 
+                    var lastChar = combinedInput.charAt(stringLength - 1);
+                    
+                    if(lastChar !== ".") {
+                        combinedInput = combinedInput + ".";
+                    }
+                    
+                    translateInput = encodeURIComponent(combinedInput);
+                    processingString = he.decode(combinedInput);
+                }
+    
+                else {
+                    console.log("input: " + result[translationCount-1]);
+                    translateInput = encodeURIComponent(result[translationCount-1]);
+                }
+                
+                currentLang = languages[translationCount];
+                nextLang = languages[(translationCount + 1)];
+                
+                //console.log ("tCount: " + translationCount);
+                //console.log ("current language: " + currentLang);
+                //console.log ("next language: " + nextLang);
+                url = "https://translation.googleapis.com/language/translate/v2?key=AIzaSyDR3NPgTSVCs633RyvRG94_awHZuuqGC4A";
+                url += "&source=" + currentLang; 
+                url += "&target=" + nextLang;
+                url += "&q=" + translateInput;
+                
+                console.log(url);
+
+                $.get(url, function (data, status) {
+
+                if(status == "success") {
+                    
+                    var done = decodeURIComponent(data.data.translations[0].translatedText);
+                    
+                    //***** decode ******
+                    done = he.decode(done);
+                    
+                    var stringLength = done.length; 
+                    var lastCharOne = done.charAt(stringLength - 1);
+                    
+                    if((lastCharOne !== ".") && (result.length < 8)) {
+                        done = done + ".";
+                    }
+                    
+                    processingString += "/" + done;
+
+                    result.push(done);
+                    console.log("done: " + done);
+
+                    //console.log("result " + translationCount +": " + result[translationCount]);
+                    url = "";
+                    translationCount++;
+                    translate();
+                    if (translationCount == 11) {
+                        translateEng();
+                    }
+                }
+                });
+            }
+        }
+        
+        function translateEng() {
+            if (translationCountEng < 10) {
+                console.log("eng count " + translationCountEng);
+                translateInput = encodeURIComponent(result[translationCountEng]);
+                currentLangEng = languages[translationCountEng+1];
+                nextLangEng = "EN";
+                
+                console.log ("tCount: " + translationCountEng);
+
+                console.log ("current language: " + currentLangEng);
+                console.log ("next language: " + nextLangEng);
+                url = "https://translation.googleapis.com/language/translate/v2?key=AIzaSyDR3NPgTSVCs633RyvRG94_awHZuuqGC4A";
+                url += "&source=" + currentLangEng; 
+                url += "&target=" + nextLangEng;
+                url += "&q=" + translateInput;
+                
+                //console.log(url);
+                  
+                $.get(url, function (data, status) {
+                $("#resultEng").append(decodeURIComponent(translateInput) + "<br>");
+
+                $("#resultEng").append("to English: " + data.data.translations[0].translatedText + "<br>");
+                if(status == "success") {
+                    var done = decodeURIComponent(data.data.translations[0].translatedText);
+                    
+                    //***** decode ******
+                    done = he.decode(done);
+                    
+                    var stringLength = done.length; 
+                    var lastCharTwo = done.charAt(stringLength - 1);
+                    
+                    if(lastCharTwo !== ".") {
+                        done = done + ".";
+                    }
+                    
+                    resultEng.push(done);
+                    //console.log("done: " + done);
+                    //console.log("result " + translationCount +": " + resultEng[translationCountEng]);
+                    url = "";
+                    translationCountEng++;
+                    translateEng();
+                    if (translationCountEng === 10){
+                        writeNewPost();
+                        console.log("processing: " + processingString);
+                        //$("#mycanvas").delay(3500).fadeOut("slow");
+
+                        
+                        var $newCanv = $("<canvas/>").attr("id", "translation");  // adds the id 
+                        
+                        $("#processingTranslation").append($newCanv);
+                        Processing.loadSketchFromSources('translation', ['translation/translation.pde']);
+                        
+                        $("#translation").delay(3000).fadeIn(1500);
+                        setTimeout(loadDatabase, 3000);
+                    }
+                }
+                });
+            }
+        }
+    
+    
+    
+    
+    
+    /* initializing firebase */
+        
+        var config = {
+            apiKey: "AIzaSyBCwLAV6RqYEPX766evjDD4SxrVyRlOY_0",
+            authDomain: "lost-in-translation-68ffc.firebaseapp.com",
+            databaseURL: "https://lost-in-translation-68ffc.firebaseio.com",
+            projectId: "lost-in-translation-68ffc",
+            storageBucket: "lost-in-translation-68ffc.appspot.com",
+            messagingSenderId: "269344435801"
+        };
+        firebase.initializeApp(config);
+        
+        
+        function writeNewPost() {
+            // A post entry.
+            console.log(combinedInput);
+
+            var postData = {
+                A_originalInput: combinedInput,
+                B_Spanish: result[0],
+                C_SpanishToEn: resultEng[0],
+                D_French: result[1],
+                E_FrenchToEn: resultEng[1],
+                F_Italian: result[2],
+                G_ItalianToEn: resultEng[2],
+                H_Greek: result[3],
+                I_GreekToEn: resultEng[3],
+                J_Swedish: result[4],
+                K_SwedishToEn: resultEng[4],
+                L_Swahilli: result[5],
+                M_SwahilliToEn: resultEng[5],
+                N_Russian: result[6],
+                O_RussianToEn: resultEng[6],
+                P_Thai: result[7],
+                Q_ThaiToEn: resultEng[7],
+                R_Japanese: result[8],
+                S_JapaneseToEn: resultEng[8],
+                T_Chinese: result[9],
+                U_ChineseToEn: resultEng[9],
+                V_finalOutput: result[10]   
+            };
+        
+            // Get a key for a new Post.
+            var newPostKey = firebase.database().ref().child('translations').push().key;
+          
+            // Write the new post's data simultaneously in the posts list and the user's post list.
+            var updates = {};
+            updates['/translations/' + newPostKey] = postData;
+          
+            return firebase.database().ref().update(updates);
+        }
+        
+        var ref = firebase.database().ref('/translations/');
+
+        var keys = [];
+        var names = [];
+        var bodys = [];
+        var final = "";
+        var transResult = [];
+        
+        function displayArrayObjects(arrayObjects) {
+            var len = arrayObjects.length;
+            var text = "";
+    
+            for (var i = len; i > -1; i--) {
+                text += ("<br/>" + "i count: " + i + "<br/>");
+
+                var myObject = arrayObjects[i];
+                for (var x in myObject) {
+                    text += ("<br/>" + "x count: " + x + "<br/>");
+
+                    text += ("<br/>" + myObject[x] + "<br/>");
+                    transResult.push()
+                }
+                text += "<br/>";
+            }
+    
+            document.getElementById("archive").innerHTML = text;
+        }
+        
+        function loadDatabase() {    
+            ref.once('value',function(snap) {
+                snap.forEach(function(item) {
+                    var itemVal = item.val();
+                    keys.push(itemVal);
+                    var str = JSON.stringify(itemVal);
+                    final += str;
+                    //console.log(final);
+                });
+                for (i=0; i < keys.length; i++) {
+                    names.push(keys[i].body);
+                    bodys.push(keys[i].name);
+                }
+                 displayArrayObjects(keys);	
+            });
+        }
+    
+        
+        
+        /* detects enter pressed */
+        function enterPressed() {
+            $(".inputs").on("keydown",function search(e) {
+                if(e.keyCode == 13) {
+                    translate();
+                }
+            });
+        }
+        
+        /* functions */
+        enterPressed();
+        
+        $("#btnTranslate").click(function () {
+            userInput = "My mother is " + $("#formInput").val() + $("#formInput2").val() + $("#formInput3").val();
+            translate();
+        });
+        
+        
+        
+        
+        
+        });
+    </script>
+    
+</body>
+</html>

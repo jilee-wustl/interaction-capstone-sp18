@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Lost in Translation_ </title>
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="style_archive.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+    <script src="loadTemplate.js"></script>
+    <script type="text/javascript" src="jquery.actual.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+
+<body id="bootstrap-overrides">
+    <div class="background" id="processing"></div>
+    
+    <div class="background" id="processingTranslation"></div>
+
+    <div class="menu">
+        <button class="menu-button" id="main-button"> Lost in Translation_ </button>
+        <button class="menu-button" id="about-button"> About </button>
+        <button class="menu-button" id="archive-button"> Archive </button>
+    </div>
+    
+    <div class="page1" id="archive-page" style="display: block !important">
+        <div id="archive" style="display: block !important">
+            
+            
+            <div class="post" id="post1">
+                <div class="insidePost" id="insidePost1">
+                    
+                    <div class="inputOuput" id="originalInput">
+                        <div class="buttonNest" id="buttonNest1">
+                            <button id="inputOutput-btn" class="btn-inputOutput"></button>
+                        </div>
+                        <div class="text" id="text1">
+                            <span class="btwText input">
+                            My mother is hi.
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="collapse" id="collapseExample">
+                        <div class="eachTrans">
+                            <div class="buttonNest" id="buttonNest2">
+                                <button id="process-btn1" class="btn-btw"></button>
+                            </div>
+                            <div class="text" id="text2">
+                                <div class= "btwWrapper">
+                                    <span class="btwText btwTrans" id="spanish">
+                                        Mi madre está hola.
+                                    </span>
+                                    <span class="btwText btwTransEng" id="spanishEng">
+                                        My mother is hello.
+                                    </span>
+                                </div>
+                                <div class="language" id="language2" style="display: block !important;">
+                                    English &ndash; Spanish
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="inputOutput" id="finalOutput">              
+                        <div class="buttonNest" id="buttonNest3">
+                            <button id="finalOutput-btn" class="btn-inputOutput"></button>
+                        </div>
+                        <div class="text" id="text3">
+                            <span class="btwText input">
+                                Hello, my mother. 
+                            </span>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="buttonNest" id="buttonMid">
+                    <button id="open-mid" class="btn-btw" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"></button>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+
+    <script src="he/he.js"></script>
+    <script src="processing.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            var divHeight = $('#text1').height();
+            $('#buttonNest1').css('min-height', divHeight+'px');
+            var divHeight3 = $('#text3').height();
+            $('#buttonNest3').css('min-height', divHeight3+'px');
+            
+            var postHeight1 = $('#insidePost1').height();
+            $('#buttonMid').css('min-height', postHeight1);
+
+            $('.btwWrapper').mouseenter (function() {
+                $('.btwTransEng').show();
+                $('.btwTrans').hide();
+            });
+            $('.btwWrapper').mouseleave (function() {
+                $('.btwTransEng').hide();
+                $('.btwTrans').show();
+            });
+            
+            $('#open-mid').click(function() {
+                $('#open-mid').fadeOut();
+                $('#buttonNest2').hide();
+                $('#buttonMid').hide();
+                setTimeout(calculate, 500);
+                setTimeout(showNest2, 500);
+            });
+            
+            function calculate() {
+                var postHeight2 = $('#insidePost1').actual('height');
+                $('#buttonMid').css('min-height', postHeight2+'px');
+                var postHeight3 = $('#text2').actual('height');
+                $('#buttonNest2').css('min-height', postHeight3+'px');
+                $('#buttonMid').fadeIn(1200);
+            }
+            
+            function openMidShow() {
+                $('#open-mid').fadeIn();
+            }
+            
+            function showNest2() {
+                $('#buttonNest2').fadeIn();
+            }
+            
+            
+            $('#process-btn1').click(function() {
+                $('.collapse').collapse('hide');
+                $('#buttonMid').hide();
+
+                setTimeout(calculate, 500);
+                setTimeout(openMidShow, 500);
+            });
+        });
+        
+    </script>
+    
+</body>
+</html>

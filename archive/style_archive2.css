@@ -1,0 +1,150 @@
+html {
+  width:  100vw;
+  height: 100vh;
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  background-color: black;
+}
+
+#bootstrap-overrides #archive-page {
+  width: calc(100% - 480px);
+  position: absolute;
+  height: 85vh;
+  overflow-y: unset;
+  padding-bottom: 0px;
+  padding-left: 240px;
+  padding-right: 240px;
+  top: 15vh;
+  left: 0px;
+  /*display: flex;*/
+  display: none;
+  overflow-x: hidden;
+  align-items: center;
+  z-index: 99999;
+}
+
+#bootstrap-overrides .btn-container{
+  float: left;
+  display: flex;
+  width: 9px;
+  align-items: center;
+  justify-content: center;
+}
+
+#bootstrap-overrides .btn-io {
+  display: flex;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  border: solid 5px #000000;
+  border-radius: 30px;
+  padding: 8px;
+  z-index: 99999;
+}
+
+#bootstrap-overrides .text {
+  display: block;
+  margin-left: 80px;
+}
+
+#bootstrap-overrides .sentence {
+  font-size: 40px;
+}
+
+#bootstrap-overrides .orig {
+  display: none;
+}
+
+#bootstrap-overrides .lang {
+  display: flex;
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: 0.7px;
+}
+
+#bootstrap-overrides .btn-btw {
+  display: flex;
+  margin: 0 auto;
+  background-color: #000000;
+  border-radius: 20px;
+  padding:5px;
+  border:1px solid #000000;
+  z-index: 9999;
+}
+
+#bootstrap-overrides .btn-btw:after {
+    background-color: #000000;
+    content: '';
+    display: flex;
+    margin: 0 auto;
+    background-color: #000000;
+    border: solid 1px #FFFFFF;
+    border-radius: 20px;
+    padding: 5px;
+    z-index: 999;
+}
+
+#bootstrap-overrides .btn-btw:hover:after {
+  background-color: #FFFFFF;
+  cursor: pointer;
+}
+
+#bootstrap-overrides .btn-o {
+  display: flex;
+  margin: 0 auto;
+  background-color: #000000;
+  border-radius: 20px;
+  padding:5px;
+  border:1px solid #000000;
+  z-index: 9999;
+}
+
+#bootstrap-overrides .btn-o:after {
+    background-color: #000000;
+    content: '';
+    display: flex;
+    margin: 0 auto;
+    background-color: #000000;
+    border: solid 1px #FFFFFF;
+    border-radius: 20px;
+    padding: 6px;
+    z-index: 999;
+}
+
+#bootstrap-overrides .btn-o:hover:after {
+  background-color: #FFFFFF;
+  cursor: pointer;
+}
+
+#bootstrap-overrides .input {
+  margin-bottom: 40px;
+}
+
+#bootstrap-overrides .btn-m {
+  position: absolute;
+  top: 0px;
+  z-index: 1;
+}
+
+#bootstrap-overrides .btn-m:after { content: '';
+  position: absolute;
+  border-right: 1px #FFFFFF dotted;
+  height: calc(100% - 40px);
+  width: 100%;
+  transform: translateX(-47%);
+  display: flex;
+  margin: 0 auto;
+}
+
+#bootstrap-overrides .eachTrans {
+  margin-bottom: 80px;
+}
+
+#bootstrap-overrides .txtWrapper {
+  display: flex;
+  cursor: pointer;
+}
+
+
+
+

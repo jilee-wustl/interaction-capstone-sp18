@@ -1,35 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title> Form / Google Translate Test </title>
-    <!--<link href="style.css" rel="stylesheet">-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
-</head>
-
-<body>
-    
-    <div id="formForm">
-    <form>
-        <input type="text" id="formInput" size="100">
-        <input type="button" id="btnTranslate" value="Translate">
-    </form>
-    <div id="result"></div>
-    <br>
-    <div id="resultEng"></div>
-    </div>
-    
-    <div id="archive">
-        Archive <br>
-    </div>
-    
-    <div id="processing">
-        
-    </div>
-    <script src="processing.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-    <script type="text/javascript">
         var processingString = "";
 
        $(document).ready(function(){ 
@@ -51,7 +19,8 @@
         function translate() { 
             if (translationCount < 11) {
                 if (translationCount === 0){
-                    translateInput = encodeURI($("#formInput").val());
+                    var combinedInput = $("#formInput").val() + $("#formInput2").val() + $("#formInput3").val();
+                    translateInput = encodeURI(combinedInput);
                 }
     
                 else {
@@ -125,11 +94,10 @@
                     if (translationCountEng === 10){
                         writeNewPost();
                         console.log("processing: " + processingString);
-                        $("#mycanvas").fadeOut("slow");
-                        //var $newCanv = $("<canvas/>").attr("id", "translation");  // adds the id 
-                        //
-                        //$("#processing").append($newCanv);
-                        //Processing.loadSketchFromSources('translation', ['translation/translation.pde']); 
+                        var $newCanv = $("<canvas/>").attr("id", "mycanvas");  // adds the id 
+
+                        $("#processing").append($newCanv);
+                        Processing.loadSketchFromSources('mycanvas', ['particles/particles.pde']); 
                     }
                 }
                 });
@@ -224,31 +192,5 @@
             }
              displayArrayObjects(keys);	
         });
-    
-        
-        /* detects enter pressed */
-        function enterPressed() {
-            $("#formInput").on("keydown",function search(e) {
-                if(e.keyCode == 13) {
-                    translate();
-                }
-            });
-        }
-        
-        
-        
-        /* functions */
-        enterPressed();
-        
-        $("#btnTranslate").click(function () {
-            userInput = $("#formInput").val();
-            translate();
-        });
         
     });
-    
-       
-    </script>
-   
-</body>
-</html>
