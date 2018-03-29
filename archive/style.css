@@ -25,8 +25,18 @@ html {
 #bootstrap-overrides .menu {
   position: absolute;
   z-index: 9999;
-  top: 20px;
-  left: 120px;
+  padding: 20px;
+  text-align: center;
+  width: 100vw;
+}
+
+#bootstrap-overrides .menu-bottom {
+  position: absolute;
+  z-index: 9999;
+  padding: 20px;
+  text-align: center;
+  width: 100vw;
+  bottom: 0;
 }
 
 #bootstrap-overrides .menu-button {
@@ -50,8 +60,6 @@ html {
   font-weight: 400;
   letter-spacing: 0.04em;
   padding: 5px;
-  margin-right: 50px;
-  padding-left: 0;
 }
 
 #bootstrap-overrides #landing-page {
@@ -175,6 +183,7 @@ html::-webkit-scrollbar {
 
 #bootstrap-overrides .post {
   position:relative;
+  margin-bottom: 100px;
 }
 
 #bootstrap-overrides .insidePost {

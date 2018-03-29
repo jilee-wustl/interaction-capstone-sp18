@@ -117,7 +117,7 @@ html {
 }
 
 #bootstrap-overrides .input {
-  margin-bottom: 40px;
+  margin-bottom: 80px;
 }
 
 #bootstrap-overrides .btn-m {
@@ -128,7 +128,7 @@ html {
 
 #bootstrap-overrides .btn-m:after { content: '';
   position: absolute;
-  border-right: 1px #FFFFFF dotted;
+  border-right: 1.8px #FFFFFF dotted;
   height: calc(100% - 40px);
   width: 100%;
   transform: translateX(-47%);
@@ -141,7 +141,7 @@ html {
 }
 
 #bootstrap-overrides .txtWrapper {
-  display: flex;
+  display: inline-flex;
   cursor: pointer;
 }
 

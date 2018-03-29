@@ -21,6 +21,9 @@
 
     <div class="menu">
         <button class="menu-button" id="main-button"> Lost in Translation_ </button>
+    </div>
+    
+    <div class="menu-bottom">
         <button class="menu-button" id="about-button"> About </button>
         <button class="menu-button" id="archive-button"> Archive </button>
     </div>
@@ -726,9 +729,9 @@
                     text4: "text-"+x+"-4",
                     wrapper4: x+"-4",
                     orig4: x+"-4-orig",
-                    t4: myObject.H_Greek,
+                    t4: myObject.H_Swedish,
                     eng4: x+"-4-eng",
-                    t4E: myObject.I_GreekToEn,
+                    t4E: myObject.I_SwedishToEn,
                     lang4: "Italian &ndash;&nbsp;<span id='lang-"+x+"-4'> Swedish</span>",
                     
                     btnE5: "btn-e-"+x+"-5",
@@ -736,9 +739,9 @@
                     text5: "text-"+x+"-5",
                     wrapper5: x+"-5",
                     orig5: x+"-5-orig",
-                    t5: myObject.J_Swedish,
+                    t5: myObject.J_Greek,
                     eng5: x+"-5-eng",
-                    t5E: myObject.K_SwedishToEn,
+                    t5E: myObject.K_GreekToEn,
                     lang5: "Swedish &ndash;&nbsp;<span id='lang-"+x+"-5'> Greek</span>",
                     
                     btnE6: "btn-e-"+x+"-6",
@@ -821,13 +824,25 @@
         
         //hover effect for each language
         $("body").on('mouseover', '.txtWrapper', function(e) {
-            console.log("mouse enter");
             var wrapperId = this.id;
 
             var eng = '#' + wrapperId + '-eng';
             var orig = '#' + wrapperId + '-orig';
                 
             var boldSpan = '#lang-' + wrapperId;
+            
+            $(this).css('display','flex');
+            
+            var engWidth = $(eng).actual('width');
+            var origWidth = $(orig).actual('width');
+            
+            if (engWidth > origWidth){
+                $(this).css('min-width', engWidth);
+            }
+            
+            if (origWidth > engWidth){
+                $(this).css('min-width', origWidth);
+            }
                                 
             $(orig).show();
             $(eng).hide();
@@ -835,7 +850,9 @@
         });
         
         $("body").on('mouseout', '.txtWrapper', function(e) {
-             var wrapperId = this.id;
+            var wrapperId = this.id;
+             
+            $(this).css('display','inline-flex');
 
             var eng = '#' + wrapperId + '-eng';
             var orig = '#' + wrapperId + '-orig';
