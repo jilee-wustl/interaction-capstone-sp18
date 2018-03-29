@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title> Lost in Translation </title>
+    <title> Lost in Translation_ </title>
     <link href="style.css" rel="stylesheet">
-    <link rel="stylesheet" href="style_archive3.css">
+    <link rel="stylesheet" href="style_archive2.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
     <script src="loadTemplate.js"></script>
     <script type="text/javascript" src="jquery.actual.js"></script>
-    <script src="typed.min.js" type="text/javascript"></script>
-
 
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -22,7 +20,7 @@
     <div class="background" id="processingTranslation"></div>
 
     <div class="menu">
-        <button class="menu-button" id="main-button"></button>
+        <button class="menu-button" id="main-button"> Lost in Translation_ </button>
     </div>
     
     <div class="menu-bottom">
@@ -466,9 +464,7 @@
 
             });
             
-        
-        var scrollTop = false;
-    
+            
         $("#archive-page").scroll(function(){
             console.log($(this)[0].scrollHeight);
             console.log($(this).scrollTop());
@@ -476,30 +472,16 @@
 
             if(($(this)[0].scrollHeight - $(this).scrollTop() - $(this).outerHeight()) < 20) {
                 $('.arrow').css('transform', 'rotate(180deg)');
-                scrollTop = true;
             }
             
             if(($(this)[0].scrollHeight - $(this).scrollTop() - $(this).outerHeight()) > 20) {
                 $('.arrow').css('transform', 'rotate(0deg)');
-                scrollTop = false;
             }
         });
         
-        $('.arrow').click(function(){
-            if (scrollTop){
-                $('.collapse').collapse('hide');
-                $('.btn-m').hide();
-
-                $('#archive-page').delay(500).animate({scrollTop: 0}, 1000);
-
-                setTimeout(function() {
-                    calculate('a');
-                }, 1100);
-                
-                setTimeout(function() {
-                    showMidBtn('a');
-                }, 1100);
-            }
+        $('.arrow').click( function(){
+            alert("clicked");
+            $('#archive-page').animate({scrollTop: $(this).offset().top}, 800);
         }); 
         
         var url;
@@ -955,15 +937,6 @@
             
             
             function calculate(val) {
-                if (val == 'a') {
-                    for (var x = 1; x <= postNum; x++){
-                        var postHeight = $('#insidePost-'+x).actual('height');                        
-                        var btnName = '#btn-m-'+x;
-                        $(btnName).css('min-height', postHeight+'px');  
-                        $(btnName).fadeIn(1200);
-                    }
-                }
-                
                 var postHeight = $('#insidePost-'+val).actual('height');
                 
                 console.log(postHeight);
@@ -984,9 +957,6 @@
             
             
             function showMidBtn(val) {
-                if (val == 'a') {
-                    $('.btn-o').fadeIn(1000);
-                }
                 var name = '#btn-o-' + val;
                 $(name).fadeIn(1000);
             }
@@ -1004,17 +974,6 @@
                 }
             });
         }
-        
-        var typed = new Typed('#main-button', {
-		  strings: ["Lost in Translation"],
-		  typeSpeed: 3,
-		  backSpeed: 3,
-		   loop: false,
-		loopCount: Infinity,
-		   showCursor: true,
-			cursorChar: '|',
-			autoInsertCss: true
-		});
         
         /* functions */
         enterPressed();

@@ -60,7 +60,9 @@ html {
   font-weight: 400;
   letter-spacing: 0.04em;
   padding: 5px;
-}
+  padding-right:0px !important;
+  margin: 0 !important;
+  }
 
 #bootstrap-overrides #landing-page {
   /*z-index: 99999;*/
@@ -183,7 +185,7 @@ html::-webkit-scrollbar {
 
 #bootstrap-overrides .post {
   position:relative;
-  margin-bottom: 100px;
+  margin-bottom: 80px;
 }
 
 #bootstrap-overrides .insidePost {
@@ -202,5 +204,26 @@ html::-webkit-scrollbar {
   position: relative;
   height: 0;
   overflow: hidden;
-  transition: height 1s ease;
+  transition: height 1s ease-in;
 }
+
+.menu-active {
+  text-decoration: underline;
+}
+
+.typed-cursor {
+        opacity: 1;
+        animation: blink .7s infinite;
+    }
+
+    @keyframes blink {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }

@@ -10,10 +10,10 @@ ArrayList<movingParticle> movingParticles = new ArrayList<movingParticle>();
 //int F = 0;
 //float CTime=150;//number of frames between words
 //int PNum = 13000;//number of particles
-int PNumMoving = 3000;//number of particles
+int PNumMoving = 8000;//number of particles
 
 void setup() {
-  doResize();
+  size(3000, 1500);
   noStroke();
   background(5,5,10);
   
@@ -108,21 +108,21 @@ class movingParticle {
   }
  
   void display() {
-    ellipse(x, y, 1.2, 1.2);
+    ellipse(x, y, 1, 1);
   }
  
   void update() {
     float distanceTo = dist(x, y, x, y);    
     float speed = map(distanceTo, 10, 100, 1, 0.9);
-    x += random(-0.05, 0.05) * speed;
-    y += random(-0.05, 0.05) * speed;
+    x += random(-0.08, 0.08) * speed;
+    y += random(-0.1, 0.1) * speed;
   }
   
   void mouseUpdate() {
     float distanceTo = dist(mouseX, mouseY, x, y);    
-    float speed = map(distanceTo, 10, 200, 1, 0.8)/2;
-    x += random(-1, 1) * speed;
-    y += random(-1, 1) * speed;
+    float speed = map(distanceTo, 10, 100, 1, 0.8)/2;
+    x += random(-2, 2) * speed;
+    y += random(-2, 2) * speed;
   }
 }
 
@@ -137,10 +137,7 @@ function doResize(){
   $('#mycanvas').height($(window).height());
   size($(window).width(), $(window).width());
   background(5,5,10);
-  for (movingParticle p : movingParticles) {
-    p.update();
-    p.display();
-  }
+  draw();
 }
 
 $(window).resize(doResize());

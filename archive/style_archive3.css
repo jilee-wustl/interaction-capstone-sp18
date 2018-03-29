@@ -154,7 +154,7 @@ html {
 }
 
 #bootstrap-overrides .arrow{
-  z-index: 999999;
+  z-index: 99999;
   width: 20px;
   height: 40px;
   position: absolute;
