@@ -1,18 +1,18 @@
 color c = color(10,5,15);//the secret colour
-String word = "Openprocessing";
-String allwords = "" + processingString;
-PVector start  =new PVector(100, 200);
+String word = "O";
+String allwords = "I wish you understood that you are stupid/I wish you understood that you are stupid and stupid and stupid/I wish my parents understood that I am not a child anymore";
+PVector start  =new PVector(100, 300);
 int tSize = 40; //Textsize
 ArrayList<particle> Points = new ArrayList<particle>();
-ArrayList<movingParticle> movingParticles = new ArrayList<movingParticle>();
 int index=0;
 float restZ=0;
+int[] yValue = {700, 320, 250, 500, 200, 800, 450, 270, 530, 290};
 int F = 0;
-float CTime = 180;//number of frames between words
-int PNum = 12000;//number of particles
+float CTime = 130;//number of frames between words
+int PNum = 10000;
 
 void setup() {
-  doResize();
+  size(1400, 800);
   noStroke();
   background(5,5,10,0);
   
@@ -23,14 +23,7 @@ void setup() {
   for (int i = 0; i < PNum; i++) {//creating the particles
     Points.add(new particle(random(width),random(height)));
   }
-  for (int i = 0; i < PNumMoving; i++) {//creating the particles
-    movingParticle p = new movingParticle(random(width), random(height));
-    movingParticles.add(p);
-  }
-  for (movingParticle p : movingParticles) {
-    p.update();
-    p.display();
-  }
+
   smooth();
 }
 
@@ -47,8 +40,10 @@ void draw(){
     }
     String[] Arr = allwords.split("/");
     word=Arr[F];//getting the next word
-    start.x = int(random(20,((width-word.length()*tSize/1.3))));
-    start.y = int(random(50,(height-tSize*1.3)));//positioning text inside the window
+    
+    //positioning text inside the window    
+    start.x = int(random(20,(width-word.length()*tSize/1.8)));
+    start.y = yValue[F];
 
     fill(c);
     text(word, start.x, start.y+tSize);
@@ -56,20 +51,21 @@ void draw(){
     F++;
     if (F>=Arr.length){
       F = 0;
-      finished=true;
-      translationLabel();
     };
   }else if (restZ<=1){//slowing down on the last 4 frames
     for (particle P : Points) {
-      P.velocity.mult(-0.01);
+      P.velocity.mult(-0.005);
     }
   }
   restZ-=1;
-  for (int i = 0; i < 13*PNum/(CTime-30); i++) {//checking random points in the area of the text
-    RealPix=  new PVector(int(random(start.x, start.x+Len*tSize/1.2)),int(random(start.y, start.y+tSize*1.2)));
+  //-10
+  for (int i = 0; i < 13*PNum/(CTime-90); i++) {//checking random points in the area of the text
+    RealPix=  new PVector(int(random(start.x, start.x+Len*tSize)),int(random(start.y, start.y+tSize*1.4)));
     int pixNr =int(RealPix.y*width + RealPix.x);
     color b= pixels[pixNr];
-    if ((c == b)&&(restZ<CTime-20)&&(restZ>=10)){//if the point is on text
+    
+    //20 10
+    if ((c == b)&&(restZ<CTime-20)&&(restZ>=8)){//if the point is on text
       particle Aktuell = Points.get(index);
       if (Aktuell.target==false){
         Aktuell.target=true;
@@ -101,42 +97,3 @@ class particle{
     velocity = new PVector(0.0, 0.0);
   }
 }
-
-class movingParticle {
-  float x, y;
- 
-  movingParticle(float _x, float _y) {
-    x = _x;
-    y = _y;
-  }
- 
-  void display() {
-    ellipse(x, y, 0.5, 0.5);
-  }
- 
-  void update() {
-    float distanceTo = dist(mouseX, mouseY, x, y);    
-    float speed = map(distanceTo, 10, 100, 1, 0.9)/4;
-    x += random(-1, 1) * speed;
-    y += random(-1, 1) * speed;
-  }
-}
-
-function doResize(){
-  $('#mycanvas').width($(window).width());
-  $('#mycanvas').height($(window).height());
-  size($(window).width(), $(window).height());
-  background(5,5,10,0);
-}
-
-$(window).resize(doResize());
-
-function translationLabel() {
-  if (finished) {
-    console.log("finished: "+finished);
-    $("#translation").delay(11000).fadeOut(2000);
-    $("#archive").delay(12000).fadeIn(2000);
-    }
-}
-        
-        

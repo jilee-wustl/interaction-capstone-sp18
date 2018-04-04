@@ -1,14 +1,15 @@
 color c = color(10,5,15);//the secret colour
-String word = "O";
+String word = "Op";
 String allwords = "" + processingString;
-PVector start  =new PVector(100, 200);
+PVector start  =new PVector(100, 300);
 int tSize = 40; //Textsize
 ArrayList<particle> Points = new ArrayList<particle>();
 int index=0;
 float restZ=0;
+int[] yValue = {600, 370, 250, 500, 310, 620, 450, 270, 530, 290, 400, 600, 200};
 int F = 0;
-float CTime = 118;//number of frames between words
-int PNum = 12000;//number of particles
+float CTime = 90;//number of frames between words
+int PNum = particlesNum;
 
 void setup() {
   doResize();
@@ -23,7 +24,7 @@ void setup() {
     Points.add(new particle(random(width),random(height)));
   }
 
-  smooth();
+  frameRate(30);
 }
 
 
@@ -39,32 +40,37 @@ void draw(){
     }
     String[] Arr = allwords.split("/");
     word=Arr[F];//getting the next word
-    //start.x = int(random(50,((width-word.length()*tSize/1.3))));
-    //start.y = int(random(100,(height-tSize*1.3)));//positioning text inside the window
-
-    start.x = int(random(130,((width-word.length()*tSize/1.4))));
-    start.y = int(random(100,((height-tSize*1.3)-80)));
-
+    
+    //positioning text inside the window    
+    start.x = int(random(20,(width-word.length()*tSize/1.8)));
+    start.y = yValue[F];
+    
     fill(c);
     text(word, start.x, start.y+tSize);
     loadPixels();
+    
     F++;
+    
     if (F>=Arr.length){
       F = 0;
-      finished=true;
+      finished = true;
       translationLabel();
     };
+   
   }else if (restZ<=1){//slowing down on the last 4 frames
     for (particle P : Points) {
       P.velocity.mult(-0.01);
     }
   }
   restZ-=1;
-  for (int i = 0; i < 13*PNum/(CTime-30); i++) {//checking random points in the area of the text
+  //-10
+  for (int i = 0; i < 13*PNum/(CTime-90); i++) {//checking random points in the area of the text
     RealPix=  new PVector(int(random(start.x, start.x+Len*tSize)),int(random(start.y, start.y+tSize*1.4)));
     int pixNr =int(RealPix.y*width + RealPix.x);
     color b= pixels[pixNr];
-    if ((c == b)&&(restZ<CTime-20)&&(restZ>=10)){//if the point is on text
+    
+    //20 10
+    if ((c == b)&&(restZ<CTime-20)&&(restZ>=8)){//if the point is on text
       particle Aktuell = Points.get(index);
       if (Aktuell.target==false){
         Aktuell.target=true;
@@ -113,7 +119,7 @@ function translationLabel() {
     $("#translation").delay(12500).fadeOut(2000);
     $("#archive-page").delay(13500).fadeIn(2000);
     $(".arrow").delay(13500).fadeIn(2000);
-    $("#archive-button").delay(15500).css('text-decoration', 'underline');
+    $("#archive-button").delay(20500).css('text-decoration', 'underline');
     }
 }
         

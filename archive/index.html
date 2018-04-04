@@ -368,65 +368,18 @@
 
     <script>
         var processingString = "";
+        var particlesNum = 12000;
 
         $(document).ready(function(){
-            var $newCanv = $("<canvas/>").attr("id", "mycanvas");  // adds the id 
+            
+            $("#mycanvas").click(function(){
+            });
+            $("#translation").click(function(){
+            });
 
+            var $newCanv = $("<canvas/>").attr("id", "mycanvas");  // adds the id
             $("#processing").append($newCanv);
             Processing.loadSketchFromSources('mycanvas', ['background_working/background_working.pde']);
-            
-            //$("#formInput1").keyup(function () {
-            //    if ((this.value.length+20) > this.maxLength) {
-            //        $("#formInput2").fadeIn(2000);
-            //    }
-            //});
-            //
-            //$("#formInput2").keyup(function () {
-            //    var key = event.keyCode || event.charCode;
-            //
-            //    if ((this.value.length+10) > this.maxLength) {
-            //        $("#formInput3").fadeIn(2000);
-            //    }
-            //    
-            //    if( key == 8 || key == 46 )
-            //        {
-            //        if (this.value.length === 0) {
-            //            $(this).prev('.inputs').focus();
-            //        }
-            //    }
-            //});
-            
-            //$(".inputs").keyup(function () {
-            //    var key = event.keyCode || event.charCode;
-            //    
-            //    if (this.value.length == this.maxLength) {  
-            //      var $next = $(this).next('.inputs');
-            //      if ($next.length)
-            //          $(this).next('.inputs').focus();
-            //      else
-            //          $(this).focus();
-            //    }
-            //    
-            //    if( key == 8 || key == 46 )
-            //        {
-            //        if (this.value.length === 0) {
-            //            $(this).prev('.inputs').focus();
-            //        }
-            //    }
-            //});
-            //
-            //$('.inputs').keyup(function () {
-            //  var key = event.keyCode || event.charCode;
-            //  if((this.value.length == this.maxLength) && key != 32) {
-            //    var $next = $(this).next('.inputs');
-            //    if ($next.length) {
-            //        $(this).next('.inputs').focus();
-            //    }
-            //    else {
-            //        $(this).focus();
-            //    }
-            //  } 
-            //});
             
             $(".edit").keydown(function () {                
                 if(event.keyCode === 13) {
@@ -561,9 +514,7 @@
         var userInput;
         var combinedInput;
         var finished = false;
-        var postNum = 0;
-        
-        
+        var postNum = 0;        
         
         
         
@@ -581,7 +532,20 @@
                     
                     console.log(combinedInput);
                     
-                    var stringLength = combinedInput.length; 
+                    var stringLength = combinedInput.length;
+                    
+                    if (stringLength < 60) {
+                        particlesNum = 12000;
+                    }
+                    
+                    if (stringLength > 60 && stringLength < 100) {
+                        particlesNum = 14500;
+                    }
+                    
+                    if (stringLength > 100 && stringLength < 250) {
+                        particlesNum = 17000;
+                    }
+                    
                     var lastChar = combinedInput.charAt(stringLength - 1);
                     
                     if(lastChar !== ".") {
@@ -646,7 +610,7 @@
                 });
             }
         }
-        
+                
         function translateEng() {
             if (translationCountEng < 10) {
                 console.log("eng count " + translationCountEng);

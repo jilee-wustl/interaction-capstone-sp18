@@ -281,6 +281,10 @@ html::-webkit-scrollbar {
   display: block;
 }
 
+#bootstrap-overrides canvas {
+  outline: 0;
+}
+
 .collapsing {
   position: relative;
   height: 0;
