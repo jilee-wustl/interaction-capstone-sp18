@@ -1,17 +1,14 @@
 color c = color(10,5,15);//the secret colour
-String word = "Openprocessing";
+String word = "O";
 String allwords = "" + processingString;
 PVector start  =new PVector(100, 200);
 int tSize = 40; //Textsize
 ArrayList<particle> Points = new ArrayList<particle>();
-ArrayList<movingParticle> movingParticles = new ArrayList<movingParticle>();
 int index=0;
 float restZ=0;
 int F = 0;
-float CTime = 160;//number of frames between words
+float CTime = 118;//number of frames between words
 int PNum = 12000;//number of particles
-int PNumMoving = 3000;//number of particles
-
 
 void setup() {
   doResize();
@@ -25,14 +22,7 @@ void setup() {
   for (int i = 0; i < PNum; i++) {//creating the particles
     Points.add(new particle(random(width),random(height)));
   }
-  for (int i = 0; i < PNumMoving; i++) {//creating the particles
-    movingParticle p = new movingParticle(random(width), random(height));
-    movingParticles.add(p);
-  }
-  for (movingParticle p : movingParticles) {
-    p.update();
-    p.display();
-  }
+
   smooth();
 }
 
@@ -49,8 +39,11 @@ void draw(){
     }
     String[] Arr = allwords.split("/");
     word=Arr[F];//getting the next word
-    start.x = int(random(20,((width-word.length()*tSize/1.3))));
-    start.y = int(random(50,(height-tSize*1.3)));//positioning text inside the window
+    //start.x = int(random(50,((width-word.length()*tSize/1.3))));
+    //start.y = int(random(100,(height-tSize*1.3)));//positioning text inside the window
+
+    start.x = int(random(130,((width-word.length()*tSize/1.4))));
+    start.y = int(random(100,((height-tSize*1.3)-80)));
 
     fill(c);
     text(word, start.x, start.y+tSize);
@@ -104,31 +97,10 @@ class particle{
   }
 }
 
-class movingParticle {
-  float x, y;
- 
-  movingParticle(float _x, float _y) {
-    x = _x;
-    y = _y;
-  }
- 
-  void display() {
-    ellipse(x, y, 0.5, 0.5);
-  }
- 
-  void update() {
-    float distanceTo = dist(mouseX, mouseY, x, y);    
-    float speed = map(distanceTo, 10, 100, 1, 0.9)/4;
-    x += random(-1, 1) * speed;
-    y += random(-1, 1) * speed;
-  }
-}
 
 function doResize(){
   $('#translation').width($(window).width());
   $('#translation').height($(window).height());
-  $('#mycanvas').width($(window).width());
-  $('#mycanvas').height($(window).height());
   size($(window).width(), $(window).height());
   background(5,5,10,0);
 }
@@ -140,6 +112,7 @@ function translationLabel() {
     console.log("finished: "+finished);
     $("#translation").delay(12500).fadeOut(2000);
     $("#archive-page").delay(13500).fadeIn(2000);
+    $(".arrow").delay(13500).fadeIn(2000);
     $("#archive-button").delay(15500).css('text-decoration', 'underline');
     }
 }

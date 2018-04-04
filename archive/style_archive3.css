@@ -1,27 +1,48 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosansthai.css);
+
 html {
-  width:  100vw;
-  height: 100vh;
+  width:  100%;
+  height: 100%;
   margin: 0;
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   background-color: black;
 }
 
 #bootstrap-overrides #archive-page {
-  width: calc(100% - 480px);
+  width: calc(100% - 500px);
   position: absolute;
-  height: 85vh;
+  height: 100%;
   overflow-y: unset;
-  padding-bottom: 0px;
-  padding-left: 240px;
-  padding-right: 240px;
-  top: 15vh;
+  padding-left: 250px;
+  padding-right: 250px;
+  top: 0;
   left: 0px;
-  /*display: flex;*/
   display: none;
   overflow-x: hidden;
   align-items: center;
   z-index: 9999;
 }
+
+/*#bootstrap-overrides .greek {
+  
+}*/
+
+/*#bootstrap-overrides .russian {
+  
+}*/
+
+#bootstrap-overrides .thai {
+  font-family: 'Kanit', sans-serif;
+  font-weight: 100;
+}
+
+/*#bootstrap-overrides .japanese {
+  font-family: 'Noto Sans Japanese', sans-serif;
+}
+
+#bootstrap-overrides .chinese {
+  font-family: 'Noto Sans SC', sans-serif;
+}*/
 
 #bootstrap-overrides .btn-container{
   float: left;
@@ -38,7 +59,7 @@ html {
   border: solid 5px #000000;
   border-radius: 30px;
   padding: 8px;
-  z-index: 99999;
+  z-index: 9999;
 }
 
 #bootstrap-overrides .text {
@@ -48,6 +69,7 @@ html {
 
 #bootstrap-overrides .sentence {
   font-size: 40px;
+  line-height: 130%;
 }
 
 #bootstrap-overrides .orig {
@@ -56,7 +78,7 @@ html {
 
 #bootstrap-overrides .lang {
   display: flex;
-  margin-top: 20px;
+  margin-top: 15px;
   font-size: 15px;
   font-weight: 300;
   letter-spacing: 0.7px;
@@ -117,7 +139,7 @@ html {
 }
 
 #bootstrap-overrides .input {
-  margin-bottom: 80px;
+  margin-bottom: 60px;
 }
 
 #bootstrap-overrides .btn-m {
@@ -129,7 +151,7 @@ html {
 #bootstrap-overrides .btn-m:after { content: '';
   position: absolute;
   border-right: 1.8px #FFFFFF dotted;
-  height: calc(100% - 40px);
+  height: calc(100% - 80px);
   width: 100%;
   transform: translateX(-47%);
   display: flex;
@@ -137,16 +159,24 @@ html {
 }
 
 #bootstrap-overrides .eachTrans {
-  margin-bottom: 80px;
+  margin-bottom: 40px;
 }
 
 #bootstrap-overrides .txtWrapper {
   display: inline-flex;
   cursor: pointer;
+  font-weight: 200;
+  letter-spacing: 1px;
+  margin-right: 240px;
+  font-weight: 100;
+}
+
+#bootstrap-overrides .txtWrapper > .sentence{
+  font-size: 28px;
+  height: calc(100% + 6px);
 }
 
 #bootstrap-overrides .arrow {
-  display: none;
 }
 
 #bootstrap-overrides .arrow:hover {
@@ -154,6 +184,7 @@ html {
 }
 
 #bootstrap-overrides .arrow{
+  display: none;
   z-index: 99999;
   width: 20px;
   height: 40px;
@@ -166,5 +197,62 @@ html {
   background-position: center;
 }
 
+#bootstrap-overrides .fadeout-bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 99999;
+    left: 0;
+    height: 20%;
+    background: -webkit-linear-gradient(
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 1) 100%
+    ); 
+    background-image: -moz-linear-gradient(
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 1) 100%
+    );
+    background-image: -o-linear-gradient(
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 1) 100%
+    );
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 1) 100%
+    );
+    background-image: -ms-linear-gradient(
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 1) 100%
+    );
+}
+
+#bootstrap-overrides .fadeout-top {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 99999;
+    left: 0;
+    height: 20vh;
+    background: -webkit-linear-gradient(
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 0) 100%
+    ); 
+    background-image: -moz-linear-gradient(
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    background-image: -o-linear-gradient(
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    background-image: -ms-linear-gradient(
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 0) 100%
+    );
+}
 
 

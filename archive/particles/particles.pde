@@ -107,7 +107,7 @@ class movingParticle {
   }
  
   void display() {
-    ellipse(x, y, 20, 20);
+    ellipse(x, y, 5, 5);
   }
  
   void update() {

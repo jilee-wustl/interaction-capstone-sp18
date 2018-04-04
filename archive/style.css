@@ -24,16 +24,16 @@ html {
 
 #bootstrap-overrides .menu {
   position: absolute;
-  z-index: 9999;
-  padding: 20px;
+  z-index: 999999999;
+  padding-top: 20px;
   text-align: center;
   width: 100vw;
 }
 
 #bootstrap-overrides .menu-bottom {
   position: absolute;
-  z-index: 9999;
-  padding: 20px;
+  z-index: 999999;
+  padding-bottom: 20px;
   text-align: center;
   width: 100vw;
   bottom: 0;
@@ -48,10 +48,18 @@ html {
   font-weight: 400;
   letter-spacing: 0.04em;
   padding: 5px;
-  margin-right: 10px;
+}
+
+#bootstrap-overrides #about-button {
+  margin-right: 20px;
+}
+
+#bootstrap-overrides .menu-btn-container {
+  display: inline-block;
 }
 
 #bootstrap-overrides #main-button {
+  display: inline-block;
   border: none;
   background-color: rgba(0,0,0,0);
   color: rgba(255,255,255,1);
@@ -60,9 +68,9 @@ html {
   font-weight: 400;
   letter-spacing: 0.04em;
   padding: 5px;
-  padding-right:0px !important;
   margin: 0 !important;
-  }
+  margin-left: -5px !important;
+}
 
 #bootstrap-overrides #landing-page {
   /*z-index: 99999;*/
@@ -79,35 +87,42 @@ html {
   align-items: center;
 }
 
-#bootstrap-overrides .my-mother-is {
+#bootstrap-overrides .prompt {
   font-size: 3.5em;
-  font-weight: 500;
+  font-weight: 400;
   margin-right: 0.3em;
+  letter-spacing: 0.015em;
+  line-height: 130%;
 }
 
 #bootstrap-overrides #formInput {
   background-color: rgba(0,0,0,0);
   border: none;
   border-bottom: solid 5px white;
-  width: 640px;
+  width: 500px;
   outline: 0;
   color: white;
   font-size: 3.5em;
-  font-weight: 500;
+  font-weight: 400;
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow-wrap: break-word;
+}
+
+#bootstrap-overrides #formInput1 {
+  width: 867px;
 }
 
 #bootstrap-overrides .inputs {
   background-color: rgba(0,0,0,0);
   border: none;
   border-bottom: solid 5px white;
-  width: 1000px;
+  width: 989px;
   outline: 0;
   color: white;
   font-size: 3.5em;
-  font-weight: 500;
+  letter-spacing: 0.015em;
+  font-weight: 400;
   white-space: pre-line;
 }
 
@@ -123,23 +138,6 @@ html {
 
 #bootstrap-overrides #translation {
   display: none;
-}
-
-#bootstrap-overrides #archive-page {
-  width: calc(100% - 400px);
-  position: absolute;
-  height: 85vh;
-  overflow-y: unset;
-  padding-bottom: 0px;
-  padding-left: 200px;
-  padding-right: 200px;
-  top: 15vh;
-  left: 0px;
-  /*display: flex;*/
-  display: none;
-  overflow-x: hidden;
-  align-items: center;
-  z-index: 99999;
 }
 
 #bootstrap-overrides #about-page {
@@ -185,11 +183,94 @@ html::-webkit-scrollbar {
 
 #bootstrap-overrides .post {
   position:relative;
-  margin-bottom: 80px;
+  margin-bottom: 120px;
 }
 
 #bootstrap-overrides .insidePost {
   position:relative;
+}
+
+#bootstrap-overrides #btnTranslate {
+  width: 60px;
+  font-size: 60px;
+  font-weight: 700;
+  display: inline-block;
+}
+
+#bootstrap-overrides .edit {
+  margin-top: -3px;
+  text-indent: 122px;
+  display: block;
+  outline: 0;
+  background-color: rgba(0,0,0,0);
+  border: none;
+  width: 989px;
+  outline: 0;
+  color: white;
+  font-size: 3.5em;
+  letter-spacing: 0.015em;
+  font-weight: 400;
+  white-space: pre-line;
+  z-index: 99999;
+  line-height: 140%;
+}
+
+#bootstrap-overrides #that {
+  position: fixed;
+  background-color: #000000;
+  padding-right: 22px;
+  padding-bottom: 7px;
+  z-index: 999999;
+}
+
+#bootstrap-overrides .line-container {
+  display: block;
+  position: absolute;
+  top: 0;
+  margin-top: 73px;
+  outline: 0;
+  background-color: rgba(0,0,0,0);
+  border: none;
+  width: 989px;
+  outline: 0;
+  color: white;
+  letter-spacing: 0.015em;
+  font-weight: 400;
+  z-index: -20;
+}
+
+#bootstrap-overrides .line-hidden {
+  background-color: rgba(0,0,0,0);
+  border-bottom: solid 5px white;
+  width: 989px;
+  color: white;
+  height: 74px;
+  z-index: -20;
+  display: none;
+}
+
+#bootstrap-overrides .line {
+  background-color: rgba(0,0,0,0);
+  border-bottom: solid 5px white;
+  width: 989px;
+  color: white;
+  height: 74px;
+  z-index: -20;
+}
+
+#bootstrap-overrides .input-wrapper {
+  display: block;
+  background-color: rgba(0,0,0,0);
+  width: 989px;
+  color: white;
+  height: 100%;
+}
+
+#bootstrap-overrides .input-container {
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  height: 350px;
 }
 
 .collapse {
@@ -204,7 +285,7 @@ html::-webkit-scrollbar {
   position: relative;
   height: 0;
   overflow: hidden;
-  transition: height 1s ease-in;
+  transition: height 1.0s ease-in;
 }
 
 .menu-active {

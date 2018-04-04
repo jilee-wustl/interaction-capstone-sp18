@@ -9,7 +9,7 @@
     <script src="loadTemplate.js"></script>
     <script type="text/javascript" src="jquery.actual.js"></script>
     <script src="typed.min.js" type="text/javascript"></script>
-
+    <link href="https://fonts.googleapis.com/css?family=Kanit:100,200,300&amp;subset=thai" rel="stylesheet">
 
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -19,39 +19,60 @@
 <body id="bootstrap-overrides">
     <div class="background" id="processing"></div>
     
-    <div class="background" id="processingTranslation"></div>
+    <div class="background" id="processingTranslation">
+        <!--<div class="translation-info">-->
+        <!--    <span> English - Spanish </span>-->
+        <!--    <button class="menu-button" id="skip-button"> Skip </button>-->
+        <!--</div>-->
+    </div>
 
     <div class="menu">
         <button class="menu-button" id="main-button"></button>
     </div>
     
     <div class="menu-bottom">
-        <button class="menu-button" id="about-button"> About </button>
-        <button class="menu-button" id="archive-button"> Archive </button>
+        <div class="menu-btn-container">
+            <button class="menu-button" id="about-button"> About </button>
+            <button class="menu-button" id="archive-button"> Archive </button>
+        </div>
     </div>
     
     <div class="arrow">
     </div>
-    
+        
     <div class="page" id="landing-page">
         <div class="input-form">
-        <form>
             <div class="input-container">
-                <span class="my-mother-is">My mother is</span>
+                <span class="prompt">I wish</span>
 
-                <input type="text" autocomplete="off" class="inputs" id="formInput" maxlength="24">
-                <input type="text" autocomplete="off" class="inputs" id="formInput2" maxlength="40">
-                <input type="text" autocomplete="off" class="inputs" id="formInput3" maxlength="40">
+                <input type="text" autocomplete="off" class="inputs" id="formInput" maxlength="20">
+                
+                <span class="prompt">&nbsp;understood </span>
+                <span class="prompt" id="that">that</span>
+
+                <div class="input-wrapper">
+                    <div contenteditable="true" class="edit" maxlength="100"></div>
+                    <div class="line-container">
+                        <div class="line" id="line1"> </div>
+                        <div class="line" id="line2"> </div>
+                        <div class="line" id="line3"> </div>
+                        <!--<div class="line" id="line4"> </div>-->
+                    </div>
+                </div>
+                <!---->
+                <!--<input type="text" autocomplete="off" class="inputs" id="formInput1" maxlength="35">-->
+                <!--<input type="text" autocomplete="off" class="inputs" id="formInput2" maxlength="40">-->
+                <!--<input type="text" autocomplete="off" class="inputs" id="formInput3" maxlength="40">-->
+                
+                <!--<span id="btnTranslate">&#8627;</span>-->
             </div>
-            
-            <br>
-            <input type="button" id="btnTranslate" value="Run">
-        </form>            
         </div>
     </div>
     
     <div class="page1" id="archive-page">
         <div id="archive">
+            <div class="fadeout-top"></div>
+            <div class="fadeout-bottom"></div>
         </div>
     </div>
     
@@ -191,7 +212,7 @@
                         <!--id="text-1-1"-->
                         <div class="text" data-id="text5">
                             <!--id="1-1"-->
-                            <div class= "txtWrapper" data-id="wrapper5">
+                            <div class= "txtWrapper greek" data-id="wrapper5">
                                             <!--id="1-1-orig"-->
                                 <span class="sentence orig" data-id="orig5" data-content="t5">
                                 </span>
@@ -239,7 +260,7 @@
                         <!--id="text-1-1"-->
                         <div class="text" data-id="text7">
                             <!--id="1-1"-->
-                            <div class= "txtWrapper" data-id="wrapper7">
+                            <div class= "txtWrapper russian" data-id="wrapper7">
                                             <!--id="1-1-orig"-->
                                 <span class="sentence orig" data-id="orig7" data-content="t7">
                                 </span>
@@ -265,7 +286,7 @@
                             <!--id="1-1"-->
                             <div class= "txtWrapper" data-id="wrapper8">
                                             <!--id="1-1-orig"-->
-                                <span class="sentence orig" data-id="orig8" data-content="t8">
+                                <span class="sentence orig thai" data-id="orig8" data-content="t8">
                                 </span>
                                             <!--id="1-1-eng"-->
                                 <span class="sentence eng" data-id="eng8" data-content="t8E">
@@ -287,7 +308,7 @@
                         <!--id="text-1-1"-->
                         <div class="text" data-id="text9">
                             <!--id="1-1"-->
-                            <div class= "txtWrapper" data-id="wrapper9">
+                            <div class= "txtWrapper japanese" data-id="wrapper9">
                                             <!--id="1-1-orig"-->
                                 <span class="sentence orig" data-id="orig9" data-content="t9">
                                 </span>
@@ -311,7 +332,7 @@
                         <!--id="text-1-1"-->
                         <div class="text" data-id="text10">
                             <!--id="1-1"-->
-                            <div class= "txtWrapper" data-id="wrapper10">
+                            <div class= "txtWrapper chinese" data-id="wrapper10">
                                             <!--id="1-1-orig"-->
                                 <span class="sentence orig" data-id="orig10" data-content="t10">
                                 </span>
@@ -354,113 +375,134 @@
             $("#processing").append($newCanv);
             Processing.loadSketchFromSources('mycanvas', ['background_working/background_working.pde']);
             
-            $("#formInput").keyup(function () {
-                if ((this.value.length+20) > this.maxLength) {
-                    $("#formInput2").fadeIn(2000);
-                }
-            });
+            //$("#formInput1").keyup(function () {
+            //    if ((this.value.length+20) > this.maxLength) {
+            //        $("#formInput2").fadeIn(2000);
+            //    }
+            //});
+            //
+            //$("#formInput2").keyup(function () {
+            //    var key = event.keyCode || event.charCode;
+            //
+            //    if ((this.value.length+10) > this.maxLength) {
+            //        $("#formInput3").fadeIn(2000);
+            //    }
+            //    
+            //    if( key == 8 || key == 46 )
+            //        {
+            //        if (this.value.length === 0) {
+            //            $(this).prev('.inputs').focus();
+            //        }
+            //    }
+            //});
             
-            $("#formInput2").keyup(function () {
-                var key = event.keyCode || event.charCode;
-
-                if ((this.value.length+10) > this.maxLength) {
-                    $("#formInput3").fadeIn(2000);
-                }
-                
-                if( key == 8 || key == 46 )
-                    {
-                    if (this.value.length === 0) {
-                        $(this).prev('.inputs').focus();
-                    }
-                }
-            });
+            //$(".inputs").keyup(function () {
+            //    var key = event.keyCode || event.charCode;
+            //    
+            //    if (this.value.length == this.maxLength) {  
+            //      var $next = $(this).next('.inputs');
+            //      if ($next.length)
+            //          $(this).next('.inputs').focus();
+            //      else
+            //          $(this).focus();
+            //    }
+            //    
+            //    if( key == 8 || key == 46 )
+            //        {
+            //        if (this.value.length === 0) {
+            //            $(this).prev('.inputs').focus();
+            //        }
+            //    }
+            //});
+            //
+            //$('.inputs').keyup(function () {
+            //  var key = event.keyCode || event.charCode;
+            //  if((this.value.length == this.maxLength) && key != 32) {
+            //    var $next = $(this).next('.inputs');
+            //    if ($next.length) {
+            //        $(this).next('.inputs').focus();
+            //    }
+            //    else {
+            //        $(this).focus();
+            //    }
+            //  } 
+            //});
             
-            $(".inputs").keyup(function () {
-                var key = event.keyCode || event.charCode;
-                
-                if (this.value.length == this.maxLength) {  
-                  var $next = $(this).next('.inputs');
-                  if ($next.length)
-                      $(this).next('.inputs').focus();
-                  else
-                      $(this).focus();
+            $(".edit").keydown(function () {                
+                if(event.keyCode === 13) {
+                    event.preventDefault();
+                    $(".input-form").fadeOut(500);
+                    translate();
+                    return false;
                 }
-                
-                if( key == 8 || key == 46 )
-                    {
-                    if (this.value.length === 0) {
-                        $(this).prev('.inputs').focus();
-                    }
-                }
-            });
-            
-            $('.inputs').keyup(function () {
-              var key = event.keyCode || event.charCode;
-              if((this.value.length == this.maxLength) && key != 32) {
-                var $next = $(this).next('.inputs');
-                if ($next.length) {
-                    $(this).next('.inputs').focus();
-                }
-                else {
-                    $(this).focus();
-                }
-              } 
             });
             
             $('#main-button').click(function() {
                 if ( $("#landing-page").css('display') == 'none' ){                    
                     if($("#processingTranslation").css('display') == 'block' ){
-                        $("#processingTranslation").fadeOut(2000);
+                        $("#skip-button").fadeOut(1000);
+                        $("#processingTranslation").fadeOut(1000);
                     }
                     if($("#about-page").css('display') == 'block' ){
-                        $("#about-page").fadeOut(2000);
+                        $("#about-page").fadeOut(1000);
                     }
                     if($("#archive-page").css('display') == 'block' ){
-                        $("#archive-page").fadeOut(2000);
+                        $("#archive-page").fadeOut(1000);
                     }
                     
-                    $("#landing-page").fadeIn(2000);
+                    $("#landing-page").fadeIn(1000);
+                    $("#formInput").val("");
+                    $(".edit").text("");
+                    $(".input-form").fadeIn(1000);
                 }
                 $('#archive-button').removeClass('menu-active');
                 $('#about-button').removeClass('menu-active');
+                $(".arrow").fadeOut(1000);
             });
-             
             
             $('#about-button').click(function() {
                 if ( $("#about-page").css('display') == 'none' ){
+                    $("#skip-button").fadeOut(1000);
+                    
                     if($("#archive-page").css('display') == 'block' ){
-                        $("#archive-page").fadeOut(2000);
+                        $("#archive-page").fadeOut(1000);
                     }
                     if($("#processingTranslation").css('display') == 'block' ){
-                        $("#processingTranslation").fadeOut(2000);
+                        $("#processingTranslation").fadeOut(1000);
                     }
                     if($("#landing-page").css('display') == 'block' || ($("#landing-page").css('display') == 'flex')){
-                        $("#landing-page").fadeOut(2000);
+                        $("#landing-page").fadeOut(1000);
                     }
     
-                    $("#about-page").fadeIn(2000);
+                    $("#about-page").fadeIn(1000);
                 }
                 
                 $(this).addClass('menu-active');
+                $(".arrow").fadeOut(1000);
                 $('#archive-button').removeClass('menu-active');
 
             });
             
             $('#archive-button').click(function() {
-                if ( $("#archive-page").css('display') == 'none' ){                
+                if ( $("#archive-page").css('display') == 'none' ){
+                    $("#skip-button").fadeOut(1000);
+                    
                     if($("#landing-page").css('display') == 'block' || ($("#landing-page").css('display') == 'flex')){
-                        $("#landing-page").fadeOut(2000);
+                        $("#landing-page").fadeOut(1000);
                     }
                     if($("#processingTranslation").css('display') == 'block' ){
-                        $("#processingTranslation").fadeOut(2000);
+                        $("#processingTranslation").fadeOut(1000);
                     }
                     if($("#about-page").css('display') == 'block' ){
-                        $("#about-page").fadeOut(2000);
+                        $("#about-page").fadeOut(1000);
                     }
                     loadDatabase();
-                    $("#archive-page").fadeIn(2000);
+                    $(".arrow").fadeIn(1000);
+                    $("#archive-page").fadeIn(1000);
                 }
                 
+                $("#archive-page").scrollTop(0);
+
                 $(this).addClass('menu-active');
                 $('#about-button').removeClass('menu-active');
 
@@ -503,6 +545,7 @@
         }); 
         
         var url;
+        var firstload = true;
         
         var languages = ["EN","ES","FR","IT","SV","EL","SW","RU","TH","JA","ZH","EN"];
 
@@ -532,11 +575,11 @@
         
         /* translate */
         function translate() {
-            $(".input-form").delay(100).fadeOut("slow");
-
             if (translationCount < 11) {
                 if (translationCount === 0){
-                    combinedInput = "My mother is " + $("#formInput").val() + $("#formInput2").val() + $("#formInput3").val();
+                    combinedInput = "I wish " + $("#formInput").val() + " understood that " + $(".edit").text();
+                    
+                    console.log(combinedInput);
                     
                     var stringLength = combinedInput.length; 
                     var lastChar = combinedInput.charAt(stringLength - 1);
@@ -580,6 +623,10 @@
                     var lastCharOne = done.charAt(stringLength - 1);
                     
                     if((lastCharOne !== ".") && (result.length < 8)) {
+                        done = done + ".";
+                    }
+                    
+                    if((lastCharOne !== ".") && (result.length == 10)) {
                         done = done + ".";
                     }
                     
@@ -651,9 +698,9 @@
                         
                         $("#processingTranslation").append($newCanv);
                         Processing.loadSketchFromSources('translation', ['translation/translation.pde']);
-                        
-                        $("#translation").delay(3000).fadeIn(1500);
-                        setTimeout(loadDatabase, 3000);
+                        setTimeout(loadDatabase, 4000);
+                        $("#translation").delay(2000).fadeIn(1500);
+                        $("#skip-button").delay(2000).fadeIn(1500);
                     }
                 }
                 });
@@ -853,11 +900,15 @@
                     btnM: "btn-m-"+x
                 });
                 
-                $( "#btn-m-"+x ).append("<button id='btn-o-"+x+"' value = '"+x+"' class='btn-o' type='button' data-toggle='collapse' data-target='#collapse-"+x+"' aria-expanded='false' aria-controls='collapse-"+x+"'></button>");
+                $("#btn-m-"+x).append("<button id='btn-o-"+x+"' value = '"+x+"' class='btn-o' type='button' data-toggle='collapse' data-target='#collapse-"+x+"' aria-expanded='false' aria-controls='collapse-"+x+"'></button>");
                 
+                if (x == len) {
+                    console.log(x);
+                    $("#post-"+x).css('margin-top', '15vh');
+                }
             }
+            firstload = false;
             doneLoadingDatabase();    
-        
         }
         
         function loadDatabase() {
@@ -905,7 +956,7 @@
             var wrapperId = this.id;
              
             $(this).css('display','inline-flex');
-
+            
             var eng = '#' + wrapperId + '-eng';
             var orig = '#' + wrapperId + '-orig';
             
@@ -996,15 +1047,6 @@
                 $(name).fadeIn();
             }
         
-        /* detects enter pressed */
-        function enterPressed() {
-            $(".inputs").on("keydown",function search(e) {
-                if(e.keyCode == 13) {
-                    translate();
-                }
-            });
-        }
-        
         var typed = new Typed('#main-button', {
 		  strings: ["Lost in Translation"],
 		  typeSpeed: 3,
@@ -1015,9 +1057,6 @@
 			cursorChar: '|',
 			autoInsertCss: true
 		});
-        
-        /* functions */
-        enterPressed();
         
         $("#btnTranslate").click(function () {
             userInput = "My mother is " + $("#formInput").val() + $("#formInput2").val() + $("#formInput3").val();
@@ -1039,15 +1078,25 @@
                 
                 //placing button in the middle of input & output
                 var postHeight = $('#insidePost-' + a).actual('height');
+                
                 $('#btn-m-'+a).css('min-height', postHeight);
-
             }
-            $("#archive").fadeIn(1200);
-            $(".arrow").fadeIn(1200);
+            $("#archive").fadeIn(1000);
            }
         
+        //$(window).resize(function() {
+        //    if (!firstload) {
+        //        doneLoadingDatabase();
+        //    }
+        //});
         
-        
+        $("div[contenteditable='true'][maxlength]").on('keydown paste', function (event) {
+            var cntMaxLength = parseInt($(this).attr('maxlength'));
+       
+            if ($(this).text().length === cntMaxLength && event.keyCode != 8) {
+                event.preventDefault();
+            }
+        });
         
         });
     </script>
