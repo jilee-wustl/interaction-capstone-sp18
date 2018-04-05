@@ -1,5 +1,5 @@
 color c = color(10,5,15);//the secret colour
-String word = "Op";
+String word = "Openprocessingggg";
 String allwords = "" + processingString;
 PVector start  =new PVector(100, 300);
 int tSize = 40; //Textsize
@@ -8,7 +8,7 @@ int index=0;
 float restZ=0;
 int[] yValue = {600, 370, 250, 500, 310, 620, 450, 270, 530, 290, 400, 600, 200};
 int F = 0;
-float CTime = 90;//number of frames between words
+float CTime = 100;//number of frames between words
 int PNum = particlesNum;
 
 void setup() {
@@ -23,8 +23,8 @@ void setup() {
   for (int i = 0; i < PNum; i++) {//creating the particles
     Points.add(new particle(random(width),random(height)));
   }
-
-  frameRate(30);
+  
+  smooth();
 }
 
 
@@ -42,7 +42,7 @@ void draw(){
     word=Arr[F];//getting the next word
     
     //positioning text inside the window    
-    start.x = int(random(20,(width-word.length()*tSize/1.8)));
+    start.x = int(random(20,(width-word.length()*tSize/1.8)-40));
     start.y = yValue[F];
     
     fill(c);
@@ -115,11 +115,10 @@ $(window).resize(doResize());
 
 function translationLabel() {
   if (finished) {
-    console.log("finished: "+finished);
-    $("#translation").delay(12500).fadeOut(2000);
+    $("#translation").delay(11500).fadeOut(3000);
     $("#archive-page").delay(13500).fadeIn(2000);
     $(".arrow").delay(13500).fadeIn(2000);
-    $("#archive-button").delay(20500).css('text-decoration', 'underline');
+    $("#archive-button").delay(22500).addClass("menu-active");
     }
 }
         

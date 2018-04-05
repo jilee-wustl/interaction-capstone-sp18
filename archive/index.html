@@ -9,7 +9,7 @@
     <script src="loadTemplate.js"></script>
     <script type="text/javascript" src="jquery.actual.js"></script>
     <script src="typed.min.js" type="text/javascript"></script>
-    <link href="https://fonts.googleapis.com/css?family=Kanit:100,200,300&amp;subset=thai" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kanit:100&amp;subset=thai" rel="stylesheet">
 
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -371,20 +371,15 @@
         var particlesNum = 12000;
 
         $(document).ready(function(){
-            
-            $("#mycanvas").click(function(){
-            });
-            $("#translation").click(function(){
-            });
-
             var $newCanv = $("<canvas/>").attr("id", "mycanvas");  // adds the id
+
             $("#processing").append($newCanv);
             Processing.loadSketchFromSources('mycanvas', ['background_working/background_working.pde']);
             
             $(".edit").keydown(function () {                
                 if(event.keyCode === 13) {
                     event.preventDefault();
-                    $(".input-form").fadeOut(500);
+                    $("#landing-page").fadeOut(500);
                     translate();
                     return false;
                 }
@@ -437,9 +432,8 @@
             });
             
             $('#archive-button').click(function() {
-                if ( $("#archive-page").css('display') == 'none' ){
-                    $("#skip-button").fadeOut(1000);
-                    
+                loadDatabase();
+                if ( $("#archive-page").css('display') == 'none' ){                    
                     if($("#landing-page").css('display') == 'block' || ($("#landing-page").css('display') == 'flex')){
                         $("#landing-page").fadeOut(1000);
                     }
@@ -449,7 +443,6 @@
                     if($("#about-page").css('display') == 'block' ){
                         $("#about-page").fadeOut(1000);
                     }
-                    loadDatabase();
                     $(".arrow").fadeIn(1000);
                     $("#archive-page").fadeIn(1000);
                 }
@@ -458,7 +451,6 @@
 
                 $(this).addClass('menu-active');
                 $('#about-button').removeClass('menu-active');
-
             });
             
         
@@ -542,8 +534,12 @@
                         particlesNum = 14500;
                     }
                     
-                    if (stringLength > 100 && stringLength < 250) {
+                    if (stringLength > 100 && stringLength < 150) {
                         particlesNum = 17000;
+                    }
+                    
+                    if (stringLength > 150 && stringLength < 250) {
+                        particlesNum = 20000;
                     }
                     
                     var lastChar = combinedInput.charAt(stringLength - 1);
@@ -663,8 +659,7 @@
                         $("#processingTranslation").append($newCanv);
                         Processing.loadSketchFromSources('translation', ['translation/translation.pde']);
                         setTimeout(loadDatabase, 4000);
-                        $("#translation").delay(2000).fadeIn(1500);
-                        $("#skip-button").delay(2000).fadeIn(1500);
+                        $("#translation").delay(3600).fadeIn(1500);
                     }
                 }
                 });
@@ -1013,7 +1008,7 @@
         
         var typed = new Typed('#main-button', {
 		  strings: ["Lost in Translation"],
-		  typeSpeed: 3,
+		  typeSpeed: 10,
 		  backSpeed: 3,
 		   loop: false,
 		loopCount: Infinity,
@@ -1061,7 +1056,7 @@
                 event.preventDefault();
             }
         });
-        
+                
         });
     </script>
     
