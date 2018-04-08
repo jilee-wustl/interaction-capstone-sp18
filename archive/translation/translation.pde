@@ -1,12 +1,11 @@
 color c = color(10,5,15);//the secret colour
-String word = "Openprocessingggg";
+String word = "I wish my parents understood that I am not a child anymore.";
 String allwords = "" + processingString;
 PVector start  =new PVector(100, 300);
-int tSize = 40; //Textsize
+int tSize = 60; //Textsize
 ArrayList<particle> Points = new ArrayList<particle>();
 int index=0;
 float restZ=0;
-int[] yValue = {600, 370, 250, 500, 310, 620, 450, 270, 530, 290, 400, 600, 200};
 int F = 0;
 float CTime = 100;//number of frames between words
 int PNum = particlesNum;
@@ -36,17 +35,18 @@ void draw(){
     restZ=CTime;
     for (particle P : Points) {//resetting particles and slowing them down
       P.target=false;
-      P.velocity.mult(0.33);
+      P.velocity.mult(0.75);
     }
     String[] Arr = allwords.split("/");
     word=Arr[F];//getting the next word
     
     //positioning text inside the window    
-    start.x = int(random(20,(width-word.length()*tSize/1.8)-40));
-    start.y = yValue[F];
+    start.x = (width/2) - 440;
+    start.y = (height/2) - 213;
     
     fill(c);
-    text(word, start.x, start.y+tSize);
+    textLeading(78); 
+    text(word, start.x, start.y+tSize,980,600);
     loadPixels();
     
     F++;
@@ -59,13 +59,13 @@ void draw(){
    
   }else if (restZ<=1){//slowing down on the last 4 frames
     for (particle P : Points) {
-      P.velocity.mult(-0.01);
+      P.velocity.mult(-0.005);
     }
   }
   restZ-=1;
   //-10
   for (int i = 0; i < 13*PNum/(CTime-90); i++) {//checking random points in the area of the text
-    RealPix=  new PVector(int(random(start.x, start.x+Len*tSize)),int(random(start.y, start.y+tSize*1.4)));
+    RealPix=  new PVector(int(random(start.x, start.x+Len*tSize)),int(random(start.y, start.y+tSize+400)));
     int pixNr =int(RealPix.y*width + RealPix.x);
     color b= pixels[pixNr];
     
@@ -118,7 +118,7 @@ function translationLabel() {
     $("#translation").delay(11500).fadeOut(3000);
     $("#archive-page").delay(13500).fadeIn(2000);
     $(".arrow").delay(13500).fadeIn(2000);
-    $("#archive-button").delay(22500).addClass("menu-active");
+    $("#archive-button").delay(25500).addClass("menu-active");
     }
 }
         

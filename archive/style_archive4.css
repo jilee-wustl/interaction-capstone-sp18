@@ -1,0 +1,3 @@
+#bootstrap-overrides .btn-m.long:after { 
+  height: calc(100% - 130px) !important;
+}

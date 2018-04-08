@@ -85,6 +85,8 @@ html {
   height: calc(100% - 20px);
   display: flex;
   align-items: center;
+  transition: opacity 1s ease;
+  -webkit-transition: opacity 1s ease;
 }
 
 #bootstrap-overrides .prompt {
@@ -130,6 +132,8 @@ html {
   z-index: 99999;
   width: 1000px;
   margin: 0 auto;
+  transition: opacity 1s ease;
+  -webkit-transition: opacity 1s ease;
 }
 
 #bootstrap-overrides #formInput2, #formInput3, #formInput4 {

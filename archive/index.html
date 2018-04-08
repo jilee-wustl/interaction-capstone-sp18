@@ -4,6 +4,8 @@
     <title> Lost in Translation </title>
     <link href="style.css" rel="stylesheet">
     <link rel="stylesheet" href="style_archive3.css">
+    <link rel="stylesheet" href="style_archive4.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
     <script src="loadTemplate.js"></script>
@@ -379,7 +381,7 @@
             $(".edit").keydown(function () {                
                 if(event.keyCode === 13) {
                     event.preventDefault();
-                    $("#landing-page").fadeOut(500);
+                    $("#landing-page").fadeOut(1000);
                     translate();
                     return false;
                 }
@@ -398,10 +400,9 @@
                         $("#archive-page").fadeOut(1000);
                     }
                     
-                    $("#landing-page").fadeIn(1000);
                     $("#formInput").val("");
                     $(".edit").text("");
-                    $(".input-form").fadeIn(1000);
+                    $("#landing-page").fadeIn(1000);
                 }
                 $('#archive-button').removeClass('menu-active');
                 $('#about-button').removeClass('menu-active');
@@ -457,10 +458,6 @@
         var scrollTop = false;
     
         $("#archive-page").scroll(function(){
-            console.log($(this)[0].scrollHeight);
-            console.log($(this).scrollTop());
-            console.log($(this).outerHeight());
-
             if(($(this)[0].scrollHeight - $(this).scrollTop() - $(this).outerHeight()) < 20) {
                 $('.arrow').css('transform', 'rotate(180deg)');
                 scrollTop = true;
@@ -527,19 +524,19 @@
                     var stringLength = combinedInput.length;
                     
                     if (stringLength < 60) {
-                        particlesNum = 12000;
+                        particlesNum = 10000;
                     }
                     
                     if (stringLength > 60 && stringLength < 100) {
-                        particlesNum = 14500;
+                        particlesNum = 12000;
                     }
                     
                     if (stringLength > 100 && stringLength < 150) {
-                        particlesNum = 17000;
+                        particlesNum = 14000;
                     }
                     
                     if (stringLength > 150 && stringLength < 250) {
-                        particlesNum = 20000;
+                        particlesNum = 16000;
                     }
                     
                     var lastChar = combinedInput.charAt(stringLength - 1);
@@ -650,16 +647,13 @@
                     translateEng();
                     if (translationCountEng === 10){
                         writeNewPost();
-                        console.log("processing: " + processingString);
-                        //$("#mycanvas").delay(3500).fadeOut("slow");
-
                         
                         var $newCanv = $("<canvas/>").attr("id", "translation");  // adds the id 
                         
                         $("#processingTranslation").append($newCanv);
                         Processing.loadSketchFromSources('translation', ['translation/translation.pde']);
+                        $("#translation").delay(3600).fadeIn(2000);
                         setTimeout(loadDatabase, 4000);
-                        $("#translation").delay(3600).fadeIn(1500);
                     }
                 }
                 });
@@ -905,6 +899,12 @@
             if (origWidth > engWidth){
                 $(this).css('min-width', origWidth);
             }
+            
+            var thisHeight = $(this).actual('height');
+            var engHeight = $(eng).actual('height');
+            console.log(thisHeight);
+            console.log(engHeight);
+            $(this).css('min-height', engHeight);
                                 
             $(orig).show();
             $(eng).hide();
@@ -920,7 +920,7 @@
             var orig = '#' + wrapperId + '-orig';
             
             var boldSpan = '#lang-' + wrapperId;
-
+            
             $(orig).hide();
             $(eng).show();
             $(boldSpan).css('font-weight', 300);     
@@ -969,7 +969,11 @@
                     for (var x = 1; x <= postNum; x++){
                         var postHeight = $('#insidePost-'+x).actual('height');                        
                         var btnName = '#btn-m-'+x;
-                        $(btnName).css('min-height', postHeight+'px');  
+                        //$(btnName).css('min-height', postHeight+'px');
+                        $(btnName).css('min-height', '100%');
+                        if (postHeight == 320) {
+                            $(btnName+":after").css('height', 'calc(100% - 129px)');
+                        }
                         $(btnName).fadeIn(1200);
                     }
                 }
@@ -977,10 +981,12 @@
                 var postHeight = $('#insidePost-'+val).actual('height');
                 
                 console.log(postHeight);
-                
+                if (postHeight == 320) {
+                            $(btnName+":after").css('height', 'calc(100% - 129px)');
+                        }
                 var btnName = '#btn-m-'+val;
                 
-                $(btnName).css('min-height', postHeight+'px');
+                $(btnName).css('min-height', '100%');  
                                 
                 for (var x = 1; x <=10; x++){
                     var divName = '#text-' + val + '-' + x;
@@ -1037,8 +1043,22 @@
                 
                 //placing button in the middle of input & output
                 var postHeight = $('#insidePost-' + a).actual('height');
-                
+                var inputHeight = $('#input-' + a).actual('height');
+                var outputHeight = $('#output-' + a).actual('height');
+
                 $('#btn-m-'+a).css('min-height', postHeight);
+                
+                if (inputHeight > outputHeight) {
+                    $('#btn-o-'+a).css('margin-top', '30px');
+                }
+                
+                if (outputHeight > inputHeight) {
+                    $('#btn-o-'+a).css('margin-top', '-30px');
+                }
+                
+                if (postHeight == 320) {
+                    $('#btn-m-'+a).toggleClass('long');
+                }
             }
             $("#archive").fadeIn(1000);
            }

@@ -153,9 +153,13 @@ html {
   border-right: 1.8px #FFFFFF dotted;
   height: calc(100% - 80px);
   width: 100%;
-  transform: translateX(-47%);
+  transform: translateX(-39%);
   display: flex;
   margin: 0 auto;
+}
+
+#bootstrap-overrides .btn-m.long:after { 
+  height: calc(100% - 129px) !important;
 }
 
 #bootstrap-overrides .eachTrans {
