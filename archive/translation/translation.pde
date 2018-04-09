@@ -23,7 +23,7 @@ void setup() {
     Points.add(new particle(random(width),random(height)));
   }
   
-  smooth();
+  frameRate(30);
 }
 
 
@@ -41,12 +41,12 @@ void draw(){
     word=Arr[F];//getting the next word
     
     //positioning text inside the window    
-    start.x = (width/2) - 440;
-    start.y = (height/2) - 213;
+    start.x = (width/2) - 500;
+    start.y = (height/2) - 210;
     
     fill(c);
     textLeading(78); 
-    text(word, start.x, start.y+tSize,980,600);
+    text(word, start.x, start.y+tSize,960,600);
     loadPixels();
     
     F++;
@@ -64,7 +64,7 @@ void draw(){
   }
   restZ-=1;
   //-10
-  for (int i = 0; i < 13*PNum/(CTime-90); i++) {//checking random points in the area of the text
+  for (int i = 0; i < 13*PNum/(CTime-96); i++) {//checking random points in the area of the text
     RealPix=  new PVector(int(random(start.x, start.x+Len*tSize)),int(random(start.y, start.y+tSize+400)));
     int pixNr =int(RealPix.y*width + RealPix.x);
     color b= pixels[pixNr];
@@ -118,7 +118,7 @@ function translationLabel() {
     $("#translation").delay(11500).fadeOut(3000);
     $("#archive-page").delay(13500).fadeIn(2000);
     $(".arrow").delay(13500).fadeIn(2000);
-    $("#archive-button").delay(25500).addClass("menu-active");
+    $("#archive-button").delay(33500).addClass("menu-active");
     }
 }
         

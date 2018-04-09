@@ -68,6 +68,7 @@ html {
   font-weight: 400;
   letter-spacing: 0.04em;
   padding: 5px;
+  padding-left: 0px !important;
   margin: 0 !important;
   margin-left: -5px !important;
 }
@@ -98,10 +99,13 @@ html {
 }
 
 #bootstrap-overrides #formInput {
+  position: relative;
   background-color: rgba(0,0,0,0);
   border: none;
-  border-bottom: solid 5px white;
-  width: 500px;
+  border: solid 5px white;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 460px;
   outline: 0;
   color: white;
   font-size: 3.5em;
@@ -109,6 +113,13 @@ html {
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  display: inline-flex;
+  height: 56px;
+  padding: 8px;
+}
+
+#bootstrap-overrides .select select {
+  display: none;
 }
 
 #bootstrap-overrides #formInput1 {
@@ -132,6 +143,7 @@ html {
   z-index: 99999;
   width: 1000px;
   margin: 0 auto;
+  margin-top: -15px;
   transition: opacity 1s ease;
   -webkit-transition: opacity 1s ease;
 }
@@ -216,7 +228,7 @@ html::-webkit-scrollbar {
   font-weight: 400;
   white-space: pre-line;
   z-index: 99999;
-  line-height: 140%;
+  line-height: 80px;
 }
 
 #bootstrap-overrides #that {
@@ -231,7 +243,7 @@ html::-webkit-scrollbar {
   display: block;
   position: absolute;
   top: 0;
-  margin-top: 73px;
+  margin-top: 88px;
   outline: 0;
   background-color: rgba(0,0,0,0);
   border: none;
@@ -258,7 +270,7 @@ html::-webkit-scrollbar {
   border-bottom: solid 5px white;
   width: 989px;
   color: white;
-  height: 74px;
+  height: 75px;
   z-index: -20;
 }
 
@@ -275,6 +287,7 @@ html::-webkit-scrollbar {
   margin: 0 auto;
   position: relative;
   height: 350px;
+  width: 1000px;
 }
 
 .collapse {

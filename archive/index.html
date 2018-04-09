@@ -16,7 +16,8 @@
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</head>
+
+   </head>
 
 <body id="bootstrap-overrides">
     <div class="background" id="processing"></div>
@@ -47,7 +48,18 @@
             <div class="input-container">
                 <span class="prompt">I wish</span>
 
-                <input type="text" autocomplete="off" class="inputs" id="formInput" maxlength="20">
+                <!--<input type="text" autocomplete="off" class="inputs" id="formInput" maxlength="20">-->
+                <!--<div class="select" id="formInput">-->
+                    <select id="someone">
+                        <option value="people">people</option>
+                        <option value="you">you</option>
+                        <option value="my parents">my parents</option>
+                        <option value="my friends">my friends</option>
+                        <option value="my dog">my dog</option>
+                        <option value="he">he</option>
+                        <option value="she">she</option>
+                    </select>
+                <!--</div>-->
                 
                 <span class="prompt">&nbsp;understood </span>
                 <span class="prompt" id="that">that</span>
@@ -58,15 +70,8 @@
                         <div class="line" id="line1"> </div>
                         <div class="line" id="line2"> </div>
                         <div class="line" id="line3"> </div>
-                        <!--<div class="line" id="line4"> </div>-->
                     </div>
                 </div>
-                <!---->
-                <!--<input type="text" autocomplete="off" class="inputs" id="formInput1" maxlength="35">-->
-                <!--<input type="text" autocomplete="off" class="inputs" id="formInput2" maxlength="40">-->
-                <!--<input type="text" autocomplete="off" class="inputs" id="formInput3" maxlength="40">-->
-                
-                <!--<span id="btnTranslate">&#8627;</span>-->
             </div>
         </div>
     </div>
@@ -381,12 +386,61 @@
             $(".edit").keydown(function () {                
                 if(event.keyCode === 13) {
                     event.preventDefault();
-                    $("#landing-page").fadeOut(1000);
-                    translate();
+                    if($(".edit").text() !== "" && $("#someone").val() !== "") {
+                        $("#landing-page").fadeOut(1000);
+                        translate();
+                    }
                     return false;
                 }
             });
             
+            $('select').each(function(){
+                var $this = $(this), numberOfOptions = $(this).children('option').length;
+              
+                $this.addClass('select-hidden'); 
+                $this.wrap('<div class="select"></div>');
+                $this.after('<div class="select-styled"></div>');
+            
+                var $styledSelect = $this.next('div.select-styled');
+                $styledSelect.html("<span style='color:transparent;'>select</span>");
+                
+              
+                var $list = $('<ul />', {
+                    'class': 'select-options'
+                }).insertAfter($styledSelect);
+              
+                for (var i = 0; i < numberOfOptions; i++) {
+                    $('<li />', {
+                        text: $this.children('option').eq(i).text(),
+                        rel: $this.children('option').eq(i).val()
+                    }).appendTo($list);
+                }
+              
+                var $listItems = $list.children('li');
+              
+                $styledSelect.click(function(e) {
+                    e.stopPropagation();
+                    $('div.select-styled.active').not(this).each(function(){
+                        $(this).removeClass('active').next('ul.select-options').hide();
+                    });
+                    $(this).toggleClass('active').next('ul.select-options').toggle();
+                });
+              
+                $listItems.click(function(e) {
+                    e.stopPropagation();
+                    $styledSelect.text($(this).text()).removeClass('active');
+                    $this.val($(this).attr('rel'));
+                    $list.hide();
+                    //console.log($this.val());
+                });
+              
+                $(document).click(function() {
+                    $styledSelect.removeClass('active');
+                    $list.hide();
+                });
+            
+            });
+
             $('#main-button').click(function() {
                 if ( $("#landing-page").css('display') == 'none' ){                    
                     if($("#processingTranslation").css('display') == 'block' ){
@@ -400,7 +454,7 @@
                         $("#archive-page").fadeOut(1000);
                     }
                     
-                    $("#formInput").val("");
+                    $(".select-styled").html("<span style='color:transparent;'>select</span>");
                     $(".edit").text("");
                     $("#landing-page").fadeIn(1000);
                 }
@@ -517,7 +571,7 @@
         function translate() {
             if (translationCount < 11) {
                 if (translationCount === 0){
-                    combinedInput = "I wish " + $("#formInput").val() + " understood that " + $(".edit").text();
+                    combinedInput = "I wish " + $("#someone").val() + " understood that " + $(".edit").text();
                     
                     console.log(combinedInput);
                     
@@ -1022,11 +1076,6 @@
 			cursorChar: '|',
 			autoInsertCss: true
 		});
-        
-        $("#btnTranslate").click(function () {
-            userInput = "My mother is " + $("#formInput").val() + $("#formInput2").val() + $("#formInput3").val();
-            translate();
-        });
         
          function doneLoadingDatabase() {
             console.log(postNum);
