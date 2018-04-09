@@ -1,18 +1,19 @@
-color c = color(10,5,15);//the secret colour
-String word = "I wish my parents understood that I am not a child anymore.";
+color c = color(8,10,5);//the secret colour
+String word = "I wish my parents";
 String allwords = "" + processingString;
+
 PVector start  =new PVector(100, 300);
 int tSize = 60; //Textsize
 ArrayList<particle> Points = new ArrayList<particle>();
-int index=0;
-float restZ=0;
+int index = 0;
+float restZ = 0;
 int F = 0;
 float CTime = 100;//number of frames between words
 int PNum = particlesNum;
 
 void setup() {
   doResize();
-  noStroke();
+  frameRate(30);
   background(5,5,10,0);
   
   textSize(tSize);
@@ -22,9 +23,7 @@ void setup() {
   for (int i = 0; i < PNum; i++) {//creating the particles
     Points.add(new particle(random(width),random(height)));
   }
-  
-  frameRate(30);
-}
+  }
 
 
 void draw(){
@@ -35,7 +34,7 @@ void draw(){
     restZ=CTime;
     for (particle P : Points) {//resetting particles and slowing them down
       P.target=false;
-      P.velocity.mult(0.75);
+      P.velocity.mult(0.65);
     }
     String[] Arr = allwords.split("/");
     word=Arr[F];//getting the next word
@@ -63,13 +62,12 @@ void draw(){
     }
   }
   restZ-=1;
-  //-10
-  for (int i = 0; i < 13*PNum/(CTime-96); i++) {//checking random points in the area of the text
-    RealPix=  new PVector(int(random(start.x, start.x+Len*tSize)),int(random(start.y, start.y+tSize+400)));
-    int pixNr =int(RealPix.y*width + RealPix.x);
-    color b= pixels[pixNr];
-    
-    //20 10
+  //-96
+  for (int i = 0; i < 13*PNum/(CTime-90); i++) {//checking random points in the area of the text
+    RealPix = new PVector(int(random(start.x, start.x+Len*tSize)),int(random(start.y, start.y+tSize+400)));
+    int pixNr = int(RealPix.y*width + RealPix.x);
+    color b = pixels[pixNr];
+
     if ((c == b)&&(restZ<CTime-20)&&(restZ>=8)){//if the point is on text
       particle Aktuell = Points.get(index);
       if (Aktuell.target==false){
@@ -114,6 +112,8 @@ function doResize(){
 $(window).resize(doResize());
 
 function translationLabel() {
+    console.log("in translationlabel()");
+
   if (finished) {
     $("#translation").delay(11500).fadeOut(3000);
     $("#archive-page").delay(13500).fadeIn(2000);

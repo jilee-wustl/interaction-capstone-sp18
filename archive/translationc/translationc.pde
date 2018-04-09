@@ -7,7 +7,7 @@ ArrayList<particle> Points = new ArrayList<particle>();
 int index=0;
 float restZ=0;
 int F = 0;
-float CTime = 110;//number of frames between words
+float CTime = 100;//number of frames between words
 int PNum = 10000;
 
 void setup() {
@@ -23,7 +23,7 @@ void setup() {
     Points.add(new particle(random(width),random(height)));
   }
 
-  smooth();
+  frameRate(24);
 }
 
 
@@ -60,7 +60,7 @@ void draw(){
   }
   restZ-=1;
   //-10
-  for (int i = 0; i < 13*PNum/(CTime-90); i++) {//checking random points in the area of the text
+  for (int i = 0; i < 13*PNum/(CTime-95); i++) {//checking random points in the area of the text
     RealPix=  new PVector(int(random(start.x, start.x+Len*tSize)),int(random(start.y, start.y+tSize+400)));
     int pixNr =int(RealPix.y*width + RealPix.x);
     color b= pixels[pixNr];
