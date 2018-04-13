@@ -1,4 +1,4 @@
-color c = color(19,19,19);//the secret colour
+color c = color(8,5,11);//the secret colour
 String word = "I wish my parents";
 String allwords = "" + processingString;
 PFont fon;
@@ -11,11 +11,13 @@ float restZ = 0;
 int F = 0;
 float CTime = 100;//number of frames between words
 int PNum = particlesNum;
+int textWidth = 990;
+int textHeight = 600;
 
 void setup() {
   doResize();
-  frameRate(30);
-  background(19,19,55,0);
+  frameRate(24);
+  background(24,24,55,0);
   fon = loadFont("NotoSans-ExtraLight-60.vlw", 60);
   textFont(fon);
   textSize(tSize);
@@ -29,7 +31,7 @@ void setup() {
 
 
 void draw(){
-  background(19,19,55,0);
+  background(25,50,55,0);
   int Len = word.length();
   PVector RealPix;
   if (restZ==0){//when the timer for the word runs out
@@ -42,12 +44,12 @@ void draw(){
     word=Arr[F];//getting the next word
     
     //positioning text inside the window    
-    start.x = (width/2) - 500;
+    start.x = (width/2) - (textWidth/2);
     start.y = (height/2) - 210;
     
     fill(c);
     textLeading(78); 
-    text(word, start.x, start.y+tSize,960,600);
+    text(word, start.x, start.y+tSize,textWidth,textHeight);
     loadPixels();
     
     F++;
@@ -115,10 +117,13 @@ $(window).resize(doResize());
 
 function translationLabel() {
   if(once == 1) {
-    $("#translation").delay(11000).fadeOut(2500);
-    $("#archive-page").delay(13000).fadeIn(2000);
-    $(".arrow").delay(13500).fadeIn(2000);
-    setTimeout(function(){ $("#archive-button").addClass("menu-active"); $('#translation').remove();},15500);
+    $("#landing-page").removeClass("page-active");
+    setTimeout(function(){ 
+      $("#archive-button").addClass("menu-active"); 
+      $('#translation').remove();
+      $(".arrow").css('display', 'block');
+      $("#archive-page").addClass("page-active");
+    },15000);
   }
 }
         

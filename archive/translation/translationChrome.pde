@@ -1,4 +1,4 @@
-color c = color(19,19,19);//the secret colour
+color c = color(8,10,5);//the secret colour
 String word = "I wish my parents";
 String allwords = "" + processingString;
 PFont fon;
@@ -15,7 +15,7 @@ int PNum = particlesNum;
 void setup() {
   doResize();
   frameRate(30);
-  background(19,19,55,0);
+  background(5,5,10,0);
   fon = loadFont("NotoSans-ExtraLight-60.vlw", 60);
   textFont(fon);
   textSize(tSize);
@@ -29,7 +29,7 @@ void setup() {
 
 
 void draw(){
-  background(19,19,55,0);
+  background(5,5,10,0);
   int Len = word.length();
   PVector RealPix;
   if (restZ==0){//when the timer for the word runs out
@@ -115,8 +115,8 @@ $(window).resize(doResize());
 
 function translationLabel() {
   if(once == 1) {
-    $("#translation").delay(11000).fadeOut(2500);
-    $("#archive-page").delay(13000).fadeIn(2000);
+    $("#translation").delay(11500).fadeOut(3000);
+    $("#archive-page").delay(13500).fadeIn(2000);
     $(".arrow").delay(13500).fadeIn(2000);
     setTimeout(function(){ $("#archive-button").addClass("menu-active"); $('#translation').remove();},15500);
   }

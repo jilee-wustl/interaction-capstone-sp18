@@ -27,7 +27,8 @@ html {
   z-index: 999999999;
   padding-top: 20px;
   text-align: center;
-  width: 100vw;
+  width: 100%;
+  display: none;
 }
 
 #bootstrap-overrides .menu-bottom {
@@ -35,8 +36,9 @@ html {
   z-index: 999999;
   padding-bottom: 20px;
   text-align: center;
-  width: 100vw;
+  width: 100%;
   bottom: 0;
+  display: none;
 }
 
 #bootstrap-overrides .menu-button {
@@ -74,11 +76,9 @@ html {
 }
 
 #bootstrap-overrides #landing-page {
-  /*z-index: 99999;*/
   width: calc(100% - 240px);
   position: absolute;
   padding-top: 20px;
-  /*padding-bottom: 20px;*/
   padding-left: 120px;
   padding-right: 120px;
   top: 0px;
@@ -86,6 +86,53 @@ html {
   height: calc(100% - 20px);
   display: flex;
   align-items: center;
+  visibility: hidden;
+  opacity: 0;
+}
+
+#bootstrap-overrides #intro-page {
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  visibility: visible;
+  opacity: 1;
+  transition: all 1s linear;
+  z-index: 9999999999;
+  font-size: 3.5em;
+  font-weight: 400;
+  text-align: center;
+  justify-content: center;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.bar {
+  width: 100%;
+  position: fixed;
+  z-index: 9999999999;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 100;
+  letter-spacing: 0.75px;
+  bottom: 12vh;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.bar .status{
+  opacity: 0.25;
+  transition: all 3s ease-in;
+}
+
+.dash {
+  opacity: 0.25;
+}
+
+.intro-typed {
+  margin-left: -28px;
 }
 
 #bootstrap-overrides .prompt {
@@ -142,8 +189,6 @@ html {
   width: 1000px;
   margin: 0 auto;
   margin-top: -15px;
-  transition: opacity 1s ease;
-  -webkit-transition: opacity 1s ease;
 }
 
 #bootstrap-overrides #formInput2, #formInput3, #formInput4 {
@@ -171,6 +216,9 @@ html {
   font-weight: 100;
   letter-spacing: 1.4px;
   color: rgba(255,255,255,0.95);
+  visibility: hidden;
+  opacity: 0;
+  transition: all 1s linear;
 }
 
 #about {
@@ -198,7 +246,6 @@ html::-webkit-scrollbar {
 }
 
 #bootstrap-overrides #archive {
-  display: none;
 }
 
 #bootstrap-overrides .post {
@@ -310,11 +357,35 @@ html::-webkit-scrollbar {
   position: relative;
   height: 0;
   overflow: hidden;
-  transition: height 1.0s ease-in;
+  transition: height 1.0s ease-in-out;
 }
 
 .menu-active {
   text-decoration: underline;
+}
+
+.page-active {
+  visibility: visible !important;
+  opacity: 1 !important;
+  transition: all 1s linear;
+}
+
+.page-inactive {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  transition: all 1s linear;
+}
+
+.lang-active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: all 3.5s ease-in;
+}
+
+.bar-active {
+  visibility: visible !important;
+  opacity: 1 !important;
+  transition: all 1s linear;
 }
 
 .typed-cursor {

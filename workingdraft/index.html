@@ -2,28 +2,72 @@
 <html>
 <head>
     <title> Lost in Translation </title>
-    <link href="style.css" rel="stylesheet">
-    <link rel="stylesheet" href="style_archive3.css">
-    <link rel="stylesheet" href="style_archive4.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style1.css">
+    <link rel="stylesheet" href="css/style2.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit:100&amp;subset=thai">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
-    <script src="loadTemplate.js"></script>
-    <script type="text/javascript" src="jquery.actual.js"></script>
-    <script src="typed.min.js" type="text/javascript"></script>
-    <link href="https://fonts.googleapis.com/css?family=Kanit:100&amp;subset=thai" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>
 
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-   </head>
+    
+    <script type="text/javascript" src="js/loadTemplate.js"></script>
+    <script type="text/javascript" src="js/jquery.actual.js"></script>
+    <script type="text/javascript" src="js/typed.min.js"></script>
+    
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+</head>
 
 <body id="bootstrap-overrides">
-    <div class="background" id="processing"></div>
+    <div class="background" id="processing">
+        <canvas id="backgroundPDE"></canvas>
+    </div>
     
     <div class="background" id="processingTranslation">
+        <div class="bar">
+            <span class="status" id='l0'>English</span>
+            <span class="dash">&ndash; 
+            </span>
+            <span class="status" id='l1'>Spanish</span>
+            <span class="dash">&ndash; 
+            </span>
+            <span class="status" id='l2'>French</span>
+            <span class="dash">&ndash;
+            </span>
+            <span class="status" id='l3'>Italian</span>
+            <span class="dash">&ndash;
+            </span>
+            <span class="status" id='l4'>Swedish</span>
+            <span class="dash">&ndash;
+            </span>
+            <span class="status" id='l5'>Greek</span>
+            <span class="dash">&ndash;
+            </span>
+            <span class="status" id='l6'>Swahilli</span>
+            <span class="dash">&ndash;
+            </span>
+            <span class="status" id='l7'>Russian</span>
+            <span class="dash">&ndash;
+            </span>
+            <span class="status" id='l8'>Thai</span>
+            <span class="dash">&ndash;
+            </span>
+            <span class="status" id='l9'>Japanese</span>
+            <span class="dash">&ndash;
+            </span>
+            <span class="status" id='l10'>Chinese</span>
+            <span class="dash">&ndash;
+            </span>
+            <span class="status" id='l11'>English</span>
+        </div>
         <canvas id="translation"></canvas>
     </div>
+
+
 
     <div class="menu">
         <button class="menu-button" id="main-button"></button>
@@ -39,6 +83,12 @@
     <div class="arrow">
     </div>
         
+        
+     <div class="page page-active" id="intro-page">
+        <div id="intro-typed"></div>
+    </div>
+     
+        
     <div class="page" id="landing-page">
         <div class="input-form">
             <div class="input-container">
@@ -49,6 +99,7 @@
                         <option value="you">you</option>
                         <option value="my parents">my parents</option>
                         <option value="my friends">my friends</option>
+                        <option value="my professor">my professor</option>
                         <option value="my dog">my dog</option>
                         <option value="he">he</option>
                         <option value="she">she</option>
@@ -69,14 +120,34 @@
         </div>
     </div>
     
+    
+    
+    
+    
     <div class="page1" id="archive-page">
         <div id="archive">
             <div class="fadeout-top"></div>
+            <div class="sentence" id="archiveDropdown"> I wish
+                <select id="someone2">
+                    <option value="people">people</option>
+                    <option value="you">you</option>
+                    <option value="my parents">my parents</option>
+                    <option value="my friends">my friends</option>
+                    <option value="my professor">my professor</option>
+                    <option value="my dog">my dog</option>
+                    <option value="he">he</option>
+                    <option value="she">she</option>
+                </select>
+            understood that ________</div>
+            <div id="archiveTrans"></div>
             <div class="fadeout-bottom"></div>
         </div>
     </div>
     
-    <div class="page2" id="about-page" style="display: none;">
+    
+    
+    
+    <div class="page2" id="about-page">
         <div id="about">
             <div class="fadeout-top"></div>
             <div class="fadeout-bottom"></div>
@@ -99,317 +170,53 @@
         </div>
     </div>
     
-
-    <script src="he/he.js"></script>
-    <script src="processing.min.js"></script>
+    
 
 
-    <script type="text/html" id="template">
-        <div class='post' data-id='postId'>
-            <div class='insidePost' data-id='insidePostId'>
-                <!--id="input-1"-->
-                <div class="input" data-id="inputId">
-                            <!--id="btn-t-1-1"-->
-                    <div class="btn-container" data-id="btnT1">
-                        <button class="btn-io"></button>
-                    </div>
-                            <!--id="io-1-1"-->
-                    <div class="text" data-id="ioId">
-                        <span class="sentence" data-content="originalInput">
-                        </span>
-                    </div>
-                </div>
-                
-            <!--id="collapse-1"-->
-                <div class="collapse" data-id="collapseId">
-                    
-                    <div class="eachTrans">
-                            <!--id="btn-e-1-1"-->
-                        <div class="btn-container" data-id="btnE1">
-                            <!--id="btn-p-1-1" class="btn-btw-1" value="1"-->
-                            <button data-id="btnP1" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
-                        </div>
-                        
-                        <!--id="text-1-1"-->
-                        <div class="text" data-id="text1">
-                            <!--id="1-1"-->
-                            <div class= "txtWrapper" data-id="wrapper1">
-                                            <!--id="1-1-orig"-->
-                                <span class="sentence orig" data-id="orig1" data-content="t1">
-                                </span>
-                                            <!--id="1-1-eng"-->
-                                <span class="sentence eng" data-id="eng1" data-content="t1E">
-                                </span>
-                            </div>
-                            <!--English &ndash;&nbsp;<span id="lang-1-1"> Spanish</span>-->
-                            <div class="lang" data-content="lang1">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="eachTrans">
-                            <!--id="btn-e-1-1"-->
-                        <div class="btn-container" data-id="btnE2">
-                            <!--id="btn-p-1-1" class="btn-btw-1" value="1"-->
-                            <button data-id="btnP2" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
-                        </div>
-                        
-                        <!--id="text-1-1"-->
-                        <div class="text" data-id="text2">
-                            <!--id="1-1"-->
-                            <div class= "txtWrapper" data-id="wrapper2">
-                                            <!--id="1-1-orig"-->
-                                <span class="sentence orig" data-id="orig2" data-content="t2">
-                                </span>
-                                            <!--id="1-1-eng"-->
-                                <span class="sentence eng" data-id="eng2" data-content="t2E">
-                                </span>
-                            </div>
-                            <!--English &ndash;&nbsp;<span id="lang-1-1"> Spanish</span>-->
-                            <div class="lang" data-content="lang2">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="eachTrans">
-                            <!--id="btn-e-1-1"-->
-                        <div class="btn-container" data-id="btnE3">
-                            <!--id="btn-p-1-1" class="btn-btw-1" value="1"-->
-                            <button data-id="btnP3" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
-                        </div>
-                        
-                        <!--id="text-1-1"-->
-                        <div class="text" data-id="text3">
-                            <!--id="1-1"-->
-                            <div class= "txtWrapper" data-id="wrapper3">
-                                            <!--id="1-1-orig"-->
-                                <span class="sentence orig" data-id="orig3" data-content="t3">
-                                </span>
-                                            <!--id="1-1-eng"-->
-                                <span class="sentence eng" data-id="eng3" data-content="t3E">
-                                </span>
-                            </div>
-                            <!--English &ndash;&nbsp;<span id="lang-1-1"> Spanish</span>-->
-                            <div class="lang" data-content="lang3">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="eachTrans">
-                            <!--id="btn-e-1-1"-->
-                        <div class="btn-container" data-id="btnE4">
-                            <!--id="btn-p-1-1" class="btn-btw-1" value="1"-->
-                            <button data-id="btnP4" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
-                        </div>
-                        
-                        <!--id="text-1-1"-->
-                        <div class="text" data-id="text4">
-                            <!--id="1-1"-->
-                            <div class= "txtWrapper" data-id="wrapper4">
-                                            <!--id="1-1-orig"-->
-                                <span class="sentence orig" data-id="orig4" data-content="t4">
-                                </span>
-                                            <!--id="1-1-eng"-->
-                                <span class="sentence eng" data-id="eng4" data-content="t4E">
-                                </span>
-                            </div>
-                            <!--English &ndash;&nbsp;<span id="lang-1-1"> Spanish</span>-->
-                            <div class="lang" data-content="lang4">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="eachTrans">
-                            <!--id="btn-e-1-1"-->
-                        <div class="btn-container" data-id="btnE5">
-                            <!--id="btn-p-1-1" class="btn-btw-1" value="1"-->
-                            <button data-id="btnP5" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
-                        </div>
-                        
-                        <!--id="text-1-1"-->
-                        <div class="text" data-id="text5">
-                            <!--id="1-1"-->
-                            <div class= "txtWrapper greek" data-id="wrapper5">
-                                            <!--id="1-1-orig"-->
-                                <span class="sentence orig" data-id="orig5" data-content="t5">
-                                </span>
-                                            <!--id="1-1-eng"-->
-                                <span class="sentence eng" data-id="eng5" data-content="t5E">
-                                </span>
-                            </div>
-                            <!--English &ndash;&nbsp;<span id="lang-1-1"> Spanish</span>-->
-                            <div class="lang" data-content="lang5">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="eachTrans">
-                            <!--id="btn-e-1-1"-->
-                        <div class="btn-container" data-id="btnE6">
-                            <!--id="btn-p-1-1" class="btn-btw-1" value="1"-->
-                            <button data-id="btnP6" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
-                        </div>
-                        
-                        <!--id="text-1-1"-->
-                        <div class="text" data-id="text6">
-                            <!--id="1-1"-->
-                            <div class= "txtWrapper" data-id="wrapper6">
-                                            <!--id="1-1-orig"-->
-                                <span class="sentence orig" data-id="orig6" data-content="t6">
-                                </span>
-                                            <!--id="1-1-eng"-->
-                                <span class="sentence eng" data-id="eng6" data-content="t6E">
-                                </span>
-                            </div>
-                            <!--English &ndash;&nbsp;<span id="lang-1-1"> Spanish</span>-->
-                            <div class="lang" data-content="lang6">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="eachTrans">
-                            <!--id="btn-e-1-1"-->
-                        <div class="btn-container" data-id="btnE7">
-                            <!--id="btn-p-1-1" class="btn-btw-1" value="1"-->
-                            <button data-id="btnP7" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
-                        </div>
-                        
-                        <!--id="text-1-1"-->
-                        <div class="text" data-id="text7">
-                            <!--id="1-1"-->
-                            <div class= "txtWrapper russian" data-id="wrapper7">
-                                            <!--id="1-1-orig"-->
-                                <span class="sentence orig" data-id="orig7" data-content="t7">
-                                </span>
-                                            <!--id="1-1-eng"-->
-                                <span class="sentence eng" data-id="eng7" data-content="t7E">
-                                </span>
-                            </div>
-                            <!--English &ndash;&nbsp;<span id="lang-1-1"> Spanish</span>-->
-                            <div class="lang" data-content="lang7">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="eachTrans">
-                            <!--id="btn-e-1-1"-->
-                        <div class="btn-container" data-id="btnE8">
-                            <!--id="btn-p-1-1" class="btn-btw-1" value="1"-->
-                            <button data-id="btnP8" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
-                        </div>
-                        
-                        <!--id="text-1-1"-->
-                        <div class="text" data-id="text8">
-                            <!--id="1-1"-->
-                            <div class= "txtWrapper" data-id="wrapper8">
-                                            <!--id="1-1-orig"-->
-                                <span class="sentence orig thai" data-id="orig8" data-content="t8">
-                                </span>
-                                            <!--id="1-1-eng"-->
-                                <span class="sentence eng" data-id="eng8" data-content="t8E">
-                                </span>
-                            </div>
-                            <!--English &ndash;&nbsp;<span id="lang-1-1"> Spanish</span>-->
-                            <div class="lang" data-content="lang8">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="eachTrans">
-                            <!--id="btn-e-1-1"-->
-                        <div class="btn-container" data-id="btnE9">
-                            <!--id="btn-p-1-1" class="btn-btw-1" value="1"-->
-                            <button data-id="btnP9" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
-                        </div>
-                        
-                        <!--id="text-1-1"-->
-                        <div class="text" data-id="text9">
-                            <!--id="1-1"-->
-                            <div class= "txtWrapper japanese" data-id="wrapper9">
-                                            <!--id="1-1-orig"-->
-                                <span class="sentence orig" data-id="orig9" data-content="t9">
-                                </span>
-                                            <!--id="1-1-eng"-->
-                                <span class="sentence eng" data-id="eng9" data-content="t9E">
-                                </span>
-                            </div>
-                            <!--English &ndash;&nbsp;<span id="lang-1-1"> Spanish</span>-->
-                            <div class="lang" data-content="lang9">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="eachTrans">
-                            <!--id="btn-e-1-1"-->
-                        <div class="btn-container" data-id="btnE10">
-                            <!--id="btn-p-1-1" class="btn-btw-1" value="1"-->
-                            <button data-id="btnP10" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
-                        </div>
-                        
-                        <!--id="text-1-1"-->
-                        <div class="text" data-id="text10">
-                            <!--id="1-1"-->
-                            <div class= "txtWrapper chinese" data-id="wrapper10">
-                                            <!--id="1-1-orig"-->
-                                <span class="sentence orig" data-id="orig10" data-content="t10">
-                                </span>
-                                            <!--id="1-1-eng"-->
-                                <span class="sentence eng" data-id="eng10" data-content="t10E">
-                                </span>
-                            </div>
-                            <!--English &ndash;&nbsp;<span id="lang-1-1"> Spanish</span>-->
-                            <div class="lang" data-content="lang10">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!--id="output-1"-->
-                <div class="output" data-id="output">
-                            <!--id="btn-t-1-2"-->
-                    <div class="btn-container" data-id="btnT2">
-                        <button class="btn-io"></button>
-                    </div>
-                    <!--id="io-1-2"-->
-                    <div class="text" data-id="ioId2">
-                        <span class="sentence" data-content="finalOutput">
-                        </span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="btn-container btn-m" data-id="btnM">
-            </div>
-        </div>
-    </script>
-
+    
+    <script src="js/he/he.js"></script>
+    <script src="js/processing.min.js"></script>
+    
+    
     <script>
         var processingString = "";
+        
         var particlesNum = 12000;
-        var safari = (navigator.userAgent.indexOf('Safari') != -1);
-        var is_safari = false;
-        if (safari) {
-          is_safari = true;
-        }
-
+        
+        
         $(document).ready(function(){
-            var $newCanv = $("<canvas/>").attr("id", "mycanvas");  // adds the id
-
-            $("#processing").append($newCanv);
-            Processing.loadSketchFromSources('mycanvas', ['background_working/background_working.pde']);
+            Processing.loadSketchFromSources('backgroundPDE', ['background_working/background_working.pde']);
+        
+            var typed1 = new Typed('#intro-typed', {
+                strings: ["Lost in Translation"],
+                typeSpeed: 54,
+                backSpeed: 10,
+                loop: false,
+                showCursor: true,
+                cursorChar: '|',
+                autoInsertCss: true
+            });
             
+            setTimeout(function() {
+                $('#landing-page').addClass('page-active');
+                $('#intro-page').addClass('page-inactive');
+                $('#intro-page').removeClass('page-active');
+                $('.menu').css('display', 'block');
+                $('.menu-bottom').css('display', 'block');
+            }, 3500);
+        
             $(".edit").keydown(function () {                
                 if(event.keyCode === 13) {
                     event.preventDefault();
                     if($(".edit").text() !== "" && $(".select-styled").text() !== "select") {
-                        $("#landing-page").fadeOut(1000);
+                        $("#landing-page").removeClass("page-active");
                         translate();
                     }
                     return false;
                 }
             });
             
-            $('select').each(function(){
+            $('#someone').each(function(){
                 var $this = $(this), numberOfOptions = $(this).children('option').length;
               
                 $this.addClass('select-hidden'); 
@@ -418,7 +225,7 @@
             
                 var $styledSelect = $this.next('div.select-styled');
                 $styledSelect.html("<span style='color:transparent;'>select</span>");
-                
+
               
                 var $list = $('<ul />', {
                     'class': 'select-options'
@@ -455,72 +262,112 @@
                 });
             
             });
+            
+            
+            
+            
+            $('#someone2').each(function(){
+                var $this = $(this), numberOfOptions = $(this).children('option').length;
+                
+                $this.addClass('select-hiddena'); 
+                $this.wrap('<div class="selecta"></div>');
+                $this.after('<div class="select-styleda"></div>');
+            
+                var $styledSelect = $this.next('div.select-styleda');
+                $styledSelect.text($this.children('option').eq(0).text());
 
-            $('#main-button').click(function() {
-                if ( $("#landing-page").css('display') == 'none' ){                    
-                    if($("#processingTranslation").css('display') == 'block' ){
-                        $("#skip-button").fadeOut(1000);
-                        $("#processingTranslation").fadeOut(1000);
-                    }
-                    if($("#about-page").css('display') == 'flex' ){
-                        $("#about-page").fadeOut(1000);
-                    }
-                    if($("#archive-page").css('display') == 'block' ){
-                        $("#archive-page").fadeOut(1000);
-                    }
-                    
+              
+                var $list = $('<ul />', {
+                    'class': 'select-optionsa'
+                }).insertAfter($styledSelect);
+              
+                for (var i = 0; i < numberOfOptions; i++) {
+                    $('<li />', {
+                        text: $this.children('option').eq(i).text(),
+                        rel: $this.children('option').eq(i).val()
+                    }).appendTo($list);
+                }
+              
+                var $listItems = $list.children('li');
+              
+                $styledSelect.click(function(e) {
+                    e.stopPropagation();
+                    $('div.select-styleda.active').not(this).each(function(){
+                        $(this).removeClass('active').next('ul.select-optionsa').hide();
+                    });
+                    $(this).toggleClass('active').next('ul.select-optionsa').toggle();
+                });
+              
+                $listItems.click(function(e) {
+                    e.stopPropagation();
+                    $styledSelect.text($(this).text()).removeClass('active');
+                    $this.val($(this).attr('rel'));
+                    $list.hide();
+                    //console.log($this.val());
+                });
+              
+                $(document).click(function() {
+                    $styledSelect.removeClass('active');
+                    $list.hide();
+                });
+            
+            });
+
+            
+            
+            
+            
+            $('#main-button').click(function() {                
+                if ( $("#landing-page").css('visibility') == 'hidden' ){                    
                     $(".select-styled").html("<span style='color:transparent;'>select</span>");
                     $(".edit").text("");
-                    $("#landing-page").fadeIn(1000);
                 }
+                $('#archive-page').removeClass('page-active');
+                $('#about-page').removeClass('page-active');
+
+                $('#landing-page').addClass('page-active');
+
                 $('#archive-button').removeClass('menu-active');
                 $('#about-button').removeClass('menu-active');
                 $(".arrow").fadeOut(1000);
             });
             
             $('#about-button').click(function() {
-                if ( $("#about-page").css('display') == 'none' ){                    
-                    if($("#archive-page").css('display') == 'block' ){
-                        $("#archive-page").fadeOut(1000);
-                    }
-                    if($("#processingTranslation").css('display') == 'block' ){
-                        $("#processingTranslation").fadeOut(1000);
-                    }
-                    if($("#landing-page").css('display') == 'block' || ($("#landing-page").css('display') == 'flex')){
-                        $("#landing-page").fadeOut(1000);
-                    }
-                    
-                    $("#about-page").fadeIn(1000);
-                    //$("#about-page").css('display', 'flex');
-                }
-                
+                $('#archive-page').removeClass('page-active');
+                $('#landing-page').removeClass('page-active');
+
+                $('#about-page').addClass('page-active');
+
                 $(this).addClass('menu-active');
                 $(".arrow").fadeOut(1000);
                 $('#archive-button').removeClass('menu-active');
-
             });
             
             $('#archive-button').click(function() {
-                loadDatabase();
-                if ( $("#archive-page").css('display') == 'none' ){                    
-                    if($("#landing-page").css('display') == 'block' || ($("#landing-page").css('display') == 'flex')){
-                        $("#landing-page").fadeOut(1000);
-                    }
-                    if($("#processingTranslation").css('display') == 'block' ){
-                        $("#processingTranslation").fadeOut(1000);
-                    }
-                    if($("#about-page").css('display') == 'flex' ){
-                        $("#about-page").fadeOut(1000);
-                    }
-                    $(".arrow").fadeIn(1000);
-                    $("#archive-page").fadeIn(1000);
+                loadDatabase("people");
+                if ( $("#archive-page").css('visibility') == 'hidden' ){                    
+                    $(".select-styled2").html("<span style='color:transparent;'>select</span>");
                 }
+
+                $('#landing-page').removeClass('page-active');
+                $('#about-page').removeClass('page-active');
+                
+                $('#archive-page').addClass('page-active');
+                
+                $(".arrow").fadeIn(1000);
                 
                 $("#archive-page").scrollTop(0);
 
                 $(this).addClass('menu-active');
                 $('#about-button').removeClass('menu-active');
             });
+            
+            
+            
+            
+            
+            
+            
             
         
         var scrollTop = false;
@@ -574,20 +421,15 @@
         var postNum = 0;        
         
         
-        
-        
-        
-        
-        
-        
-        
         /* translate */
         function translate() {
+            var category = $("#someone").val();
+
             if (translationCount < 11) {
                 if (translationCount === 0){
                     combinedInput = "I wish " + $("#someone").val() + " understood that " + $(".edit").text();
                     
-                    console.log(combinedInput);
+                    //console.log(combinedInput);
                     
                     var stringLength = combinedInput.length;
                     
@@ -618,7 +460,7 @@
                 }
     
                 else {
-                    console.log("input: " + result[translationCount-1]);
+                    //console.log("input: " + result[translationCount-1]);
                     translateInput = encodeURIComponent(result[translationCount-1]);
                 }
                 
@@ -640,8 +482,6 @@
                 if(status == "success") {
                     
                     var done = decodeURIComponent(data.data.translations[0].translatedText);
-                    
-                    //***** decode ******
                     done = he.decode(done);
                     
                     var stringLength = done.length; 
@@ -658,38 +498,36 @@
                     processingString += "/" + done;
 
                     result.push(done);
-                    console.log("done: " + done);
-
+                    //console.log("done: " + done);
                     //console.log("result " + translationCount +": " + result[translationCount]);
+                    
                     url = "";
                     translationCount++;
                     translate();
                     if (translationCount == 11) {
-                        translateEng();
+                        translateEng(category);
                     }
                 }
                 });
             }
         }
                 
-        function translateEng() {
+        function translateEng(category) {
             if (translationCountEng < 10) {
-                console.log("eng count " + translationCountEng);
+                //console.log("eng count " + translationCountEng);
                 translateInput = encodeURIComponent(result[translationCountEng]);
                 currentLangEng = languages[translationCountEng+1];
                 nextLangEng = "EN";
                 
-                console.log ("tCount: " + translationCountEng);
-
-                console.log ("current language: " + currentLangEng);
-                console.log ("next language: " + nextLangEng);
+                //console.log ("tCount: " + translationCountEng);
+                //console.log ("current language: " + currentLangEng);
+                //console.log ("next language: " + nextLangEng);
+                
                 url = "https://translation.googleapis.com/language/translate/v2?key=AIzaSyDR3NPgTSVCs633RyvRG94_awHZuuqGC4A";
                 url += "&source=" + currentLangEng; 
                 url += "&target=" + nextLangEng;
                 url += "&q=" + translateInput;
-                
-                //console.log(url);
-                  
+                                  
                 $.get(url, function (data, status) {
                 $("#resultEng").append(decodeURIComponent(translateInput) + "<br>");
 
@@ -697,7 +535,6 @@
                 if(status == "success") {
                     var done = decodeURIComponent(data.data.translations[0].translatedText);
                     
-                    //***** decode ******
                     done = he.decode(done);
                     
                     var stringLength = done.length; 
@@ -708,27 +545,25 @@
                     }
                     
                     resultEng.push(done);
-                    //console.log("done: " + done);
-                    //console.log("result " + translationCount +": " + resultEng[translationCountEng]);
+
                     url = "";
                     translationCountEng++;
-                    translateEng();
+                    translateEng(category);
                     if (translationCountEng == 10){
-                        //writeNewPost();
-                        setTimeout(loadDatabase, 2500);
-                        if (is_safari){
-                            Processing.loadSketchFromSources('translation', ['translation/translation.pde']);
-                        } else {
-                            Processing.loadSketchFromSources('translation', ['translation/translationChrome.pde']);
-                        }
+                        writeNewPost(category);
+                        setTimeout(loadDatabase (category), 2500);
+                        
+                        Processing.loadSketchFromSources('translation', ['translation/translation.pde']);
+                        
                         $("#translation").delay(3500).fadeIn(2000);
+                        setTimeout(function(){
+                            $(".bar").addClass('bar-active');
+                        }, 4500);
                     }
                 }
                 });
             }
         }
-    
-    
     
     
     
@@ -745,9 +580,10 @@
         firebase.initializeApp(config);
         
         
-        function writeNewPost() {
+        function writeNewPost(category) {
             // A post entry.
             console.log(combinedInput);
+            console.log(category);
 
             var postData = {
                 A_originalInput: combinedInput,
@@ -775,27 +611,29 @@
             };
         
             // Get a key for a new Post.
-            var newPostKey = firebase.database().ref().child('translations').push().key;
+            var newPostKey = firebase.database().ref().child(category).push().key;
           
             // Write the new post's data simultaneously in the posts list and the user's post list.
             var updates = {};
-            updates['/translations/' + newPostKey] = postData;
+            updates['/'+ category + '/' + newPostKey] = postData;
           
             return firebase.database().ref().update(updates);
         }
         
-        var ref = firebase.database().ref('/translations/');
-
         var final = "";
         
         function displayArrayObjects(arrayObjects) {
             var len = arrayObjects.length;
             postNum = arrayObjects.length;
             
+            console.log ("length: " + len);
+            console.log ("postNum: " + postNum);
+            $("#archiveTrans").html("");
+
             for (var i = (len-1); i >= 0; i--) {
                 var x = i+1;
                 
-                $( "#archive" ).append( "<div id='translation-" + x + "'></div>" );
+                $( "#archiveTrans" ).append( "<div id='translation-" + x + "'></div>" );
                 
                 var myObject = arrayObjects[i];
                 
@@ -925,26 +763,33 @@
                 
                 if (x == len) {
                     console.log(x);
-                    $("#post-"+x).css('margin-top', '15vh');
+                    $("#post-"+x).css('margin-top', '25vh');
                 }
             }
             firstload = false;
             doneLoadingDatabase();    
         }
         
-        function loadDatabase() {
-            
+        function loadDatabase(category) {
+        var ref = firebase.database().ref('/' + category + '/');
+        console.log("category: " + category);
         var keys = [];
             ref.once('value',function(snap) {
                 snap.forEach(function(item) {
                     var itemVal = item.val();
                     keys.push(itemVal);
-                    var str = JSON.stringify(itemVal);
-                    final += str;
                 });
+                
+                console.log("keys: " + keys);
+                $(".select-styleda").html(category);
                 displayArrayObjects(keys);	
             });
         }
+        
+        
+        $('.select-optionsa li').on('click', function() {
+            loadDatabase($("#someone2").val());
+        });
         
         //hover effect for each language
         $("body").on('mouseover', '.txtWrapper', function(e) {
@@ -1031,70 +876,73 @@
         });
     
             
-            
-            function calculate(val) {
-                if (val == 'a') {
-                    for (var x = 1; x <= postNum; x++){
-                        var postHeight = $('#insidePost-'+x).actual('height');                        
-                        var btnName = '#btn-m-'+x;
-                        //$(btnName).css('min-height', postHeight+'px');
-                        $(btnName).css('min-height', '100%');
-                        if (postHeight == 320) {
-                            $(btnName+":after").css('height', 'calc(100% - 129px)');
-                        }
-                        $(btnName).fadeIn(1200);
+        function calculate(val) {
+            if (val == 'a') {
+                for (var x = 1; x <= postNum; x++){
+                    var postHeight = $('#insidePost-'+x).actual('height');                        
+                    var btnName = '#btn-m-'+x;
+                    //$(btnName).css('min-height', postHeight+'px');
+                    $(btnName).css('min-height', '100%');
+                    if (postHeight == 320) {
+                        $(btnName+":after").css('height', 'calc(100% - 129px)');
                     }
+                    $(btnName).fadeIn(1200);
                 }
+            }
+            
+            else {
+                var postHeight1 = $('#insidePost-'+val).actual('height');
+                var btnName1 = '#btn-m-'+val;
+
+                //console.log(postHeight);
+                if (postHeight1 == 320) {
+                    $(btnName1+":after").css('height', 'calc(100% - 129px)');
+                }                    
                 
-                var postHeight = $('#insidePost-'+val).actual('height');
-                
-                console.log(postHeight);
-                if (postHeight == 320) {
-                            $(btnName+":after").css('height', 'calc(100% - 129px)');
-                        }
-                var btnName = '#btn-m-'+val;
-                
-                $(btnName).css('min-height', '100%');  
+                $(btnName1).css('min-height', '100%');  
                                 
-                for (var x = 1; x <=10; x++){
-                    var divName = '#text-' + val + '-' + x;
-                    var btnMidName = '#btn-e-' + val + '-' + x;
+                for (var j = 1; j <= 10; j++){
+                    var divName = '#text-' + val + '-' + j;
+                    var btnMidName = '#btn-e-' + val + '-' + j;
                     var individualHeight = $(divName).actual('height');
                     $(btnMidName).css('min-height', individualHeight+'px');
                 }
-                
-                $(btnName).fadeIn(1200);
+                $(btnName1).fadeIn(1200);
             }
-            
-            
-            function showMidBtn(val) {
-                if (val == 'a') {
-                    $('.btn-o').fadeIn(1000);
-                }
-                var name = '#btn-o-' + val;
-                $(name).fadeIn(1000);
-            }
-            
-            function showBtn(val) {
-                var name = '.btn-btw-' + val;
-                $(name).fadeIn();
-            }
+        }
         
+        
+        function showMidBtn(val) {
+            if (val == 'a') {
+                $('.btn-o').fadeIn(1000);
+            }
+            var name = '#btn-o-' + val;
+            $(name).fadeIn(1000);
+        }
+        
+        function showBtn(val) {
+            var name = '.btn-btw-' + val;
+            $(name).fadeIn();
+        }
+    
         var typed = new Typed('#main-button', {
-		  strings: ["Lost in Translation"],
-		  typeSpeed: 12,
-		  backSpeed: 3,
-		   loop: false,
-		   showCursor: true,
+            strings: ["Lost in Translation"],
+            showCursor: true,
 			cursorChar: '|',
 			autoInsertCss: true
 		});
         
-         function doneLoadingDatabase() {
-            console.log(postNum);
+        
+        $( window ).resize(function() {
+            doneLoadingDatabase();
+        });
+        
+        
+        function doneLoadingDatabase() {
+            console.log("done loading database");
+            
             // for each post
             for (var a = 1; a <= postNum; a++) {
-                
                 //placing button for input & output 
                 for (var b = 1; b < 3; b++) {
                     var textDivName = '#io-' + a + '-' + b;
@@ -1122,19 +970,217 @@
                     $('#btn-m-'+a).toggleClass('long');
                 }
             }
-            $("#archive").fadeIn(1000);
-           }
+        }
         
         $("div[contenteditable='true'][maxlength]").on('keydown paste', function (event) {
             var cntMaxLength = parseInt($(this).attr('maxlength'));
-       
             if ($(this).text().length === cntMaxLength && event.keyCode != 8) {
                 event.preventDefault();
             }
         });
                 
-        });
+    });
     </script>
-    
+    <script type="text/html" id="template">
+        <div class='post' data-id='postId'>
+            <div class='insidePost' data-id='insidePostId'>
+                <div class="input" data-id="inputId">
+                    <div class="btn-container" data-id="btnT1">
+                        <button class="btn-io"></button>
+                    </div>
+                    <div class="text" data-id="ioId">
+                        <span class="sentence" data-content="originalInput">
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="collapse" data-id="collapseId">
+                    <div class="eachTrans">
+                        <div class="btn-container" data-id="btnE1">
+                            <button data-id="btnP1" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
+                        </div>
+                        
+                        <div class="text" data-id="text1">
+                            <div class= "txtWrapper" data-id="wrapper1">
+                                <span class="sentence orig" data-id="orig1" data-content="t1">
+                                </span>
+                                <span class="sentence eng" data-id="eng1" data-content="t1E">
+                                </span>
+                            </div>
+                            <div class="lang" data-content="lang1">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="eachTrans">
+                        <div class="btn-container" data-id="btnE2">
+                            <button data-id="btnP2" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
+                        </div>
+                        
+                        <div class="text" data-id="text2">
+                            <div class= "txtWrapper" data-id="wrapper2">
+                                <span class="sentence orig" data-id="orig2" data-content="t2">
+                                </span>
+                                <span class="sentence eng" data-id="eng2" data-content="t2E">
+                                </span>
+                            </div>
+                            <div class="lang" data-content="lang2">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="eachTrans">
+                        <div class="btn-container" data-id="btnE3">
+                            <button data-id="btnP3" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
+                        </div>
+                        
+                        <div class="text" data-id="text3">
+                            <div class= "txtWrapper" data-id="wrapper3">
+                                <span class="sentence orig" data-id="orig3" data-content="t3">
+                                </span>
+                                <span class="sentence eng" data-id="eng3" data-content="t3E">
+                                </span>
+                            </div>
+                            <div class="lang" data-content="lang3">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="eachTrans">
+                        <div class="btn-container" data-id="btnE4">
+                            <button data-id="btnP4" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
+                        </div>
+                        
+                        <div class="text" data-id="text4">
+                            <div class= "txtWrapper" data-id="wrapper4">
+                                <span class="sentence orig" data-id="orig4" data-content="t4">
+                                </span>
+                                <span class="sentence eng" data-id="eng4" data-content="t4E">
+                                </span>
+                            </div>
+                            <div class="lang" data-content="lang4">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="eachTrans">
+                        <div class="btn-container" data-id="btnE5">
+                            <button data-id="btnP5" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
+                        </div>
+                        
+                        <div class="text" data-id="text5">
+                            <div class= "txtWrapper greek" data-id="wrapper5">
+                                <span class="sentence orig" data-id="orig5" data-content="t5">
+                                </span>
+                                <span class="sentence eng" data-id="eng5" data-content="t5E">
+                                </span>
+                            </div>
+                            <div class="lang" data-content="lang5">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="eachTrans">
+                        <div class="btn-container" data-id="btnE6">
+                            <button data-id="btnP6" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
+                        </div>
+                        
+                        <div class="text" data-id="text6">
+                            <div class= "txtWrapper" data-id="wrapper6">
+                                <span class="sentence orig" data-id="orig6" data-content="t6">
+                                </span>
+                                <span class="sentence eng" data-id="eng6" data-content="t6E">
+                                </span>
+                            </div>
+                            <div class="lang" data-content="lang6">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="eachTrans">
+                        <div class="btn-container" data-id="btnE7">
+                            <button data-id="btnP7" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
+                        </div>
+                        
+                        <div class="text" data-id="text7">
+                            <div class= "txtWrapper russian" data-id="wrapper7">
+                                <span class="sentence orig" data-id="orig7" data-content="t7">
+                                </span>
+                                <span class="sentence eng" data-id="eng7" data-content="t7E">
+                                </span>
+                            </div>
+                            <div class="lang" data-content="lang7">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="eachTrans">
+                        <div class="btn-container" data-id="btnE8">
+                            <button data-id="btnP8" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
+                        </div>
+                        
+                        <div class="text" data-id="text8">
+                            <div class= "txtWrapper" data-id="wrapper8">
+                                <span class="sentence orig thai" data-id="orig8" data-content="t8">
+                                </span>
+                                <span class="sentence eng" data-id="eng8" data-content="t8E">
+                                </span>
+                            </div>
+                            <div class="lang" data-content="lang8">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="eachTrans">
+                        <div class="btn-container" data-id="btnE9">
+                            <button data-id="btnP9" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
+                        </div>
+                        
+                        <div class="text" data-id="text9">
+                            <div class= "txtWrapper japanese" data-id="wrapper9">
+                                <span class="sentence orig" data-id="orig9" data-content="t9">
+                                </span>
+                                <span class="sentence eng" data-id="eng9" data-content="t9E">
+                                </span>
+                            </div>
+                            <div class="lang" data-content="lang9">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="eachTrans">
+                        <div class="btn-container" data-id="btnE10">
+                            <button data-id="btnP10" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
+                        </div>
+                        
+                        <div class="text" data-id="text10">
+                            <div class= "txtWrapper chinese" data-id="wrapper10">
+                                <span class="sentence orig" data-id="orig10" data-content="t10">
+                                </span>
+                                <span class="sentence eng" data-id="eng10" data-content="t10E">
+                                </span>
+                            </div>
+                            <div class="lang" data-content="lang10">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="output" data-id="output">
+                    <div class="btn-container" data-id="btnT2">
+                        <button class="btn-io"></button>
+                    </div>
+                    <div class="text" data-id="ioId2">
+                        <span class="sentence" data-content="finalOutput">
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="btn-container btn-m" data-id="btnM">
+            </div>
+        </div>
+    </script>
+
 </body>
 </html>

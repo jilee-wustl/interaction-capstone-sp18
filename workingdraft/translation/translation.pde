@@ -1,4 +1,4 @@
-color c = color(19,19,19);//the secret colour
+color c = color(8,5,11);//the secret colour
 String word = "I wish my parents";
 String allwords = "" + processingString;
 PFont fon;
@@ -11,16 +11,20 @@ float restZ = 0;
 int F = 0;
 float CTime = 100;//number of frames between words
 int PNum = particlesNum;
+int textWidth = 985;
+int textHeight = 600;
+int windWidth = 0;
+int windHeight = 0;
 
 void setup() {
   doResize();
-  frameRate(30);
-  background(19,19,55,0);
+  frameRate(24);
+  background(24,24,55,0);
   fon = loadFont("NotoSans-ExtraLight-60.vlw", 60);
   textFont(fon);
   textSize(tSize);
   fill(c);
-  text(word, start.x, start.y+tSize); //writing invisible text
+  text(word, start.x, start.y+tSize,textWidth,textHeight); //writing invisible text
   loadPixels(); //saving all pixels of the sketch
   for (int i = 0; i < PNum; i++) {//creating the particles
     Points.add(new particle(random(width),random(height)));
@@ -29,9 +33,10 @@ void setup() {
 
 
 void draw(){
-  background(19,19,55,0);
+  background(25,50,55,0);
   int Len = word.length();
   PVector RealPix;
+  
   if (restZ==0){//when the timer for the word runs out
     restZ=CTime;
     for (particle P : Points) {//resetting particles and slowing them down
@@ -42,20 +47,27 @@ void draw(){
     word=Arr[F];//getting the next word
     
     //positioning text inside the window    
-    start.x = (width/2) - 500;
-    start.y = (height/2) - 210;
+    start.x = (windWidth/2) - (textWidth/2);
+    start.y = (windHeight/2) - 210;
     
     fill(c);
     textLeading(78); 
-    text(word, start.x, start.y+tSize,960,600);
+    text(word, start.x, start.y+tSize,textWidth,textHeight);
     loadPixels();
     
+    if (F==0 && once > 0){
+      translationLabel();
+    };
+    
     F++;
+    
+    if (once < 1) {
+      updateLang(F);
+    }
     
     if (F>=Arr.length){
       F = 0;
       once++;
-      translationLabel();
     };
    
   }else if (restZ<=1){//slowing down on the last 4 frames
@@ -108,18 +120,28 @@ function doResize(){
   $('#translation').width($(window).width());
   $('#translation').height($(window).height());
   size($(window).width(), $(window).height());
+  windWidth = $(window).width();
+  windHeight = $(window).height();
   background(5,5,10,0);
 }
 
 $(window).resize(doResize());
 
 function translationLabel() {
-  if(once == 1) {
-    $("#translation").delay(11000).fadeOut(2500);
-    $("#archive-page").delay(13000).fadeIn(2000);
-    $(".arrow").delay(13500).fadeIn(2000);
-    setTimeout(function(){ $("#archive-button").addClass("menu-active"); $('#translation').remove();},15500);
-  }
+    setTimeout(function() {
+    $("#landing-page").removeClass("page-active");
+    $(".bar").removeClass('bar-active');
+    $("#archive-button").addClass("menu-active"); 
+    $("#archive-page").addClass("page-active");
+    $('#translation').remove();
+    $(".arrow").css('display', 'block');
+    exit();
+    }, 3000);
+}
+
+function updateLang(F) {
+  $("#l"+(F-2)).removeClass("lang-active");
+  $("#l"+(F-1)).addClass("lang-active");
 }
         
         
