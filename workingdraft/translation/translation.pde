@@ -1,4 +1,4 @@
-color c = color(8,5,11);//the secret colour
+color c = color(8,5,8);//the secret colour
 String word = "I wish my parents";
 String allwords = "" + processingString;
 PFont fon;
@@ -11,7 +11,7 @@ float restZ = 0;
 int F = 0;
 float CTime = 100;//number of frames between words
 int PNum = particlesNum;
-int textWidth = 985;
+int textWidth = 975;
 int textHeight = 600;
 int windWidth = 0;
 int windHeight = 0;
@@ -128,15 +128,18 @@ function doResize(){
 $(window).resize(doResize());
 
 function translationLabel() {
+    console.log("translation end");
     setTimeout(function() {
+    $("#translation").css('opacity','0');
     $("#landing-page").removeClass("page-active");
     $(".bar").removeClass('bar-active');
     $("#archive-button").addClass("menu-active"); 
     $("#archive-page").addClass("page-active");
-    $('#translation').remove();
     $(".arrow").css('display', 'block');
-    exit();
     }, 3000);
+    setTimeout(function() {
+    exit();
+    }, 5000);
 }
 
 function updateLang(F) {

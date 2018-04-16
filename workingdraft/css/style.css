@@ -20,6 +20,8 @@ html {
   left: 0;
   margin: 0;
   overflow: hidden;
+  transition: all 2s ease;
+  opacity: 1;
 }
 
 #bootstrap-overrides .menu {
@@ -53,7 +55,7 @@ html {
 }
 
 #bootstrap-overrides #about-button {
-  margin-right: 20px;
+  margin-right: 45px;
 }
 
 #bootstrap-overrides .menu-btn-container {
@@ -124,7 +126,7 @@ html {
 
 .bar .status{
   opacity: 0.25;
-  transition: all 3s ease-in;
+  transition: all 4s ease-in;
 }
 
 .dash {
@@ -196,7 +198,7 @@ html {
 }
 
 #bootstrap-overrides #translation {
-  display: none;
+  opacity: 0;
 }
 
 #bootstrap-overrides #about-page {
@@ -250,7 +252,7 @@ html::-webkit-scrollbar {
 
 #bootstrap-overrides .post {
   position:relative;
-  margin-bottom: 120px;
+  margin-bottom: 140px;
 }
 
 #bootstrap-overrides .insidePost {

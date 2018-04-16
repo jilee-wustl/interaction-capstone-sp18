@@ -18,13 +18,15 @@
     <script type="text/javascript" src="js/loadTemplate.js"></script>
     <script type="text/javascript" src="js/jquery.actual.js"></script>
     <script type="text/javascript" src="js/typed.min.js"></script>
-    
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
 </head>
 
 <body id="bootstrap-overrides">
     <div class="background" id="processing">
         <canvas id="backgroundPDE"></canvas>
+    </div>
+    
+    <div class="background" id="load">
     </div>
     
     <div class="background" id="processingTranslation">
@@ -170,23 +172,44 @@
         </div>
     </div>
     
-    
 
-
-    
     <script src="js/he/he.js"></script>
     <script src="js/processing.min.js"></script>
-    
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.js"></script> 
+    <script src="js/jquery.spin.js"></script>        
+
+
     <script>
         var processingString = "";
         
         var particlesNum = 12000;
-        
-        
+        var opts = {
+           lines: 15, // The number of lines to draw
+           length: 0, // The length of each line
+           width: 2, // The line thickness
+           radius: 25, // The radius of the inner circle
+           scale: 0.8, // Scales overall size of the spinner
+           corners: 1, // Corner roundness (0..1)
+           color: '#ffffff', // CSS color or array of colors
+           fadeColor: 'transparent', // CSS color or array of colors
+           opacity: 0.45, // Opacity of the lines
+           rotate: 0, // The rotation offset
+           direction: 1, // 1: clockwise, -1: counterclockwise
+           speed: 1.1, // Rounds per second
+           trail: 60, // Afterglow percentage
+           fps: 20, // Frames per second when using setTimeout() as a fallback in IE 9
+           zIndex: 2e9, // The z-index (defaults to 2000000000)
+           className: 'spinner', // The CSS class to assign to the spinner
+           top: '49%', // Top position relative to parent
+           left: '50%', // Left position relative to parent
+           shadow: 'none', // Box-shadow for the lines
+           position: 'absolute' // Element positioning
+        };
+         
+          
         $(document).ready(function(){
             Processing.loadSketchFromSources('backgroundPDE', ['background_working/background_working.pde']);
-        
+          
             var typed1 = new Typed('#intro-typed', {
                 strings: ["Lost in Translation"],
                 typeSpeed: 54,
@@ -210,6 +233,7 @@
                     event.preventDefault();
                     if($(".edit").text() !== "" && $(".select-styled").text() !== "select") {
                         $("#landing-page").removeClass("page-active");
+                        $("#load").spin(opts);
                         translate();
                     }
                     return false;
@@ -344,14 +368,14 @@
             });
             
             $('#archive-button').click(function() {
-                loadDatabase("people");
-                if ( $("#archive-page").css('visibility') == 'hidden' ){                    
-                    $(".select-styled2").html("<span style='color:transparent;'>select</span>");
-                }
+                $("#load").spin(opts);
+
+                loadDatabase("people", true);
 
                 $('#landing-page').removeClass('page-active');
                 $('#about-page').removeClass('page-active');
-                
+                $('#about-button').removeClass('menu-active');
+
                 $('#archive-page').addClass('page-active');
                 
                 $(".arrow").fadeIn(1000);
@@ -359,7 +383,6 @@
                 $("#archive-page").scrollTop(0);
 
                 $(this).addClass('menu-active');
-                $('#about-button').removeClass('menu-active');
             });
             
             
@@ -434,19 +457,19 @@
                     var stringLength = combinedInput.length;
                     
                     if (stringLength < 60) {
-                        particlesNum = 10000;
+                        particlesNum = 9000;
                     }
                     
                     if (stringLength > 60 && stringLength < 100) {
-                        particlesNum = 12000;
+                        particlesNum = 11000;
                     }
                     
                     if (stringLength > 100 && stringLength < 150) {
-                        particlesNum = 14000;
+                        particlesNum = 13000;
                     }
                     
                     if (stringLength > 150 && stringLength < 250) {
-                        particlesNum = 16000;
+                        particlesNum = 15000;
                     }
                     
                     var lastChar = combinedInput.charAt(stringLength - 1);
@@ -551,14 +574,7 @@
                     translateEng(category);
                     if (translationCountEng == 10){
                         writeNewPost(category);
-                        setTimeout(loadDatabase (category), 2500);
-                        
-                        Processing.loadSketchFromSources('translation', ['translation/translation.pde']);
-                        
-                        $("#translation").delay(3500).fadeIn(2000);
-                        setTimeout(function(){
-                            $(".bar").addClass('bar-active');
-                        }, 4500);
+                        setTimeout(loadDatabase (category, 'translateStart'), 1500);
                     }
                 }
                 });
@@ -622,7 +638,7 @@
         
         var final = "";
         
-        function displayArrayObjects(arrayObjects) {
+        function displayArrayObjects(arrayObjects, button) {
             var len = arrayObjects.length;
             postNum = arrayObjects.length;
             
@@ -767,10 +783,10 @@
                 }
             }
             firstload = false;
-            doneLoadingDatabase();    
+            doneLoadingDatabase(button);    
         }
         
-        function loadDatabase(category) {
+        function loadDatabase(category, button) {
         var ref = firebase.database().ref('/' + category + '/');
         console.log("category: " + category);
         var keys = [];
@@ -782,13 +798,13 @@
                 
                 console.log("keys: " + keys);
                 $(".select-styleda").html(category);
-                displayArrayObjects(keys);	
+                displayArrayObjects(keys, button);	
             });
         }
         
         
         $('.select-optionsa li').on('click', function() {
-            loadDatabase($("#someone2").val());
+            loadDatabase($("#someone2").val(), false);
         });
         
         //hover effect for each language
@@ -933,14 +949,12 @@
 		});
         
         
-        $( window ).resize(function() {
-            doneLoadingDatabase();
+        $(window).resize(function() {
+            doneLoadingDatabase(false);
         });
         
         
-        function doneLoadingDatabase() {
-            console.log("done loading database");
-            
+        function doneLoadingDatabase(button) {            
             // for each post
             for (var a = 1; a <= postNum; a++) {
                 //placing button for input & output 
@@ -970,6 +984,24 @@
                     $('#btn-m-'+a).toggleClass('long');
                 }
             }
+            
+            if (button === 'translateStart'){
+                Processing.loadSketchFromSources('translation', ['translation/translation.pde']);
+                setTimeout(function(){
+                    $("#translation").css('opacity','1');
+                    $("#load").spin(false);
+                    $(".bar").addClass('bar-active');
+                }, 1000);
+            }
+
+            console.log("done loading database");
+            if (button === true) {
+                $("#load").spin(false);
+                $('#archive-page').addClass('page-active');      
+                $(".arrow").fadeIn(1000);   
+                $("#archive-page").scrollTop(0);
+                $(this).addClass('menu-active');
+            }
         }
         
         $("div[contenteditable='true'][maxlength]").on('keydown paste', function (event) {
@@ -980,7 +1012,9 @@
         });
                 
     });
+        
     </script>
+    
     <script type="text/html" id="template">
         <div class='post' data-id='postId'>
             <div class='insidePost' data-id='insidePostId'>
