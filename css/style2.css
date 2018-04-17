@@ -31,10 +31,11 @@
   left: 0;
   background-color: transparent;
   padding: 0px 15px;
+  -webkit-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
 }
 
-.select-styled::after {
+.select-styled:after {
     content:"";
     width: 0;
     height: 0;
@@ -47,7 +48,7 @@
     right: 20px;
 }
 
-.select-styled.active::after {
+.select-styled.active:after {
     content:"";
     width: 0;
     height: 0;
@@ -89,6 +90,7 @@ li {
     padding-top: 8px;
     padding-bottom: 8px;
     /*border-top: 1px solid white;*/
+    -webkit-transition: all 0.15s ease-in;
     transition: all 0.15s ease-in;
     &[rel="hide"] {
       display: none;
@@ -135,10 +137,11 @@ li:hover {
   left: 0;
   background-color: transparent;
   padding: 0px 15px;
+  -webkit-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
 }
 
-.select-styleda::after {
+.select-styleda:after {
     content:"";
     width: 0;
     height: 0;
@@ -151,7 +154,7 @@ li:hover {
     right: 10px;
 }
 
-.select-styleda.active::after {
+.select-styleda.active:after {
     content:"";
     width: 0;
     height: 0;
@@ -193,6 +196,7 @@ li:hover {
     padding-top: 4px;
     padding-bottom: 4px;
     /*border-top: 1px solid white;*/
+    -webkit-transition: all 0.15s ease-in;
     transition: all 0.15s ease-in;
     &[rel="hide"] {
       display: none;
@@ -203,3 +207,4 @@ li:hover {
   color: white;
   cursor: pointer;
 }
+

@@ -1,0 +1,484 @@
+html {
+  width:  100vw; 
+  height: 100vh;
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  background-color: black;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+#bootstrap-overrides {
+  margin: 0;
+  color: white;
+  -webkit-font-smoothing: subpixel-antialiased !important;
+}
+
+#bootstrap-overrides canvas {
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  overflow: hidden;
+  -webkit-transition:  all 2s ease;
+  transition: all 2s ease;
+  opacity: 1;
+  -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+}
+
+#bootstrap-overrides .menu {
+  position: absolute;
+  z-index: 999999999;
+  padding-top: 20px;
+  text-align: center;
+  width: 100%;
+  display: none;
+}
+
+#bootstrap-overrides .menu-bottom {
+  position: absolute;
+  z-index: 999999;
+  padding-bottom: 20px;
+  text-align: center;
+  width: 100%;
+  bottom: 0;
+  display: none;
+}
+
+#bootstrap-overrides .menu-button {
+  border: none;
+  background-color: rgba(0,0,0,0);
+  color: rgba(255,255,255,1);
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  padding: 5px;
+}
+
+#bootstrap-overrides #about-button {
+  margin-right: 45px;
+}
+
+#bootstrap-overrides .menu-btn-container {
+  display: inline-block;
+}
+
+#bootstrap-overrides #main-button {
+  display: inline-block;
+  border: none;
+  background-color: rgba(0,0,0,0);
+  color: rgba(255,255,255,1);
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  padding: 5px;
+  padding-left: 0px !important;
+  margin: 0 !important;
+  margin-left: -5px !important;
+}
+
+#bootstrap-overrides #landing-page {
+  width: calc(100% - 240px);
+  position: absolute;
+  padding-top: 20px;
+  padding-left: 120px;
+  padding-right: 120px;
+  top: 0px;
+  left: 0px;
+  z-index: 99999;
+  height: calc(100% - 20px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+}
+
+#bootstrap-overrides #intro-page {
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  visibility: visible;
+  opacity: 1;
+  -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  -webkit-transition:  all 1s linear;
+  transition: all 1s linear;
+  z-index: 9999999999;
+  font-size: 3.5em;
+  font-weight: 400;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.bar {
+  width: 100%;
+  position: fixed;
+  z-index: 9999999999;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 100;
+  letter-spacing: 0.75px;
+  bottom: 12vh;
+  opacity: 0;
+  -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  visibility: hidden;
+}
+
+.bar .status{
+  opacity: 0.25;
+  -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
+  -webkit-transition:  all 4s ease-in;
+  transition: all 4s ease-in;
+}
+
+.dash {
+  opacity: 0.25;
+  -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
+}
+
+.intro-typed {
+  margin-left: -28px;
+}
+
+#bootstrap-overrides .prompt {
+  font-size: 3.5em;
+  font-weight: 400;
+  margin-right: 0.3em;
+  letter-spacing: 0.015em;
+  line-height: 130%;
+}
+
+#bootstrap-overrides #formInput {
+  position: relative;
+  background-color: rgba(0,0,0,0);
+  border: none;
+  border: solid 5px white;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 460px;
+  outline: 0;
+  color: white;
+  font-size: 3.5em;
+  font-weight: 400;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  height: 56px;
+  padding: 8px;
+}
+
+#bootstrap-overrides .select select {
+  display: none;
+}
+
+#bootstrap-overrides #formInput1 {
+  width: 867px;
+}
+
+#bootstrap-overrides .inputs {
+  background-color: rgba(0,0,0,0);
+  border: none;
+  border-bottom: solid 5px white;
+  width: 989px;
+  outline: 0;
+  color: white;
+  font-size: 3.5em;
+  letter-spacing: 0.015em;
+  font-weight: 400;
+  white-space: pre-line;
+}
+
+#bootstrap-overrides .input-form {
+  width: 1020px;
+  margin: 0 auto;
+  margin-top: -15px;
+}
+
+#bootstrap-overrides #formInput2, #formInput3, #formInput4 {
+  display: none;
+}
+
+#bootstrap-overrides #translation {
+  opacity: 0;
+  -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+}
+
+#bootstrap-overrides #about-page {
+  width: 60%;
+  height: 100%;
+  position: absolute;
+  padding-left: 20%;
+  padding-right: 20%;
+  top: 0;
+  left: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow-y: scroll;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 9999;
+  font-size: 20px;
+  line-height: 150%;
+  font-weight: 200;
+  letter-spacing: 1.2px;
+  color: rgba(255,255,255,1);
+  visibility: hidden;
+  opacity: 0;
+  -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  -webkit-transition:  all 1s linear;
+  transition: all 1s linear;
+}
+
+#about {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+#bootstrap-overrides .firstP {
+  margin-top: 25vh;
+}
+
+#bootstrap-overrides .lastP {
+  padding-bottom: 25vh;
+}
+
+#bootstrap-overrides #about::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+#bootstrap-overrides #about-page::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+#bootstrap-overrides #archive-page::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+html::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+#bootstrap-overrides .menu-button:hover {
+  text-decoration: underline;
+}
+
+#bootstrap-overrides #main-button:hover {
+  text-decoration: none !important;
+}
+
+#bootstrap-overrides button {
+  outline: 0;
+}
+
+#bootstrap-overrides #archive {
+}
+
+#bootstrap-overrides .post {
+  position:relative;
+  margin-bottom: 140px;
+}
+
+#bootstrap-overrides .insidePost {
+  position:relative;
+}
+
+#bootstrap-overrides #btnTranslate {
+  width: 60px;
+  font-size: 60px;
+  font-weight: 700;
+  display: inline-block;
+}
+
+#bootstrap-overrides .edit {
+  margin-top: -3px;
+  text-indent: 122px;
+  display: block;
+  outline: 0;
+  background-color: rgba(0,0,0,0);
+  border: none;
+  width: 989px;
+  outline: 0;
+  color: white;
+  font-size: 3.5em;
+  letter-spacing: 0.015em;
+  font-weight: 400;
+  white-space: pre-line;
+  z-index: 99999;
+  line-height: 80px;
+}
+
+#bootstrap-overrides #that {
+  position: fixed;
+  background-color: #000000;
+  padding-right: 22px;
+  padding-bottom: 7px;
+  z-index: 999999;
+}
+
+#bootstrap-overrides .line-container {
+  display: block;
+  position: absolute;
+  top: 0;
+  margin-top: 88px;
+  outline: 0;
+  background-color: rgba(0,0,0,0);
+  border: none;
+  width: 989px;
+  outline: 0;
+  color: white;
+  letter-spacing: 0.015em;
+  font-weight: 400;
+  z-index: -20;
+}
+
+#bootstrap-overrides .line-hidden {
+  background-color: rgba(0,0,0,0);
+  border-bottom: solid 5px white;
+  width: 989px;
+  color: white;
+  height: 74px;
+  z-index: -20;
+  display: none;
+}
+
+#bootstrap-overrides .line {
+  background-color: rgba(0,0,0,0);
+  border-bottom: solid 5px white;
+  width: 989px;
+  color: white;
+  height: 75px;
+  z-index: -20;
+}
+
+#bootstrap-overrides .input-wrapper {
+  display: block;
+  background-color: rgba(0,0,0,0);
+  width: 989px;
+  color: white;
+  height: 100%;
+}
+
+#bootstrap-overrides .input-container {
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  height: 350px;
+  width: 1000px;
+}
+
+.collapse {
+  display: none;
+}
+
+.collapse.show {
+  display: block;
+}
+
+#bootstrap-overrides canvas {
+  outline: 0;
+}
+
+.collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  -webkit-transition:  height 1.0s ease-in-out;
+  transition: height 1.0s ease-in-out;
+}
+
+.menu-active {
+  text-decoration: underline;
+}
+
+.page-active {
+  visibility: visible !important;
+  opacity: 1 !important;
+  -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  -webkit-transition:  all 1s linear;
+  transition: all 1s linear;
+}
+
+.page-inactive {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  -webkit-transition:  all 1s linear;
+  transition: all 1s linear;
+}
+
+.lang-active {
+  opacity: 1 !important;
+  -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  visibility: visible !important;
+  -webkit-transition:  all 3.5s ease-in;
+  transition: all 3.5s ease-in;
+}
+
+.bar-active {
+  visibility: visible !important;
+  opacity: 1 !important;
+  -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  -webkit-transition:  all 1s linear;
+  transition: all 1s linear;
+}
+
+.typed-cursor {
+        opacity: 1;
+        -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        -webkit-animation: blink .7s infinite;
+                animation: blink .7s infinite;
+    }
+
+    @-webkit-keyframes blink {
+        0% {
+            opacity: 1;
+            -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        }
+        50% {
+            opacity: 0;
+            -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+        }
+        100% {
+            opacity: 1;
+            -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        }
+    }
+
+    @keyframes blink {
+        0% {
+            opacity: 1;
+            -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        }
+        50% {
+            opacity: 0;
+            -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+        }
+        100% {
+            opacity: 1;
+            -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        }
+    }

@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Lost in Translation </title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style1.css">
+    <link rel="stylesheet" href="css/style2.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit:100&amp;subset=thai">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript" src="js/loadTemplate.js"></script>
+    <script type="text/javascript" src="js/jquery.actual.js"></script>
+    <script type="text/javascript" src="js/typed.min.js"></script>
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+</head>
+
+<body id="bootstrap-overrides">
+    <div class="background" id="processing">
+        <canvas id="backgroundPDE"></canvas>
+    </div>
+    
+    <div class="background" id="load">
+    </div>
+    
+    <div class="background" id="processingTranslation">
+        <div class="bar">
+            <span class="status" id='l0'>English</span>
+            <span class="dash">&ndash; 
+            </span>
+            <span class="status" id='l1'>Spanish</span>
+            <span class="dash">&ndash; 
+            </span>
+            <span class="status" id='l2'>French</span>
+            <span class="dash">&ndash;
+            </span>
+            <span class="status" id='l3'>Italian</span>
+            <span class="dash">&ndash;
+            </span>
+            <span class="status" id='l4'>Swedish</span>
+            <span class="dash">&ndash;
+            </span>
+            <span class="status" id='l5'>Greek</span>
+            <span class="dash">&ndash;
+            </span>
+            <span class="status" id='l6'>Swahilli</span>
+            <span class="dash">&ndash;
+            </span>
+            <span class="status" id='l7'>Russian</span>
+            <span class="dash">&ndash;
+            </span>
+            <span class="status" id='l8'>Thai</span>
+            <span class="dash">&ndash;
+            </span>
+            <span class="status" id='l9'>Japanese</span>
+            <span class="dash">&ndash;
+            </span>
+            <span class="status" id='l10'>Chinese</span>
+            <span class="dash">&ndash;
+            </span>
+            <span class="status" id='l11'>English</span>
+        </div>
+        <canvas id="translation"></canvas>
+    </div>
+
+
+
+    <div class="menu">
+        <button class="menu-button" id="main-button"></button>
+    </div>
+    
+    <div class="menu-bottom">
+        <div class="menu-btn-container">
+            <button class="menu-button" id="about-button"> About </button>
+            <button class="menu-button" id="archive-button"> Archive </button>
+        </div>
+    </div>
+    
+    <div class="arrow">
+    </div>
+        
+        
+     <div class="page page-active" id="intro-page">
+        <div id="intro-typed"></div>
+    </div>
+     
+        
+    <div class="page" id="landing-page">
+        <div class="input-form">
+            <div class="input-container">
+                <span class="prompt">I wish</span>
+                
+                    <select id="someone">
+                        <option value="people">people</option>
+                        <option value="you">you</option>
+                        <option value="my parents">my parents</option>
+                        <option value="my friends">my friends</option>
+                        <option value="my professor">my professor</option>
+                        <option value="my dog">my dog</option>
+                        <option value="he">he</option>
+                        <option value="she">she</option>
+                    </select>
+                
+                <span class="prompt">&nbsp;understood </span>
+                <span class="prompt" id="that">that</span>
+
+                <div class="input-wrapper">
+                    <div contenteditable="true" class="edit" maxlength="100"></div>
+                    <div class="line-container">
+                        <div class="line" id="line1"> </div>
+                        <div class="line" id="line2"> </div>
+                        <div class="line" id="line3"> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+    
+    <div class="page1" id="archive-page">
+        <div id="archive">
+            <div class="fadeout-top"></div>
+            <div class="sentence" id="archiveDropdown"> I wish
+                <select id="someone2">
+                    <option value="people">people</option>
+                    <option value="you">you</option>
+                    <option value="my parents">my parents</option>
+                    <option value="my friends">my friends</option>
+                    <option value="my professor">my professor</option>
+                    <option value="my dog">my dog</option>
+                    <option value="he">he</option>
+                    <option value="she">she</option>
+                </select>
+            understood that ________</div>
+            <div id="archiveTrans"></div>
+            <div class="fadeout-bottom"></div>
+        </div>
+    </div>
+    
+    
+    
+    
+    <div class="page2" id="about-page">
+        <div id="about">
+            <div class="fadeout-top"></div>
+            <div class="fadeout-bottom"></div>
+            <p class="firstP">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non velit eget est malesuada consequat.
+                Sed non consectetur sem. Etiam pulvinar varius gravida. Vivamus dapibus tortor at justo tempus, quis tempor erat ullamcorper.
+                Suspendisse potenti. Morbi eu diam at augue porttitor lacinia eu in nibh. Cras commodo erat felis, eget condimentum felis vestibulum ut.
+                Vestibulum ac consequat quam, eu faucibus mi. Pellentesque et posuere erat, eu pharetra ex. Ut luctus semper arcu eget dignissim.
+                Nulla leo nibh, consectetur nec suscipit vel, pharetra ut enim. Nulla ultrices posuere sem, eget dignissim orci fermentum eu.
+                Nunc sit amet felis vitae tortor ullamcorper tincidunt. Pellentesque tortor magna, lobortis non commodo eu, volutpat vitae dolor.
+            </p>
+            <p class="lastP">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non velit eget est malesuada consequat.
+                Sed non consectetur sem. Etiam pulvinar varius gravida. Vivamus dapibus tortor at justo tempus, quis tempor erat ullamcorper.
+                Suspendisse potenti. Morbi eu diam at augue porttitor lacinia eu in nibh. Cras commodo erat felis, eget condimentum felis vestibulum ut.
+                Vestibulum ac consequat quam, eu faucibus mi. Pellentesque et posuere erat, eu pharetra ex. Ut luctus semper arcu eget dignissim.
+                Nulla leo nibh, consectetur nec suscipit vel, pharetra ut enim. Nulla ultrices posuere sem, eget dignissim orci fermentum eu.
+                Nunc sit amet felis vitae tortor ullamcorper tincidunt. Pellentesque tortor magna, lobortis non commodo eu, volutpat vitae dolor.
+            </p>
+        </div>
+    </div>
+    
+
+    <script src="js/he/he.js"></script>
+    <script src="js/processing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.js"></script> 
+    <script src="js/jquery.spin.js"></script>        
+
+
+    <script>
+        var processingString = "";
+        
+        var particlesNum = 12000;
+        var opts = {
+           lines: 15, // The number of lines to draw
+           length: 0, // The length of each line
+           width: 2, // The line thickness
+           radius: 20, // The radius of the inner circle
+           scale: 0.8, // Scales overall size of the spinner
+           corners: 1, // Corner roundness (0..1)
+           color: '#ffffff', // CSS color or array of colors
+           fadeColor: 'transparent', // CSS color or array of colors
+           opacity: 0.45, // Opacity of the lines
+           rotate: 0, // The rotation offset
+           direction: 1, // 1: clockwise, -1: counterclockwise
+           speed: 1.1, // Rounds per second
+           trail: 60, // Afterglow percentage
+           fps: 20, // Frames per second when using setTimeout() as a fallback in IE 9
+           zIndex: 2e9, // The z-index (defaults to 2000000000)
+           className: 'spinner', // The CSS class to assign to the spinner
+           top: '49%', // Top position relative to parent
+           left: '50%', // Left position relative to parent
+           shadow: 'none', // Box-shadow for the lines
+           position: 'absolute' // Element positioning
+        };
+         
+          
+        $(document).ready(function(){
+            Processing.loadSketchFromSources('backgroundPDE', ['background_working/background_working.pde']);
+          
+            var typed1 = new Typed('#intro-typed', {
+                strings: ["Lost in Translation"],
+                typeSpeed: 54,
+                backSpeed: 10,
+                loop: false,
+                showCursor: true,
+                cursorChar: '|',
+                autoInsertCss: true
+            });
+            
+            setTimeout(function() {
+                $('#landing-page').addClass('page-active');
+                $('#intro-page').addClass('page-inactive');
+                $('#intro-page').removeClass('page-active');
+                $('.menu').css('display', 'block');
+                $('.menu-bottom').css('display', 'block');
+            }, 3500);
+        
+            $(".edit").keydown(function () {                
+                if(event.keyCode === 13) {
+                    event.preventDefault();
+                    if($(".edit").text() !== "" && $(".select-styled").text() !== "select") {
+                        $("#landing-page").removeClass("page-active");
+                        $("#load").spin(opts);
+                        translate();
+                    }
+                    return false;
+                }
+            });
+            
+            $('#someone').each(function(){
+                var $this = $(this), numberOfOptions = $(this).children('option').length;
+              
+                $this.addClass('select-hidden'); 
+                $this.wrap('<div class="select"></div>');
+                $this.after('<div class="select-styled"></div>');
+            
+                var $styledSelect = $this.next('div.select-styled');
+                $styledSelect.html("<span style='color:transparent;'>select</span>");
+
+              
+                var $list = $('<ul />', {
+                    'class': 'select-options'
+                }).insertAfter($styledSelect);
+              
+                for (var i = 0; i < numberOfOptions; i++) {
+                    $('<li />', {
+                        text: $this.children('option').eq(i).text(),
+                        rel: $this.children('option').eq(i).val()
+                    }).appendTo($list);
+                }
+              
+                var $listItems = $list.children('li');
+              
+                $styledSelect.click(function(e) {
+                    e.stopPropagation();
+                    $('div.select-styled.active').not(this).each(function(){
+                        $(this).removeClass('active').next('ul.select-options').hide();
+                    });
+                    $(this).toggleClass('active').next('ul.select-options').toggle();
+                });
+              
+                $listItems.click(function(e) {
+                    e.stopPropagation();
+                    $styledSelect.text($(this).text()).removeClass('active');
+                    $this.val($(this).attr('rel'));
+                    $list.hide();
+                    //console.log($this.val());
+                });
+              
+                $(document).click(function() {
+                    $styledSelect.removeClass('active');
+                    $list.hide();
+                });
+            
+            });
+            
+            
+            
+            
+            $('#someone2').each(function(){
+                var $this = $(this), numberOfOptions = $(this).children('option').length;
+                
+                $this.addClass('select-hiddena'); 
+                $this.wrap('<div class="selecta"></div>');
+                $this.after('<div class="select-styleda"></div>');
+            
+                var $styledSelect = $this.next('div.select-styleda');
+                $styledSelect.text($this.children('option').eq(0).text());
+
+              
+                var $list = $('<ul />', {
+                    'class': 'select-optionsa'
+                }).insertAfter($styledSelect);
+              
+                for (var i = 0; i < numberOfOptions; i++) {
+                    $('<li />', {
+                        text: $this.children('option').eq(i).text(),
+                        rel: $this.children('option').eq(i).val()
+                    }).appendTo($list);
+                }
+              
+                var $listItems = $list.children('li');
+              
+                $styledSelect.click(function(e) {
+                    e.stopPropagation();
+                    $('div.select-styleda.active').not(this).each(function(){
+                        $(this).removeClass('active').next('ul.select-optionsa').hide();
+                    });
+                    $(this).toggleClass('active').next('ul.select-optionsa').toggle();
+                });
+              
+                $listItems.click(function(e) {
+                    e.stopPropagation();
+                    $styledSelect.text($(this).text()).removeClass('active');
+                    $this.val($(this).attr('rel'));
+                    $list.hide();
+                    //console.log($this.val());
+                });
+              
+                $(document).click(function() {
+                    $styledSelect.removeClass('active');
+                    $list.hide();
+                });
+            
+            });
+
+            
+            
+            
+            
+            $('#main-button').click(function() {                
+                if ( $("#landing-page").css('visibility') == 'hidden' ){                    
+                    $(".select-styled").html("<span style='color:transparent;'>select</span>");
+                    $(".edit").text("");
+                }
+                $('#archive-page').removeClass('page-active');
+                $('#about-page').removeClass('page-active');
+
+                $('#landing-page').addClass('page-active');
+
+                $('#archive-button').removeClass('menu-active');
+                $('#about-button').removeClass('menu-active');
+                $(".arrow").fadeOut(1000);
+            });
+            
+            $('#about-button').click(function() {
+                $('#archive-page').removeClass('page-active');
+                $('#landing-page').removeClass('page-active');
+
+                $('#about-page').addClass('page-active');
+
+                $(this).addClass('menu-active');
+                $(".arrow").fadeOut(1000);
+                $('#archive-button').removeClass('menu-active');
+            });
+            
+            $('#archive-button').click(function() {
+                $("#load").spin(opts);
+
+                loadDatabase("people", true);
+
+                $('#landing-page').removeClass('page-active');
+                $('#about-page').removeClass('page-active');
+                $('#about-button').removeClass('menu-active');
+
+                $(this).addClass('menu-active');
+            });
+            
+            
+            
+            
+            
+            
+        
+        var scrollTop = false;
+    
+        $("#archive-page").scroll(function(){
+            if(($(this)[0].scrollHeight - $(this).scrollTop() - $(this).outerHeight()) < 20) {
+                $('.arrow').css('transform', 'rotate(180deg)');
+                scrollTop = true;
+            }
+            
+            if(($(this)[0].scrollHeight - $(this).scrollTop() - $(this).outerHeight()) > 20) {
+                $('.arrow').css('transform', 'rotate(0deg)');
+                scrollTop = false;
+            }
+        });
+        
+        $('.arrow').click(function(){
+            if (scrollTop){
+                $('.collapse').collapse('hide');
+                $('.btn-m').hide();
+
+                $('#archive-page').delay(500).animate({scrollTop: 0}, 1000);
+
+                setTimeout(function() {
+                    calculate('a');
+                }, 1100);
+                
+                setTimeout(function() {
+                    showMidBtn('a');
+                }, 1100);
+            }
+        }); 
+        
+        var url;
+        var firstload = true;
+        
+        var languages = ["EN","ES","FR","IT","SV","EL","SW","RU","TH","JA","ZH","EN"];
+
+        var currentLang;
+        var nextLang;
+        var currentLangEng;
+        var nextLangEng;
+        var translateInput;
+        var result = [];
+        var resultEng = [];
+        var translationCount = 0;
+        var translationCountEng = 0;
+        var userInput;
+        var combinedInput;
+        var finished = false;
+        var postNum = 0;        
+        
+        
+        /* translate */
+        function translate() {
+            var category = $("#someone").val();
+
+            if (translationCount < 11) {
+                if (translationCount === 0){
+                    combinedInput = "I wish " + $("#someone").val() + " understood that " + $(".edit").text();
+                    
+                    //console.log(combinedInput);
+                    
+                    var stringLength = combinedInput.length;
+                    
+                    if (stringLength < 60) {
+                        particlesNum = 9000;
+                    }
+                    
+                    if (stringLength > 60 && stringLength < 100) {
+                        particlesNum = 11000;
+                    }
+                    
+                    if (stringLength > 100 && stringLength < 150) {
+                        particlesNum = 13000;
+                    }
+                    
+                    if (stringLength > 150 && stringLength < 250) {
+                        particlesNum = 15000;
+                    }
+                    
+                    var lastChar = combinedInput.charAt(stringLength - 1);
+                    
+                    if(lastChar !== ".") {
+                        combinedInput = combinedInput + ".";
+                    }
+                    
+                    translateInput = encodeURIComponent(combinedInput);
+                    processingString = he.decode(combinedInput);
+                }
+    
+                else {
+                    //console.log("input: " + result[translationCount-1]);
+                    translateInput = encodeURIComponent(result[translationCount-1]);
+                }
+                
+                currentLang = languages[translationCount];
+                nextLang = languages[(translationCount + 1)];
+                
+                //console.log ("tCount: " + translationCount);
+                //console.log ("current language: " + currentLang);
+                //console.log ("next language: " + nextLang);
+                url = "https://translation.googleapis.com/language/translate/v2?key=AIzaSyDR3NPgTSVCs633RyvRG94_awHZuuqGC4A";
+                url += "&source=" + currentLang; 
+                url += "&target=" + nextLang;
+                url += "&q=" + translateInput;
+                
+                //console.log(url);
+
+                $.get(url, function (data, status) {
+
+                if(status == "success") {
+                    
+                    var done = decodeURIComponent(data.data.translations[0].translatedText);
+                    done = he.decode(done);
+                    
+                    var stringLength = done.length; 
+                    var lastCharOne = done.charAt(stringLength - 1);
+                    
+                    if((lastCharOne !== ".") && (result.length < 8)) {
+                        done = done + ".";
+                    }
+                    
+                    if((lastCharOne !== ".") && (result.length == 10)) {
+                        done = done + ".";
+                    }
+                    
+                    processingString += "/" + done;
+
+                    result.push(done);
+                    //console.log("done: " + done);
+                    //console.log("result " + translationCount +": " + result[translationCount]);
+                    
+                    url = "";
+                    translationCount++;
+                    translate();
+                    if (translationCount == 11) {
+                        translateEng(category);
+                    }
+                }
+                });
+            }
+        }
+                
+        function translateEng(category) {
+            if (translationCountEng < 10) {
+                //console.log("eng count " + translationCountEng);
+                translateInput = encodeURIComponent(result[translationCountEng]);
+                currentLangEng = languages[translationCountEng+1];
+                nextLangEng = "EN";
+                
+                //console.log ("tCount: " + translationCountEng);
+                //console.log ("current language: " + currentLangEng);
+                //console.log ("next language: " + nextLangEng);
+                
+                url = "https://translation.googleapis.com/language/translate/v2?key=AIzaSyDR3NPgTSVCs633RyvRG94_awHZuuqGC4A";
+                url += "&source=" + currentLangEng; 
+                url += "&target=" + nextLangEng;
+                url += "&q=" + translateInput;
+                                  
+                $.get(url, function (data, status) {
+                $("#resultEng").append(decodeURIComponent(translateInput) + "<br>");
+
+                $("#resultEng").append("to English: " + data.data.translations[0].translatedText + "<br>");
+                if(status == "success") {
+                    var done = decodeURIComponent(data.data.translations[0].translatedText);
+                    
+                    done = he.decode(done);
+                    
+                    var stringLength = done.length; 
+                    var lastCharTwo = done.charAt(stringLength - 1);
+                    
+                    if(lastCharTwo !== ".") {
+                        done = done + ".";
+                    }
+                    
+                    resultEng.push(done);
+
+                    url = "";
+                    translationCountEng++;
+                    translateEng(category);
+                    if (translationCountEng == 10){
+                        writeNewPost(category);
+                        setTimeout(loadDatabase (category, 'translateStart'), 1500);
+                    }
+                }
+                });
+            }
+        }
+    
+    
+    
+    /* initializing firebase */
+        
+        var config = {
+            apiKey: "AIzaSyBCwLAV6RqYEPX766evjDD4SxrVyRlOY_0",
+            authDomain: "lost-in-translation-68ffc.firebaseapp.com",
+            databaseURL: "https://lost-in-translation-68ffc.firebaseio.com",
+            projectId: "lost-in-translation-68ffc",
+            storageBucket: "lost-in-translation-68ffc.appspot.com",
+            messagingSenderId: "269344435801"
+        };
+        firebase.initializeApp(config);
+        
+        
+        function writeNewPost(category) {
+            // A post entry.
+            //console.log(combinedInput);
+            //console.log(category);
+
+            var postData = {
+                A_originalInput: combinedInput,
+                B_Spanish: result[0],
+                C_SpanishToEn: resultEng[0],
+                D_French: result[1],
+                E_FrenchToEn: resultEng[1],
+                F_Italian: result[2],
+                G_ItalianToEn: resultEng[2],
+                H_Swedish: result[3],
+                I_SwedishToEn: resultEng[3],
+                J_Greek: result[4],
+                K_GreekToEn: resultEng[4],
+                L_Swahilli: result[5],
+                M_SwahilliToEn: resultEng[5],
+                N_Russian: result[6],
+                O_RussianToEn: resultEng[6],
+                P_Thai: result[7],
+                Q_ThaiToEn: resultEng[7],
+                R_Japanese: result[8],
+                S_JapaneseToEn: resultEng[8],
+                T_Chinese: result[9],
+                U_ChineseToEn: resultEng[9],
+                V_finalOutput: result[10]   
+            };
+        
+            // Get a key for a new Post.
+            var newPostKey = firebase.database().ref().child(category).push().key;
+          
+            // Write the new post's data simultaneously in the posts list and the user's post list.
+            var updates = {};
+            updates['/'+ category + '/' + newPostKey] = postData;
+          
+            return firebase.database().ref().update(updates);
+        }
+        
+        var final = "";
+        
+        function displayArrayObjects(arrayObjects, button) {
+            var len = arrayObjects.length;
+            postNum = arrayObjects.length;
+            
+            //console.log ("length: " + len);
+            //console.log ("postNum: " + postNum);
+            $("#archiveTrans").html("");
+
+            for (var i = (len-1); i >= 0; i--) {
+                var x = i+1;
+                
+                $( "#archiveTrans" ).append( "<div id='translation-" + x + "'></div>" );
+                
+                var myObject = arrayObjects[i];
+                
+                var idPost = "post-"+x;
+                var insideIdPost = "insidePost-" + x;
+                var translateId = "#translation-" + x;
+                $(translateId).loadTemplate($('#template'),
+                {
+                    postId: idPost,
+                    insidePostId: insideIdPost,
+                    inputId: "input-"+x,
+                    btnT1: "btn-t-"+x+"-1",
+                    ioId: "io-"+x+"-1",
+                    originalInput: myObject.A_originalInput,
+                    collapseId: "collapse-"+x,
+                    
+                    btnE1: "btn-e-"+x+"-1",
+                    btnP1: "btn-p"+x+"-1",
+                    btnBtw: "btn-btw-"+x,
+                    btnVal: x,
+                    text1: "text-"+x+"-1",
+                    wrapper1: x+"-1",
+                    orig1: x+"-1-orig",
+                    t1: myObject.B_Spanish,
+                    eng1: x+"-1-eng",
+                    t1E: myObject.C_SpanishToEn,
+                    lang1: "English &ndash;&nbsp;<span id='lang-"+x+"-1'> Spanish</span>",            
+                    
+                    btnE2: "btn-e-"+x+"-2",
+                    btnP2: "btn-p"+x+"-2",
+                    text2: "text-"+x+"-2",
+                    wrapper2: x+"-2",
+                    orig2: x+"-2-orig",
+                    t2: myObject.D_French,
+                    eng2: x+"-2-eng",
+                    t2E: myObject.E_FrenchToEn,
+                    lang2: "Spanish &ndash;&nbsp;<span id='lang-"+x+"-2'> French</span>",
+                    
+                    btnE3: "btn-e-"+x+"-3",
+                    btnP3: "btn-p"+x+"-3",
+                    text3: "text-"+x+"-3",
+                    wrapper3: x+"-3",
+                    orig3: x+"-3-orig",
+                    t3: myObject.F_Italian,
+                    eng3: x+"-3-eng",
+                    t3E: myObject.G_ItalianToEn,
+                    lang3: "French &ndash;&nbsp;<span id='lang-"+x+"-3'> Italian</span>",
+                    
+                    btnE4: "btn-e-"+x+"-4",
+                    btnP4: "btn-p"+x+"-4",
+                    text4: "text-"+x+"-4",
+                    wrapper4: x+"-4",
+                    orig4: x+"-4-orig",
+                    t4: myObject.H_Swedish,
+                    eng4: x+"-4-eng",
+                    t4E: myObject.I_SwedishToEn,
+                    lang4: "Italian &ndash;&nbsp;<span id='lang-"+x+"-4'> Swedish</span>",
+                    
+                    btnE5: "btn-e-"+x+"-5",
+                    btnP5: "btn-p"+x+"-5",
+                    text5: "text-"+x+"-5",
+                    wrapper5: x+"-5",
+                    orig5: x+"-5-orig",
+                    t5: myObject.J_Greek,
+                    eng5: x+"-5-eng",
+                    t5E: myObject.K_GreekToEn,
+                    lang5: "Swedish &ndash;&nbsp;<span id='lang-"+x+"-5'> Greek</span>",
+                    
+                    btnE6: "btn-e-"+x+"-6",
+                    btnP6: "btn-p"+x+"-6",
+                    text6: "text-"+x+"-6",
+                    wrapper6: x+"-6",
+                    orig6: x+"-6-orig",
+                    t6: myObject.L_Swahilli,
+                    eng6: x+"-6-eng",
+                    t6E: myObject.M_SwahilliToEn,
+                    lang6: "Greek &ndash;&nbsp;<span id='lang-"+x+"-6'> Swahilli</span>",
+                    
+                    btnE7: "btn-e-"+x+"-7",
+                    btnP7: "btn-p"+x+"-7",
+                    text7: "text-"+x+"-7",
+                    wrapper7: x+"-7",
+                    orig7: x+"-7-orig",
+                    t7: myObject.N_Russian,
+                    eng7: x+"-7-eng",
+                    t7E: myObject.O_RussianToEn,
+                    lang7: "Swahilli &ndash;&nbsp;<span id='lang-"+x+"-7'> Russian</span>",
+                    
+                    btnE8: "btn-e-"+x+"-8",
+                    btnP8: "btn-p"+x+"-8",
+                    text8: "text-"+x+"-8",
+                    wrapper8: x+"-8",
+                    orig8: x+"-8-orig",
+                    t8: myObject.P_Thai,
+                    eng8: x+"-8-eng",
+                    t8E: myObject.Q_ThaiToEn,
+                    lang8: "Russian &ndash;&nbsp;<span id='lang-"+x+"-8'> Thai</span>",
+                    
+                    btnE9: "btn-e-"+x+"-9",
+                    btnP9: "btn-p"+x+"-9",
+                    text9: "text-"+x+"-9",
+                    wrapper9: x+"-9",
+                    orig9: x+"-9-orig",
+                    t9: myObject.R_Japanese,
+                    eng9: x+"-9-eng",
+                    t9E: myObject.S_JapaneseToEn,
+                    lang9: "Thai &ndash;&nbsp;<span id='lang-"+x+"-9'> Japanese</span>",
+                    
+                    btnE10: "btn-e-"+x+"-10",
+                    btnP10: "btn-p"+x+"-10",
+                    text10: "text-"+x+"-10",
+                    wrapper10: x+"-10",
+                    orig10: x+"-10-orig",
+                    t10: myObject.T_Chinese,
+                    eng10: x+"-10-eng",
+                    t10E: myObject.U_ChineseToEn,
+                    lang10: "Japanese &ndash;&nbsp;<span id='lang-"+x+"-10'> Chinese</span>",
+                    
+                    output: "output-"+x,
+                    btnT2: "btn-t-"+x+"-2",
+                    ioId2: "io-"+x+"-2",
+                    finalOutput: myObject.V_finalOutput,
+                    btnM: "btn-m-"+x
+                });
+                
+                $("#btn-m-"+x).append("<button id='btn-o-"+x+"' value = '"+x+"' class='btn-o' type='button' data-toggle='collapse' data-target='#collapse-"+x+"' aria-expanded='false' aria-controls='collapse-"+x+"'></button>");
+                
+                if (x == len) {
+                    console.log(x);
+                    $("#post-"+x).css('margin-top', '25vh');
+                }
+            }
+            firstload = false;
+            
+            if (button === false) {
+                doneLoadingDatabase(button);
+            }
+            else {
+            setTimeout(function(){
+                doneLoadingDatabase(button);}, 1000);
+            }
+        }
+        
+        function loadDatabase(category, button) {
+        var ref = firebase.database().ref('/' + category + '/');
+        //console.log("category: " + category);
+        var keys = [];
+            ref.once('value',function(snap) {
+                snap.forEach(function(item) {
+                    var itemVal = item.val();
+                    keys.push(itemVal);
+                });
+                
+                //console.log("keys: " + keys);
+                $(".select-styleda").html(category);
+                displayArrayObjects(keys, button);	
+            });
+        }
+        
+        
+        $('.select-optionsa li').on('click', function() {
+            loadDatabase($("#someone2").val(), false);
+            $("#archive-page").scrollTop(0);
+        });
+        
+        //hover effect for each language
+        $("body").on('mouseover', '.txtWrapper', function(e) {
+            var wrapperId = this.id;
+
+            var eng = '#' + wrapperId + '-eng';
+            var orig = '#' + wrapperId + '-orig';
+                
+            var boldSpan = '#lang-' + wrapperId;
+            
+            $(this).css('display','flex');
+            
+            var engWidth = $(eng).actual('width');
+            var origWidth = $(orig).actual('width');
+            
+            if (engWidth > origWidth){
+                $(this).css('min-width', engWidth);
+            }
+            
+            if (origWidth > engWidth){
+                $(this).css('min-width', origWidth);
+            }
+            
+            var thisHeight = $(this).actual('height');
+            var engHeight = $(eng).actual('height');
+            //console.log(thisHeight);
+            //console.log(engHeight);
+            $(this).css('min-height', engHeight);
+                                
+            $(orig).show();
+            $(eng).hide();
+            $(boldSpan).css('font-weight', 500);             
+        });
+        
+        $("body").on('mouseout', '.txtWrapper', function(e) {
+            var wrapperId = this.id;
+             
+            $(this).css('display','inline-flex');
+            
+            var eng = '#' + wrapperId + '-eng';
+            var orig = '#' + wrapperId + '-orig';
+            
+            var boldSpan = '#lang-' + wrapperId;
+            
+            $(orig).hide();
+            $(eng).show();
+            $(boldSpan).css('font-weight', 300);     
+        });
+        
+        $("body").on('click', '.btn-o', function(e) {
+            var btnValue = this.value;
+            var btnName = '.btn-btw-' + btnValue;
+            var btnDotName = '#btn-m-' + btnValue;
+
+                $(this).fadeOut();
+                $(btnDotName).fadeOut();
+
+                $(btnName).hide();
+                                
+                setTimeout(function() {
+                    calculate(btnValue);
+                }, 1100);
+                
+                setTimeout(function() {
+                    showBtn(btnValue);
+                }, 1100);   
+        });
+        
+        $("body").on('click', '.btn-btw', function() {
+            var btnValue = this.value;
+                var collapseName = '#collapse-' + btnValue;
+                var btnMidName = '#btn-m-' + btnValue;
+                
+                $(collapseName).collapse('hide');
+                $(btnMidName).hide();
+
+                setTimeout(function() {
+                    calculate(btnValue);
+                }, 1100);
+                
+                setTimeout(function() {
+                    showMidBtn(btnValue);
+                }, 1100);
+        });
+    
+            
+        function calculate(val) {
+            if (val == 'a') {
+                for (var x = 1; x <= postNum; x++){
+                    var postHeight = $('#insidePost-'+x).actual('height');                        
+                    var btnName = '#btn-m-'+x;
+                    //$(btnName).css('min-height', postHeight+'px');
+                    $(btnName).css('min-height', '100%');
+                    if (postHeight == 320) {
+                        $(btnName+":after").css('height', 'calc(100% - 129px)');
+                    }
+                    $(btnName).fadeIn(1200);
+                }
+            }
+            
+            else {
+                var postHeight1 = $('#insidePost-'+val).actual('height');
+                var btnName1 = '#btn-m-'+val;
+
+                //console.log(postHeight);
+                if (postHeight1 == 320) {
+                    $(btnName1+":after").css('height', 'calc(100% - 129px)');
+                }                    
+                
+                $(btnName1).css('min-height', '100%');  
+                                
+                for (var j = 1; j <= 10; j++){
+                    var divName = '#text-' + val + '-' + j;
+                    var btnMidName = '#btn-e-' + val + '-' + j;
+                    var individualHeight = $(divName).actual('height');
+                    $(btnMidName).css('min-height', individualHeight+'px');
+                }
+                $(btnName1).fadeIn(1200);
+            }
+        }
+        
+        
+        function showMidBtn(val) {
+            if (val == 'a') {
+                $('.btn-o').fadeIn(1000);
+            }
+            var name = '#btn-o-' + val;
+            $(name).fadeIn(1000);
+        }
+        
+        function showBtn(val) {
+            var name = '.btn-btw-' + val;
+            $(name).fadeIn();
+        }
+    
+        var typed = new Typed('#main-button', {
+            strings: ["Lost in Translation"],
+            showCursor: true,
+			cursorChar: '|',
+			autoInsertCss: true
+		});
+        
+        
+        $(window).resize(function() {
+            doneLoadingDatabase(false);
+        });
+        
+        
+        function doneLoadingDatabase(button) {            
+            // for each post
+            for (var a = 1; a <= postNum; a++) {
+                //placing button for input & output 
+                for (var b = 1; b < 3; b++) {
+                    var textDivName = '#io-' + a + '-' + b;
+                    var btnDivName = '#btn-t-' + a + '-' + b;
+                    var divHeight = $(textDivName).actual('height');
+                    $(btnDivName).css('min-height', divHeight+'px');
+                }
+                
+                //placing button in the middle of input & output
+                var postHeight = $('#insidePost-' + a).actual('height');
+                var inputHeight = $('#input-' + a).actual('height');
+                var outputHeight = $('#output-' + a).actual('height');
+
+                $('#btn-m-'+a).css('min-height', postHeight);
+                
+                if (inputHeight > outputHeight) {
+                    $('#btn-o-'+a).css('margin-top', '30px');
+                }
+                
+                if (outputHeight > inputHeight) {
+                    $('#btn-o-'+a).css('margin-top', '-30px');
+                }
+                
+                if (postHeight == 320) {
+                    $('#btn-m-'+a).toggleClass('long');
+                }
+            }
+            
+            if (button === 'translateStart'){
+                Processing.loadSketchFromSources('translation', ['translation/translation.pde']);
+                setTimeout(function(){
+                    $("#translation").css('opacity','1');
+                    $("#load").spin(false);
+                    $(".bar").addClass('bar-active');
+                }, 1000);
+            }
+
+            if (button === true) {
+                $("#load").spin(false);
+
+                setTimeout(function(){
+                    $('#archive-page').addClass('page-active');      
+                    $(".arrow").fadeIn(1000);   
+                    $("#archive-page").scrollTop(0);
+                }, 500);
+            }
+        }
+        
+        $("div[contenteditable='true'][maxlength]").on('keydown paste', function (event) {
+            var cntMaxLength = parseInt($(this).attr('maxlength'));
+            if ($(this).text().length === cntMaxLength && event.keyCode != 8) {
+                event.preventDefault();
+            }
+        });
+                
+    });
+        
+    </script>
+    
+    <script type="text/html" id="template">
+        <div class='post' data-id='postId'>
+            <div class='insidePost' data-id='insidePostId'>
+                <div class="input" data-id="inputId">
+                    <div class="btn-container" data-id="btnT1">
+                        <button class="btn-io"></button>
+                    </div>
+                    <div class="text" data-id="ioId">
+                        <span class="sentence" data-content="originalInput">
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="collapse" data-id="collapseId">
+                    <div class="eachTrans">
+                        <div class="btn-container" data-id="btnE1">
+                            <button data-id="btnP1" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
+                        </div>
+                        
+                        <div class="text" data-id="text1">
+                            <div class= "txtWrapper" data-id="wrapper1">
+                                <span class="sentence orig" data-id="orig1" data-content="t1">
+                                </span>
+                                <span class="sentence eng" data-id="eng1" data-content="t1E">
+                                </span>
+                            </div>
+                            <div class="lang" data-content="lang1">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="eachTrans">
+                        <div class="btn-container" data-id="btnE2">
+                            <button data-id="btnP2" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
+                        </div>
+                        
+                        <div class="text" data-id="text2">
+                            <div class= "txtWrapper" data-id="wrapper2">
+                                <span class="sentence orig" data-id="orig2" data-content="t2">
+                                </span>
+                                <span class="sentence eng" data-id="eng2" data-content="t2E">
+                                </span>
+                            </div>
+                            <div class="lang" data-content="lang2">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="eachTrans">
+                        <div class="btn-container" data-id="btnE3">
+                            <button data-id="btnP3" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
+                        </div>
+                        
+                        <div class="text" data-id="text3">
+                            <div class= "txtWrapper" data-id="wrapper3">
+                                <span class="sentence orig" data-id="orig3" data-content="t3">
+                                </span>
+                                <span class="sentence eng" data-id="eng3" data-content="t3E">
+                                </span>
+                            </div>
+                            <div class="lang" data-content="lang3">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="eachTrans">
+                        <div class="btn-container" data-id="btnE4">
+                            <button data-id="btnP4" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
+                        </div>
+                        
+                        <div class="text" data-id="text4">
+                            <div class= "txtWrapper" data-id="wrapper4">
+                                <span class="sentence orig" data-id="orig4" data-content="t4">
+                                </span>
+                                <span class="sentence eng" data-id="eng4" data-content="t4E">
+                                </span>
+                            </div>
+                            <div class="lang" data-content="lang4">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="eachTrans">
+                        <div class="btn-container" data-id="btnE5">
+                            <button data-id="btnP5" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
+                        </div>
+                        
+                        <div class="text" data-id="text5">
+                            <div class= "txtWrapper greek" data-id="wrapper5">
+                                <span class="sentence orig" data-id="orig5" data-content="t5">
+                                </span>
+                                <span class="sentence eng" data-id="eng5" data-content="t5E">
+                                </span>
+                            </div>
+                            <div class="lang" data-content="lang5">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="eachTrans">
+                        <div class="btn-container" data-id="btnE6">
+                            <button data-id="btnP6" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
+                        </div>
+                        
+                        <div class="text" data-id="text6">
+                            <div class= "txtWrapper" data-id="wrapper6">
+                                <span class="sentence orig" data-id="orig6" data-content="t6">
+                                </span>
+                                <span class="sentence eng" data-id="eng6" data-content="t6E">
+                                </span>
+                            </div>
+                            <div class="lang" data-content="lang6">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="eachTrans">
+                        <div class="btn-container" data-id="btnE7">
+                            <button data-id="btnP7" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
+                        </div>
+                        
+                        <div class="text" data-id="text7">
+                            <div class= "txtWrapper russian" data-id="wrapper7">
+                                <span class="sentence orig" data-id="orig7" data-content="t7">
+                                </span>
+                                <span class="sentence eng" data-id="eng7" data-content="t7E">
+                                </span>
+                            </div>
+                            <div class="lang" data-content="lang7">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="eachTrans">
+                        <div class="btn-container" data-id="btnE8">
+                            <button data-id="btnP8" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
+                        </div>
+                        
+                        <div class="text" data-id="text8">
+                            <div class= "txtWrapper" data-id="wrapper8">
+                                <span class="sentence orig thai" data-id="orig8" data-content="t8">
+                                </span>
+                                <span class="sentence eng" data-id="eng8" data-content="t8E">
+                                </span>
+                            </div>
+                            <div class="lang" data-content="lang8">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="eachTrans">
+                        <div class="btn-container" data-id="btnE9">
+                            <button data-id="btnP9" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
+                        </div>
+                        
+                        <div class="text" data-id="text9">
+                            <div class= "txtWrapper japanese" data-id="wrapper9">
+                                <span class="sentence orig" data-id="orig9" data-content="t9">
+                                </span>
+                                <span class="sentence eng" data-id="eng9" data-content="t9E">
+                                </span>
+                            </div>
+                            <div class="lang" data-content="lang9">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="eachTrans">
+                        <div class="btn-container" data-id="btnE10">
+                            <button data-id="btnP10" data-class="btnBtw" class="btn-btw" data-value="btnVal"></button>
+                        </div>
+                        
+                        <div class="text" data-id="text10">
+                            <div class= "txtWrapper chinese" data-id="wrapper10">
+                                <span class="sentence orig" data-id="orig10" data-content="t10">
+                                </span>
+                                <span class="sentence eng" data-id="eng10" data-content="t10E">
+                                </span>
+                            </div>
+                            <div class="lang" data-content="lang10">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="output" data-id="output">
+                    <div class="btn-container" data-id="btnT2">
+                        <button class="btn-io"></button>
+                    </div>
+                    <div class="text" data-id="ioId2">
+                        <span class="sentence" data-content="finalOutput">
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="btn-container btn-m" data-id="btnM">
+            </div>
+        </div>
+    </script>
+
+</body>
+</html>

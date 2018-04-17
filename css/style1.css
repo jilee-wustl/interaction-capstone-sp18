@@ -11,10 +11,15 @@
   left: 0px;
   display: block;
   overflow-x: hidden;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+              -ms-grid-row-align: center;
+          align-items: center;
   z-index: 9999;
   visibility: hidden;
   opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  -webkit-transition: all 1s ease-in;
   transition: all 1s ease-in;
 }
 
@@ -25,13 +30,21 @@
 
 #bootstrap-overrides .btn-container{
   float: left;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 9px;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 #bootstrap-overrides .btn-io {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   margin: 0 auto;
   background-color: #FFFFFF;
@@ -56,6 +69,8 @@
 }
 
 #bootstrap-overrides .lang {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   margin-top: 15px;
   font-size: 15px;
@@ -64,6 +79,8 @@
 }
 
 #bootstrap-overrides .btn-btw {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   margin: 0 auto;
   background-color: #000000;
@@ -76,6 +93,8 @@
 #bootstrap-overrides .btn-btw:after {
     background-color: #000000;
     content: '';
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     margin: 0 auto;
     background-color: #000000;
@@ -91,6 +110,8 @@
 }
 
 #bootstrap-overrides .btn-o {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   margin: 0 auto;
   background-color: #000000;
@@ -103,6 +124,8 @@
 #bootstrap-overrides .btn-o:after {
     background-color: #000000;
     content: '';
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     margin: 0 auto;
     background-color: #000000;
@@ -132,7 +155,10 @@
   border-right: 1.8px #FFFFFF dotted;
   height: calc(100% - 80px);
   width: 100%;
-  transform: translateX(-39%);
+  -webkit-transform: translateX(-39%);
+          transform: translateX(-39%);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   margin: 0 auto;
 }
@@ -146,6 +172,8 @@
 }
 
 #bootstrap-overrides .txtWrapper {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
   display: inline-flex;
   cursor: pointer;
   letter-spacing: 1px;
@@ -189,12 +217,8 @@
     background: -webkit-linear-gradient(
         rgba(0, 0, 0, 0) 0%,
         rgba(0, 0, 0, 1) 100%
-    ); 
-    background-image: -moz-linear-gradient(
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 1) 100%
     );
-    background-image: -o-linear-gradient(
+    background-image: -webkit-linear-gradient(
         rgba(0, 0, 0, 0) 0%,
         rgba(0, 0, 0, 1) 100%
     );
@@ -218,12 +242,8 @@
     background: -webkit-linear-gradient(
         rgba(0, 0, 0, 1) 10%,
         rgba(0, 0, 0, 0) 100%
-    ); 
-    background-image: -moz-linear-gradient(
-        rgba(0, 0, 0, 1) 10%,
-        rgba(0, 0, 0, 0) 100%
     );
-    background-image: -o-linear-gradient(
+    background-image: -webkit-linear-gradient(
         rgba(0, 0, 0, 1) 10%,
         rgba(0, 0, 0, 0) 100%
     );
@@ -242,4 +262,5 @@
   top: 12vh;
   z-index: 9999999;
 }
+
 
