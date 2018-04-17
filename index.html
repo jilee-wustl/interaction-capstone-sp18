@@ -904,7 +904,6 @@
                     var btnName1 = '#btn-o-'+x;
 
                     $(btnName).css('min-height', '100%');
-                    
                     if (postHeight > 319) {
                         $(btnName1+":after").css('height', 'calc(100% - 129px)');
                     }
@@ -998,6 +997,10 @@
                 
                 if (postHeight == 320) {
                     $('#btn-m-'+a).toggleClass('long');
+                }
+                
+                if (postHeight > 321) {
+                    $('#btn-m-'+a).toggleClass('slong');
                 }
             }
             
