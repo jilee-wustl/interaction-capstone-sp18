@@ -774,7 +774,7 @@
                 $("#btn-m-"+x).append("<button id='btn-o-"+x+"' value = '"+x+"' class='btn-o' type='button' data-toggle='collapse' data-target='#collapse-"+x+"' aria-expanded='false' aria-controls='collapse-"+x+"'></button>");
                 
                 if (x == len) {
-                    console.log(x);
+                    //console.log(x);
                     $("#post-"+x).css('margin-top', '25vh');
                 }
             }
@@ -905,6 +905,10 @@
                     $(btnName).css('min-height', '100%');
                     if (postHeight == 320) {
                         $(btnName+":after").css('height', 'calc(100% - 129px)');
+                    }
+                    
+                    if (postHeight > 360) {
+                        $(btnName+":after").css('height', 'calc(100% - 160px)');
                     }
                     $(btnName).fadeIn(1200);
                 }
