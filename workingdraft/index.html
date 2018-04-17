@@ -18,6 +18,7 @@
     <script type="text/javascript" src="js/loadTemplate.js"></script>
     <script type="text/javascript" src="js/jquery.actual.js"></script>
     <script type="text/javascript" src="js/typed.min.js"></script>
+
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
 </head>
 
@@ -153,7 +154,7 @@
         <div id="about">
             <div class="fadeout-top"></div>
             <div class="fadeout-bottom"></div>
-            <p>
+            <p class="firstP">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non velit eget est malesuada consequat.
                 Sed non consectetur sem. Etiam pulvinar varius gravida. Vivamus dapibus tortor at justo tempus, quis tempor erat ullamcorper.
                 Suspendisse potenti. Morbi eu diam at augue porttitor lacinia eu in nibh. Cras commodo erat felis, eget condimentum felis vestibulum ut.
@@ -161,7 +162,7 @@
                 Nulla leo nibh, consectetur nec suscipit vel, pharetra ut enim. Nulla ultrices posuere sem, eget dignissim orci fermentum eu.
                 Nunc sit amet felis vitae tortor ullamcorper tincidunt. Pellentesque tortor magna, lobortis non commodo eu, volutpat vitae dolor.
             </p>
-            <p>
+            <p class="lastP">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non velit eget est malesuada consequat.
                 Sed non consectetur sem. Etiam pulvinar varius gravida. Vivamus dapibus tortor at justo tempus, quis tempor erat ullamcorper.
                 Suspendisse potenti. Morbi eu diam at augue porttitor lacinia eu in nibh. Cras commodo erat felis, eget condimentum felis vestibulum ut.
@@ -187,7 +188,7 @@
            lines: 15, // The number of lines to draw
            length: 0, // The length of each line
            width: 2, // The line thickness
-           radius: 25, // The radius of the inner circle
+           radius: 20, // The radius of the inner circle
            scale: 0.8, // Scales overall size of the spinner
            corners: 1, // Corner roundness (0..1)
            color: '#ffffff', // CSS color or array of colors
@@ -376,16 +377,8 @@
                 $('#about-page').removeClass('page-active');
                 $('#about-button').removeClass('menu-active');
 
-                $('#archive-page').addClass('page-active');
-                
-                $(".arrow").fadeIn(1000);
-                
-                $("#archive-page").scrollTop(0);
-
                 $(this).addClass('menu-active');
             });
-            
-            
             
             
             
@@ -498,7 +491,7 @@
                 url += "&target=" + nextLang;
                 url += "&q=" + translateInput;
                 
-                console.log(url);
+                //console.log(url);
 
                 $.get(url, function (data, status) {
 
@@ -598,8 +591,8 @@
         
         function writeNewPost(category) {
             // A post entry.
-            console.log(combinedInput);
-            console.log(category);
+            //console.log(combinedInput);
+            //console.log(category);
 
             var postData = {
                 A_originalInput: combinedInput,
@@ -642,8 +635,8 @@
             var len = arrayObjects.length;
             postNum = arrayObjects.length;
             
-            console.log ("length: " + len);
-            console.log ("postNum: " + postNum);
+            //console.log ("length: " + len);
+            //console.log ("postNum: " + postNum);
             $("#archiveTrans").html("");
 
             for (var i = (len-1); i >= 0; i--) {
@@ -783,12 +776,19 @@
                 }
             }
             firstload = false;
-            doneLoadingDatabase(button);    
+            
+            if (button === false) {
+                doneLoadingDatabase(button);
+            }
+            else {
+            setTimeout(function(){
+                doneLoadingDatabase(button);}, 1000);
+            }
         }
         
         function loadDatabase(category, button) {
         var ref = firebase.database().ref('/' + category + '/');
-        console.log("category: " + category);
+        //console.log("category: " + category);
         var keys = [];
             ref.once('value',function(snap) {
                 snap.forEach(function(item) {
@@ -796,7 +796,7 @@
                     keys.push(itemVal);
                 });
                 
-                console.log("keys: " + keys);
+                //console.log("keys: " + keys);
                 $(".select-styleda").html(category);
                 displayArrayObjects(keys, button);	
             });
@@ -805,6 +805,7 @@
         
         $('.select-optionsa li').on('click', function() {
             loadDatabase($("#someone2").val(), false);
+            $("#archive-page").scrollTop(0);
         });
         
         //hover effect for each language
@@ -831,8 +832,8 @@
             
             var thisHeight = $(this).actual('height');
             var engHeight = $(eng).actual('height');
-            console.log(thisHeight);
-            console.log(engHeight);
+            //console.log(thisHeight);
+            //console.log(engHeight);
             $(this).css('min-height', engHeight);
                                 
             $(orig).show();
@@ -994,13 +995,14 @@
                 }, 1000);
             }
 
-            console.log("done loading database");
             if (button === true) {
                 $("#load").spin(false);
-                $('#archive-page').addClass('page-active');      
-                $(".arrow").fadeIn(1000);   
-                $("#archive-page").scrollTop(0);
-                $(this).addClass('menu-active');
+
+                setTimeout(function(){
+                    $('#archive-page').addClass('page-active');      
+                    $(".arrow").fadeIn(1000);   
+                    $("#archive-page").scrollTop(0);
+                }, 500);
             }
         }
         
