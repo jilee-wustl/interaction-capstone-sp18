@@ -85,6 +85,10 @@
   background:transparent !important;
 }
 
+#bootstrap-overrides .select-options::-moz-scrollbar {
+  background:transparent !important;
+}
+
 li {
     margin: 0;
     padding-top: 8px;
@@ -188,6 +192,10 @@ li:hover {
 }
 
 #bootstrap-overrides ul::-webkit-scrollbar {
+  background:transparent !important;
+}
+
+#bootstrap-overrides ul::-moz-scrollbar {
   background:transparent !important;
 }
 

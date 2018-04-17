@@ -100,6 +100,8 @@ html {
   visibility: hidden;
   opacity: 0;
   -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 #bootstrap-overrides #intro-page {
@@ -163,6 +165,7 @@ html {
   font-size: 3.5em;
   font-weight: 400;
   letter-spacing: 0.015em;
+  margin-right: 0.1em;
   line-height: 130%;
 }
 
@@ -210,7 +213,7 @@ html {
 }
 
 #bootstrap-overrides .input-form {
-  width: 1020px;
+  width: 1000px;
   margin: 0 auto;
   margin-top: -15px;
 }
@@ -281,6 +284,22 @@ html::-webkit-scrollbar {
   width: 0 !important;
 }
 
+#bootstrap-overrides #about::-moz-scrollbar {
+  width: 0 !important;
+}
+
+#bootstrap-overrides #about-page::-moz-scrollbar {
+  width: 0 !important;
+}
+
+#bootstrap-overrides #archive-page::-moz-scrollbar {
+  width: 0 !important;
+}
+
+html::-moz-scrollbar {
+  width: 0 !important;
+}
+
 #bootstrap-overrides .menu-button:hover {
   text-decoration: underline;
 }
@@ -328,6 +347,12 @@ html::-webkit-scrollbar {
   white-space: pre-line;
   z-index: 99999;
   line-height: 80px;
+  min-height: 240px;
+  word-wrap: break-word;
+  -moz-user-select: text !important;
+  -khtml-user-select: text;
+  -webkit-user-select: text;
+  -o-user-select: text;
 }
 
 #bootstrap-overrides #that {
@@ -375,10 +400,12 @@ html::-webkit-scrollbar {
 
 #bootstrap-overrides .input-wrapper {
   display: block;
+  text-indent: 122px;
   background-color: rgba(0,0,0,0);
   width: 989px;
   color: white;
   height: 100%;
+  word-wrap: break-word;
 }
 
 #bootstrap-overrides .input-container {
@@ -481,3 +508,9 @@ html::-webkit-scrollbar {
             -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
         }
     }
+
+[contenteditable='true'] {
+  width: 989px;
+  text-indent: 122px;
+}
+
