@@ -901,37 +901,45 @@
                 for (var x = 1; x <= postNum; x++){
                     var postHeight = $('#insidePost-'+x).actual('height');                        
                     var btnName = '#btn-m-'+x;
-                    //$(btnName).css('min-height', postHeight+'px');
+                    var btnName1 = '#btn-o-'+x;
+
                     $(btnName).css('min-height', '100%');
-                    if (postHeight == 320) {
-                        $(btnName+":after").css('height', 'calc(100% - 129px)');
+                    
+                    if (postHeight > 319) {
+                        $(btnName1+":after").css('height', 'calc(100% - 129px)');
                     }
                     
-                    if (postHeight > 360) {
-                        $(btnName+":after").css('height', 'calc(100% - 160px)');
+                    if (postHeight > 365) {
+                        $(btnName1+":after").css('height', 'calc(100% - 160px)');
                     }
-                    $(btnName).fadeIn(1200);
+                    
+                    $(btnName).fadeIn(1000);
                 }
             }
             
             else {
                 var postHeight1 = $('#insidePost-'+val).actual('height');
-                var btnName1 = '#btn-m-'+val;
+                var btnName2 = '#btn-m-'+val;
 
-                //console.log(postHeight);
-                if (postHeight1 == 320) {
-                    $(btnName1+":after").css('height', 'calc(100% - 129px)');
-                }                    
-                
-                $(btnName1).css('min-height', '100%');  
-                                
+                var btnName3 = '#btn-o-'+val;
+
+                    $(btnName2).css('min-height', '100%');
+                    
+                    if (postHeight1 > 319) {
+                        $(btnName3+":after").css('height', 'calc(100% - 129px)');
+                    }
+                    
+                    if (postHeight1 > 365) {
+                        $(btnName3+":after").css('height', 'calc(100% - 160px)');
+                    }
+                    
                 for (var j = 1; j <= 10; j++){
                     var divName = '#text-' + val + '-' + j;
                     var btnMidName = '#btn-e-' + val + '-' + j;
                     var individualHeight = $(divName).actual('height');
                     $(btnMidName).css('min-height', individualHeight+'px');
                 }
-                $(btnName1).fadeIn(1200);
+                $(btnName2).fadeIn(1000);
             }
         }
         
