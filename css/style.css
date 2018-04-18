@@ -460,7 +460,7 @@ html::-moz-scrollbar {
   transition: all 1s linear;
 }
 
-.intro-active {
+.intro-inactive {
   visibility: hidden !important;
   opacity: 0 !important;
   -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
