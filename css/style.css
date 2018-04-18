@@ -119,8 +119,8 @@ html {
   visibility: visible;
   opacity: 1;
   -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-  -webkit-transition:  all 1s linear;
-  transition: all 1s linear;
+  -webkit-transition:  opacity 1s linear;
+  transition: opacity 1s linear;
   z-index: 9999999999;
   font-size: 3.5em;
   font-weight: 400;
@@ -129,6 +129,8 @@ html {
       -ms-flex-pack: center;
           justify-content: center;
   background-color: rgba(0,0,0,0.4);
+  -webkit-transition:  transform 2.2s ease-out;
+  transition: transform 2.2s ease-out;
 }
 
 .bar {
@@ -454,6 +456,10 @@ html::-moz-scrollbar {
   -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   -webkit-transition:  all 1s linear;
   transition: all 1s linear;
+}
+
+.intro-active {
+  transform: scale(0.5) translateY(-80%);
 }
 
 .lang-active {
