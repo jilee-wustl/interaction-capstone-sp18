@@ -129,10 +129,14 @@
     display: flex;
     margin: 0 auto;
     background-color: #000000;
-    border: solid 1px #FFFFFF;
+    border: solid 1px;
+    border-color: rgba(255,255,255,1);
     border-radius: 20px;
     padding: 6px;
     z-index: 999;
+      -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  -webkit-animation: blinkfordot 2s infinite;
+  animation: blinkfordot 2s infinite;
 }
 
 #bootstrap-overrides .btn-o:hover:after {
@@ -193,7 +197,7 @@
 #bootstrap-overrides .arrow {
 }
 
-#bootstrap-overrides .arrow:hover {
+#bootstrap-overrides .arrow-after:hover {
   cursor: pointer;
 }
 
@@ -266,5 +270,36 @@
   top: 12vh;
   z-index: 9999999;
 }
+
+
+@-webkit-keyframes blinkfordot {
+        0% {
+            border-color: rgba(255,255,255,1);
+            -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        }
+        50% {
+            border-color: rgba(255,255,255,0.4);
+            -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+        }
+        100% {
+            border-color: rgba(255,255,255,1);
+            -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        }
+    }
+
+    @keyframes blinkfordot {
+        0% {
+            border-color: rgba(255,255,255,1);
+            -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        }
+        50% {
+            border-color: rgba(255,255,255,0.4);
+            -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+        }
+        100% {
+            border-color: rgba(255,255,255,1);
+            -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        }
+    }
 
 

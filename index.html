@@ -87,7 +87,7 @@
     </div>
         
         
-     <div class="page page-active" id="intro-page">
+     <div class="page" id="intro-page">
         <div id="intro-typed"></div>
     </div>
      
@@ -100,12 +100,11 @@
                     <select id="someone">
                         <option value="people">people</option>
                         <option value="you">you</option>
-                        <option value="my parents">my parents</option>
-                        <option value="my friends">my friends</option>
-                        <option value="my professor">my professor</option>
-                        <option value="my dog">my dog</option>
                         <option value="he">he</option>
                         <option value="she">she</option>
+                        <option value="my parents">my parents</option>
+                        <option value="my friends">my friends</option>
+                        <option value="my pet">my pet</option>
                     </select>
                 
                 <span class="prompt">&nbsp;understood </span>
@@ -135,12 +134,11 @@
                 <select id="someone2">
                     <option value="people">people</option>
                     <option value="you">you</option>
-                    <option value="my parents">my parents</option>
-                    <option value="my friends">my friends</option>
-                    <option value="my professor">my professor</option>
-                    <option value="my dog">my dog</option>
                     <option value="he">he</option>
                     <option value="she">she</option>
+                    <option value="my parents">my parents</option>
+                    <option value="my friends">my friends</option>
+                    <option value="my pet">my pet</option>
                 </select>
             understood that ________</div>
             <div id="archiveTrans"></div>
@@ -228,13 +226,14 @@
             });
             
             setTimeout(function() {
-                $('#intro-page').removeClass('page-active');
                 $('#intro-page').addClass('intro-inactive');
-                $('#intro-page').addClass('page-inactive');
-                $('#landing-page').addClass('page-active');
-                $('.menu').delay(1000).css('display', 'block');
-                $('.menu-bottom').delay(1000).css('display', 'block');
             }, 3500);
+            
+            setTimeout(function() {
+                $('#landing-page').addClass('page-active');
+                $('.menu').css('display', 'block');
+                $('.menu-bottom').css('display', 'block');
+            }, 4300);
             
             $(".edit").keydown(function (e) {
         
@@ -401,6 +400,7 @@
         $("#archive-page").scroll(function(){
             if(($(this)[0].scrollHeight - $(this).scrollTop() - $(this).outerHeight()) < 20) {
                 $('.arrow').css('transform', 'rotate(180deg)');
+                $('.arrow').addClass('arrow-after');
                 scrollTop = true;
             }
             
