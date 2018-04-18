@@ -492,8 +492,17 @@ html::-moz-scrollbar {
 
 #run {
   cursor: pointer;
-  font-size: 5em;
+  position: absolute;
+  text-align: left;
+  right: 0;
+  bottom: 0;
+  padding-left: 5px;
+  background-color: rgb(5,5,10);
+  height: 95px;
+  line-height: 100%;
+  font-size: 60px;
   font-weight: 400;
+  text-indent: 0 !important;
 }
 
 @-webkit-keyframes blink {

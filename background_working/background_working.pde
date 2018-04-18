@@ -1,5 +1,5 @@
 ArrayList<movingParticle> movingParticles = new ArrayList<movingParticle>();
-int PNumMoving = 2300;//number of particles
+int PNumMoving = 2400;//number of particles
 
 void setup() {
   size(2000, 1000);
