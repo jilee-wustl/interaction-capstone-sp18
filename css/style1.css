@@ -66,6 +66,12 @@
 
 #bootstrap-overrides .archivemenu {
   font-size: 28px;
+  right: 0;
+  left: 0;
+  margin-left: auto;
+  margin-left: auto;
+  width: 850px;
+  min-height: 45px;
 }
 
 #bootstrap-overrides .orig {
