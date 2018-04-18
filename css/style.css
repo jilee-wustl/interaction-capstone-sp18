@@ -461,12 +461,12 @@ html::-moz-scrollbar {
 }
 
 .intro-inactive {
-  visibility: hidden !important;
-  opacity: 0 !important;
+  transform: scale(0.5) translateY(-80%);
+  /*visibility: hidden !important;*/
+  /*opacity: 0 !important;*/
   -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   -webkit-transition:  all 2.2s linear;
   transition: all 2.2s linear;
-  transform: scale(0.5) translateY(-80%);
 }
 
 .lang-active {
