@@ -171,7 +171,7 @@ li:hover {
     	  border-top: 7.5px solid transparent;
 
     position: absolute;
-    top: 17px;
+    top: 12px;
     right: 10px;
 }
 
@@ -185,13 +185,13 @@ li:hover {
   margin: 0;
   padding: 3.75px 10px;
   border: solid 2.5px white;
-  width: 309px;
+  width: 209px;
   list-style: none;
   background-color: rgba(0,0,0,0.95);
   color: grey;
   overflow: scroll;
   overflow-x: hidden;
-  height: 156px;
+  height: 150px;
 }
 
 #bootstrap-overrides ul::-webkit-scrollbar {
