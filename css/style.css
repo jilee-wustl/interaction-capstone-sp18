@@ -128,7 +128,9 @@ html {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-color: rgba(0,0,0,0.4);
+  /*background-color: rgba(0,0,0,0.4);*/
+  background-color: rgba(0,0,0,0);
+
   -webkit-transition:  transform 2.2s ease-out;
   transition: transform 2.2s ease-out;
 }
@@ -459,6 +461,11 @@ html::-moz-scrollbar {
 }
 
 .intro-active {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  -webkit-transition:  all 2.2s linear;
+  transition: all 2.2s linear;
   transform: scale(0.5) translateY(-80%);
 }
 
