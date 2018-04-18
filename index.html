@@ -228,8 +228,8 @@
             });
             
             setTimeout(function() {
+                $('#intro-page').removeClass('page-active');
                 $('#intro-page').addClass('intro-inactive');
-                //$('#intro-page').removeClass('page-active');
                 $('#intro-page').addClass('page-inactive');
                 $('#landing-page').addClass('page-active');
                 $('.menu').delay(1000).css('display', 'block');

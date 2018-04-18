@@ -458,13 +458,10 @@ html::-moz-scrollbar {
   -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   -webkit-transition:  all 1s linear;
   transition: all 1s linear;
-  transition-delay: 1s;
 }
 
 .intro-inactive {
   transform: scale(0.5) translateY(-80%);
-  /*visibility: hidden !important;*/
-  /*opacity: 0 !important;*/
   -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   -webkit-transition:  all 1s linear;
   transition: all 1s linear;
