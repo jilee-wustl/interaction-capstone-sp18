@@ -64,6 +64,11 @@
   line-height: 130%;
 }
 
+#bootstrap-overrides .archivemenu {
+  font-size: 28px;
+  text-align: center;
+}
+
 #bootstrap-overrides .orig {
   display: none;
 }
@@ -194,14 +199,12 @@
   height: calc(100% + 6px);
 }
 
-#bootstrap-overrides .arrow {
-}
-
 #bootstrap-overrides .arrow-after:hover {
   cursor: pointer;
 }
 
 #bootstrap-overrides .arrow{
+  cursor: default;
   display: none;
   z-index: 99999;
   width: 20px;
