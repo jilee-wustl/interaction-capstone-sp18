@@ -228,11 +228,12 @@
             });
             
             setTimeout(function() {
-                //$('#landing-page').addClass('page-active');
                 $('#intro-page').addClass('intro-inactive');
                 //$('#intro-page').removeClass('page-active');
-                //$('.menu').css('display', 'block');
-                //$('.menu-bottom').css('display', 'block');
+                $('#intro-page').addClass('page-inactive');
+                $('#landing-page').addClass('page-active');
+                $('.menu').delay(1000).css('display', 'block');
+                $('.menu-bottom').delay(1000).css('display', 'block');
             }, 3500);
             
             $(".edit").keydown(function (e) {
