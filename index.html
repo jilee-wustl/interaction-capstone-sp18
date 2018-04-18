@@ -112,7 +112,7 @@
 
                 <div class="input-wrapper">
                     <div contenteditable="true" class="edit" maxlength="100"><br></div>
-                    <div>&rarr;</div>
+                    <div id="run">&#129122;</div>
                     <div class="line-container">
                         <div class="line" id="line1"> </div>
                         <div class="line" id="line2"> </div>
@@ -234,6 +234,15 @@
                 $('.menu').css('display', 'block');
                 $('.menu-bottom').css('display', 'block');
             }, 4300);
+            
+            $("#run").click(function () {
+                if($(".edit").text() !== "" && $(".select-styled").text() !== "select") {
+                        $("#landing-page").removeClass("page-active");
+                        $("#load").spin(opts);
+                        translate();
+                }
+                return false;
+            });
             
             $(".edit").keydown(function (e) {
         

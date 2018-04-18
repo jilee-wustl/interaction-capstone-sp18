@@ -490,6 +490,12 @@ html::-moz-scrollbar {
   opacity: 1;
 }
 
+#run {
+  cursor: pointer;
+  font-size: 5em;
+  font-weight: 400;
+}
+
 @-webkit-keyframes blink {
   0% {
       opacity: 1;
