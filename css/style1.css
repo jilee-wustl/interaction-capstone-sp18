@@ -168,8 +168,8 @@
   border-right: 1.8px #FFFFFF dotted;
   height: calc(100% - 80px);
   width: 100%;
-  -webkit-transform: translateX(-43%);
-          transform: translateX(-43%);
+  -webkit-transform: translateX(-42%);
+          transform: translateX(-42%);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
