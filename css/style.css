@@ -354,11 +354,18 @@ html::-moz-scrollbar {
 }
 
 #bootstrap-overrides #that {
-  position: fixed;
   background-color: #000000;
   padding-right: 22px;
   padding-bottom: 7px;
   z-index: 999999;
+  position: absolute;
+  text-align: left;
+  left: 0;
+  top: 0;
+  background-color: rgb(5,5,10);
+  height: 95px;
+  line-height: 100%;
+  text-indent: 0 !important;
 }
 
 #bootstrap-overrides .line-container {
