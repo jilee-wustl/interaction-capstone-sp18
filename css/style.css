@@ -363,7 +363,7 @@ html::-moz-scrollbar {
   left: 0;
   top: 99px;
   background-color: rgb(5,5,10);
-  height: 95px;
+  height: 78px;
   line-height: 100%;
   text-indent: 0 !important;
 }
