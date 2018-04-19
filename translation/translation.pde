@@ -138,7 +138,7 @@ function translationLabel() {
     $(".arrow").css('display', 'block');
     }, 3000);
     setTimeout(function() {
-    $("#l11")).removeClass("lang-active");
+    $("#l11").removeClass("lang-active");
     exit();
     }, 5000);
 }
