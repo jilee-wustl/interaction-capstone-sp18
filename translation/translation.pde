@@ -138,7 +138,7 @@ function translationLabel() {
     $(".arrow").css('display', 'block');
     }, 3000);
     setTimeout(function() {
-    exit();
+    //exit();
     }, 5000);
 }
 
