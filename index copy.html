@@ -601,12 +601,7 @@
                     translateEng(category);
                     if (translationCountEng == 10){
                         writeNewPost(category);
-                        Processing.loadSketchFromSources('translation', ['translation/translation.pde']);
-                        setTimeout(function(){
-                            $("#translation").css('opacity','1');
-                            $("#load").spin(false);
-                            $(".bar").addClass('bar-active');
-                        }, 1000);
+                        
                         setTimeout(loadDatabase (category, 'translateStart'), 1500);
                     }
                 }
@@ -1041,6 +1036,15 @@
                 }
             }
             
+            if (button === 'translateStart'){
+                Processing.loadSketchFromSources('translation', ['translation/translation.pde']);
+                setTimeout(function(){
+                    $("#translation").css('opacity','1');
+                    $("#load").spin(false);
+                    $(".bar").addClass('bar-active');
+                }, 1000);
+            }
+
             if (button === true) {
                 $("#load").spin(false);
 
