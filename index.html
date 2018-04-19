@@ -241,14 +241,11 @@
             });
             
             setTimeout(function() {
-                $('#intro-page').addClass('intro-inactive');
-            }, 3500);
-            
-            setTimeout(function() {
+                $('#intro-page').addClass('page-inactive');
                 $('#landing-page').addClass('page-active');
                 $('.menu').css('display', 'block');
                 $('.menu-bottom').css('display', 'block');
-            }, 4500);
+            }, 3500);
             
             $("#run").click(function () {
                 if($(".edit").text() !== "" && $(".select-styled").text() !== "select") {
