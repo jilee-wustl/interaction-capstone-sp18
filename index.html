@@ -67,7 +67,6 @@
             </span>
             <span class="status" id='l11'>English</span>
         </div>
-        <canvas id="translation"></canvas>
     </div>
 
 
@@ -602,6 +601,8 @@
                     if (translationCountEng == 10){
                         writeNewPost(category);
                         setTimeout(loadDatabase (category, 'translateStart'), 1500);
+                        var $newCanv = $("<canvas/>").attr("id", "translation");  // adds the id 
+                        $("#processingTranslation").append($newCanv);
                         Processing.loadSketchFromSources('translation', ['translation/translation.pde']);
                         setTimeout(function(){
                             $("#translation").css('opacity','1');
