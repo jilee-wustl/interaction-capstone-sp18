@@ -129,6 +129,9 @@ $(window).resize(doResize());
 
 function translationLabel() {
     setTimeout(function() {
+    result = [];
+    resultEng = [];
+    combinedInput = "";
     $("#archive-page").scrollTop(0);
     $("#translation").css('opacity','0');
     $("#landing-page").removeClass("page-active");
