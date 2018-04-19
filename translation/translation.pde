@@ -128,8 +128,8 @@ function doResize(){
 $(window).resize(doResize());
 
 function translationLabel() {
-    console.log("translation end");
     setTimeout(function() {
+    $("#archive-page").scrollTop(0);
     $("#translation").css('opacity','0');
     $("#landing-page").removeClass("page-active");
     $(".bar").removeClass('bar-active');
