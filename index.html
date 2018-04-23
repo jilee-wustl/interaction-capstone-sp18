@@ -357,7 +357,6 @@
                     $styledSelect.text($(this).text()).removeClass('active');
                     $this.val($(this).attr('rel'));
                     $list.hide();
-                    //console.log($this.val());
                 });
               
                 $(document).click(function() {
@@ -383,13 +382,18 @@
 
                 $('#archive-button').removeClass('menu-active');
                 $('#about-button').removeClass('menu-active');
+                $("#translation").css('opacity','0');
+                $("#load").spin(false);
+                $(".bar").removeClass('bar-active');
                 $(".arrow").fadeOut(1000);
             });
             
             $('#about-button').click(function() {
                 $('#archive-page').removeClass('page-active');
                 $('#landing-page').removeClass('page-active');
-
+                $("#translation").css('opacity','0');
+                $("#load").spin(false);
+                $(".bar").removeClass('bar-active');
                 $('#about-page').addClass('page-active');
 
                 $(this).addClass('menu-active');
@@ -401,7 +405,9 @@
                 $("#load").spin(opts);
 
                 loadDatabase("people", true);
-                $('#translation').css('opacity','0');
+                $("#translation").css('opacity','0');
+                $("#load").spin(false);
+                $(".bar").removeClass('bar-active');
                 $('#landing-page').removeClass('page-active');
                 $('#about-page').removeClass('page-active');
                 $('#about-button').removeClass('menu-active');
